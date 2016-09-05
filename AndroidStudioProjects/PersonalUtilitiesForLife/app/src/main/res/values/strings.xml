@@ -112,7 +112,7 @@
     <string name="AlertDialog_buttonSave_SaveMapInstruction_TimDuongDi">Lưu</string>
     <string name="AlertDialog_title_quanlytinnhan">Nhập tên nhóm</string>
     <string name="AlertDialog_title_quanlytinnhan_editcontact">Nhập thông tin liên lạc</string>
-    <string name="AlertDialog_menutitle_quanlytinnhan_editcontact">Chỉnh sửa</string>
+    <string name="AlertDialog_menutitle_quanlytinnhan_editcontact">Thông tin</string>
     <string name="AlertDialog_Title_TenFileTimKiem_QuanLyTinNhan">Tìm kiếm</string>
     <string name="AlertDialog_Title_NhapTenDataFile_QuanLyTinNhan">Nhập đường dẫn file dữ liệu</string>
 

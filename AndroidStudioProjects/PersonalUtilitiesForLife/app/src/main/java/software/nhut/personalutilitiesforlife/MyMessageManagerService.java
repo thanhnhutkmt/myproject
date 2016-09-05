@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
@@ -26,27 +27,33 @@ public class MyMessageManagerService extends BroadcastReceiver {
             int type = TinNhanDanhBaCuocGoi.RECEIVED;
             Bundle bundle = intent.getExtras();
             SmsMessage[] msgs = null;
-            String msgFrom = "", msgBody = "", msgTime = "";
+            String msgFrom = "", msgBody = "";
+            long msgTime = System.currentTimeMillis();
             if (bundle != null) {
                 try {
                     Object[] pdus = (Object[]) bundle.get("pdus");
                     msgs = new SmsMessage[pdus.length];
-                    for(int i = 0; i <msgs.length; i++){
-                        msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
-                        msgFrom += msgs[i].getOriginatingAddress();
-                        msgTime += msgs[i].getTimestampMillis();
-                        msgBody += msgs[i].getMessageBody();
+                    for(int i = 0; i <msgs.length; i++) msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                    msgFrom = msgs[0].getOriginatingAddress();
+                    msgTime = msgs[0].getTimestampMillis();
+                    if (msgs.length == 1 || msgs[0].isReplace()) {
+                        msgBody = msgs[0].getDisplayMessageBody();
+                    } else {
+                        StringBuilder bodyText = new StringBuilder();
+                        for (int i = 0; i < msgs.length; i++) {
+                            bodyText.append(msgs[i].getMessageBody());
+                        }
+                        msgBody = bodyText.toString();
                     }
                     String phoneNumber = MyStringFormater.standardizePhoneNumber(msgFrom);
                     String prefix = TinNhanDanhBaCuocGoi.geMessageTypeName(type, context);
-                    long time = Long.parseLong(msgTime);
                     String content = prefix + " " + phoneNumber + " - " +
-                        MyDateTime.getDateString(time, AppConstant.FULLTIMEFORMAT_WITHOUTNEWLINE) + "\n" + msgBody;
+                        MyDateTime.getDateString(msgTime, AppConstant.FULLTIMEFORMAT_WITHOUTNEWLINE) + "\n" + msgBody;
                     List<List<TinNhanDanhBaCuocGoi>> l = new ArrayList<>();
                     String thisFeatureFolder = context.getApplicationInfo().dataDir
                             + AppConstant.FS + AppConstant.THUMUC_QUANLY_TINNHANDANHBA;
                     MyPhone.loadDataFromApp(thisFeatureFolder, l);
-                    l.get(2).add(0, new TinNhanDanhBaCuocGoi(type, content, phoneNumber, time));
+                    l.get(2).add(0, new TinNhanDanhBaCuocGoi(type, content, phoneNumber, msgTime));
                     MyPhone.saveDataApp(thisFeatureFolder, l);
 
                     MyDialog.createMessageNtf(context, msgBody);

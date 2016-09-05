@@ -286,59 +286,36 @@ public class QuanLyTinNhanActivity extends AppCompatActivity {
 
     private void setMenuItemEvent(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.mnuTaoNhomMoi_quanlytinnhan) {
-            taoNhomMoi();
-        } else if (id == R.id.mnuThietDatNhom_quanlytinnhan) {
-            thietDatNhom();
-        } else if (id == R.id.mnuXoaNhom_quanlytinnhan) {
-            xoaNhomHienTai();
-        } else if (id == R.id.mnuTaoContactMoi_quanlytinnhan) {
-            taoContactMoi();
-        } else if (id == R.id.mnuXoaHetTinNhan_quanlytinnhan || id == R.id.mnuXoaHetContact_quanlytinnhan) {
-            xoaHetTinNhan();
-        } else if (id == R.id.mnuXoaNhieuTinNhan_quanlytinnhan || id == R.id.mnuXoaNhieuContact_quanlytinnhan) {
-            xoaNhieuTinNhan();
-        } else if (id == R.id.mnuSapXepTheoThoiGian_quanlytinnhan) {
-            sapXepTheo(TinNhanDanhBaCuocGoi.SORTBYTIME);
-        } else if (id == R.id.mnuSapXepTheoContact_quanlytinnhan) {
-            sapXepTheo(TinNhanDanhBaCuocGoi.SORTBYCONTACT);
-        } else if (id == R.id.mnuSapXepTheoGroup_quanlytinnhan) {
-            sapXepTheo(TinNhanDanhBaCuocGoi.SORTBYGROUP);
-        } else if (id == R.id.mnuSapXepTheoLoai_quanlytinnhan) {
-            sapXepTheo(TinNhanDanhBaCuocGoi.SORTBYTYPE);
-        } else if (id == R.id.mnuDaoSapXep_quanlytinnhan) {
-            sapXepDao();
-        } else if (id == R.id.mnuTimKiem_quanlytinnhan) {
-            timKiem();
-        } else if (id == R.id.mnuGuiTinNhan_quanlytinnhan) {
-            guiTinNhan(null);
-        } else if (id == R.id.mnuXoaDia_quanlytinnhan) {
-            xoaDia();
-        } else if (id == R.id.mnuXoaPhoneSim_quanlytinnhan) {
-            xoaPhoneSim();
-        } else if (id == R.id.mnuLayDataPhone_quanlytinnhan) {
-            ghepVoiDuLieuPhoneVaSim();
-        } else if (id == R.id.mnuLayDataFile_quanlytinnhan) {
-            ghepVoiFile();
-        } else if (id == R.id.mnuThietDatNhacChuongTinNhan_quanlytinnhan) {
-            chonNhacChuong();
-        } else if (id == R.id.mnuImportContactFromFile_quanlytinnhan) {
-            importContactFromFile(this);
-        } else if (id == R.id.mnuAddNumberKeyword_quanlytinnhan) {
-            addSpamNumberAndKeyword();
-        } else if (id == R.id.mnuDeleteNumberKeyword_quanlytinnhan) {
-            deleteSpamNumberKeywords();
-        } else if (id == R.id.mnuDeleteMessageCalllog_quanlytinnhan) {
-            deleteSpam();
-        }
+        if (id == R.id.mnuTaoNhomMoi_quanlytinnhan) taoNhomMoi();
+        else if (id == R.id.mnuThietDatNhom_quanlytinnhan) thietDatNhom();
+        else if (id == R.id.mnuXoaNhom_quanlytinnhan) xoaNhomHienTai();
+        else if (id == R.id.mnuTaoContactMoi_quanlytinnhan) taoContactMoi();
+        else if (id == R.id.mnuXoaHetTinNhan_quanlytinnhan || id == R.id.mnuXoaHetContact_quanlytinnhan) xoaHetTinNhan();
+        else if (id == R.id.mnuXoaNhieuTinNhan_quanlytinnhan || id == R.id.mnuXoaNhieuContact_quanlytinnhan) xoaNhieuTinNhan();
+        else if (id == R.id.mnuSapXepTheoThoiGian_quanlytinnhan) sapXepTheo(TinNhanDanhBaCuocGoi.SORTBYTIME);
+        else if (id == R.id.mnuSapXepTheoContact_quanlytinnhan) sapXepTheo(TinNhanDanhBaCuocGoi.SORTBYCONTACT);
+        else if (id == R.id.mnuSapXepTheoGroup_quanlytinnhan) sapXepTheo(TinNhanDanhBaCuocGoi.SORTBYGROUP);
+        else if (id == R.id.mnuSapXepTheoLoai_quanlytinnhan) sapXepTheo(TinNhanDanhBaCuocGoi.SORTBYTYPE);
+        else if (id == R.id.mnuDaoSapXep_quanlytinnhan) sapXepDao();
+        else if (id == R.id.mnuTimKiem_quanlytinnhan) timKiem();
+        else if (id == R.id.mnuGuiTinNhan_quanlytinnhan) guiTinNhan(null);
+        else if (id == R.id.mnuXoaDia_quanlytinnhan) xoaDia();
+        else if (id == R.id.mnuXoaPhoneSim_quanlytinnhan) xoaPhoneSim();
+        else if (id == R.id.mnuLayDataPhone_quanlytinnhan) ghepVoiDuLieuPhoneVaSim();
+        else if (id == R.id.mnuLayDataFile_quanlytinnhan) ghepVoiFile();
+        else if (id == R.id.mnuThietDatNhacChuongTinNhan_quanlytinnhan) chonNhacChuong();
+        else if (id == R.id.mnuImportContactFromFile_quanlytinnhan) importContactFromFile(this);
+        else if (id == R.id.mnuAddNumberKeyword_quanlytinnhan) addSpamNumberAndKeyword();
+        else if (id == R.id.mnuDeleteNumberKeyword_quanlytinnhan) deleteSpamNumberKeywords();
+        else if (id == R.id.mnuDeleteMessageCalllog_quanlytinnhan) deleteSpam();
     }
 
     private void deleteSpam() {
         List<List<TinNhanDanhBaCuocGoi>> l = new ArrayList<>();
         MyPhone.loadDataFromApp(thisFeatureFolder, l);
-        List<TinNhanDanhBaCuocGoi> listSpamContent = new ArrayList<>();
+        List<TinNhanDanhBaCuocGoi> listSpamContent;
         for (int i = 2; i < 4; i++) {
-            listSpamContent = listAdapter.get(i).getListContent();
+            listSpamContent = listAdapter.get(i + 1).getListContent();
             for (int j = 0; j < l.get(i).size(); j++)
                 for (int k = 0; k < listSpamContent.size(); k++)
                     if (l.get(i).get(j).getContent().equals(listSpamContent.get(k).getContent())) {

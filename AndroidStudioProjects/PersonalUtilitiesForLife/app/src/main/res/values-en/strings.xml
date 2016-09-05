@@ -113,7 +113,7 @@
     <string name="AlertDialog_buttonSave_SaveMapInstruction_TimDuongDi">Save</string>
     <string name="AlertDialog_title_quanlytinnhan">Type name of group</string>
     <string name="AlertDialog_title_quanlytinnhan_editcontact">Type contact info</string>
-    <string name="AlertDialog_menutitle_quanlytinnhan_editcontact">Edit</string>
+    <string name="AlertDialog_menutitle_quanlytinnhan_editcontact">Info</string>
     <string name="AlertDialog_Title_TenFileTimKiem_QuanLyTinNhan">Look for</string>
     <string name="AlertDialog_Title_NhapTenDataFile_QuanLyTinNhan">Type datapath</string>
 

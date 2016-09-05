@@ -202,7 +202,11 @@ public class MyPhone {
                 context.registerReceiver(deliverybr, new IntentFilter("delivered"));
                 PendingIntent sentPI = PendingIntent.getBroadcast(context, 0, new Intent("sent"), PendingIntent.FLAG_UPDATE_CURRENT);
                 PendingIntent deliverPI = PendingIntent.getBroadcast(context, 0, new Intent("delivered"), PendingIntent.FLAG_UPDATE_CURRENT);
-                SmsManager.getDefault().sendTextMessage(pNumber, null, smsContent, sentPI, deliverPI);
+                ArrayList<String> parts = SmsManager.getDefault().divideMessage(smsContent);
+                ArrayList<PendingIntent> listSendPI = new ArrayList<>();
+                ArrayList<PendingIntent> listdeliverPI = new ArrayList<>();
+                for (String mp : parts) {listSendPI.add(sentPI); listdeliverPI.add(deliverPI);}
+                SmsManager.getDefault().sendMultipartTextMessage(pNumber, null, parts, listSendPI, listdeliverPI);
             }
         } catch (Exception e) {
             result = false;
