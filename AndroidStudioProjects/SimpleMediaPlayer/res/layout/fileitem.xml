@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutfileitem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="horizontal" >
+    <TextView 
+        android:id="@+id/name"
+        android:layout_width="@dimen/surfscreen.namecolumn"
+        android:layout_height="wrap_content"  
+        android:textColor="@color/black"      
+        android:text="test"
+        />
+    <TextView 
+        android:id="@+id/type"
+        android:layout_width="@dimen/surfscreen.typecolumn"
+        android:layout_height="wrap_content" 
+        android:textColor="@color/black"   
+        android:text="test"      
+        />
+    <TextView 
+        android:id="@+id/createddate"
+        android:layout_width="@dimen/surfscreen.datecolumn"
+        android:layout_height="wrap_content"   
+        android:textColor="@color/black"   
+        android:text="test"    
+        />
+     <TextView 
+        android:id="@+id/size"
+        android:layout_width="@dimen/surfscreen.sizecolumn"
+        android:layout_height="wrap_content"  
+        android:textColor="@color/black"  
+        android:text="test"      
+        />
+     <ImageView 
+        android:id="@+id/checkbox"
+        android:layout_width="@dimen/surfscreen.selectboxcolumn"
+        android:layout_height="@dimen/surfscreen.selectboxcolumn" 
+        android:src="@drawable/checkbox_uncheck"   
+        android:scaleType="fitXY"  
+		android:clickable="true" 
+        />
+</LinearLayout>

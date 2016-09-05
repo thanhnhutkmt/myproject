@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list   android:id="@+id/handimation" android:oneshot="false" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/gacha20a_01" android:duration="250" />
+    <item android:drawable="@drawable/gacha20a_02" android:duration="250" />
+    <item android:drawable="@drawable/gacha20a_03" android:duration="250" />
+    <item android:drawable="@drawable/gacha20a_04" android:duration="250" />
+    <item android:drawable="@drawable/gacha20a_05" android:duration="250" />
+ </animation-list> 

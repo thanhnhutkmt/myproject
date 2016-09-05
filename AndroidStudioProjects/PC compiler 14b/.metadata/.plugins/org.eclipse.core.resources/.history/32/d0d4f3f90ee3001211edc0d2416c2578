@@ -1,0 +1,1088 @@
+/**
+ * 
+ */
+package compiler;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+import util.TestData;
+import util.constants;
+import util.other;
+import MicroController.InstructionSet;
+import MicroController.PM;
+import MicroController.RAM;
+import MicroController.memory;
+import exception.AssignException;
+import exception.CompareException;
+import exception.DeclareException;
+
+/**
+ * @author ThanhNhut
+ * 
+ */
+public class structureCompiler {
+	private final int LABELLENGTH = 9;
+	
+	private RAM ram;
+	private PM pm;
+
+	public structureCompiler(memory mem) {
+		ram = mem.getRAM();
+		pm = mem.getPM();
+	}
+
+	public String compileLoopStructure(String Ccode) {
+		StringBuffer sbuf = new StringBuffer();
+
+		return sbuf.toString();
+	}
+
+	public String compileTestExpression(String Ccode) {
+		String asmcode = null;
+
+		return asmcode;
+	}
+
+	public String compileExpressionStructure(String Ccode) {
+		String asmcode = null;
+		// +, -, *, /, %
+
+		// bit &, |, ^ (exor), !, >>, <<
+		return asmcode;
+	}
+
+	/**
+	 * compile code form : "type varName = value", "varName = value" 
+	 *     value is	number, varName, ptrName, string array, array element. 
+	 *     varName is variable, pointer, array, array element. 
+	 *     type : char, int, ushort, short, ulong, long. float.
+	 * <br> Notes : The varName must be previously declared.
+	 * @param Ccode
+	 *            code c to compile.
+	 * @return asm value-assign code.
+	 * @throws DeclareException
+	 * @throws AssignException
+	 */
+	public String compileAssignStructure(String Ccode) 
+			throws DeclareException, AssignException {
+		String asmcode = "";
+		String asmAssignCode = "";
+		StringTokenizer token = new StringTokenizer(Ccode, ";");
+
+		while (token.hasMoreTokens()) {
+			String declare = token.nextToken();
+			declare = declare.trim();
+			String type = "", varName = "";
+			if (declare.startsWith("char") || declare.startsWith("int")
+				    || declare.startsWith("ushort") || declare.startsWith("short")
+				 	    || declare.startsWith("ulong") || declare.startsWith("long")
+					        || declare.startsWith("float")) {
+				type = declare.substring(0, declare.indexOf(" "));		
+				varName = declare.substring(declare.indexOf(" ") + 1,
+						declare.indexOf("="));
+				if (varName.contains("*")) {
+					varName = varName.substring(varName.indexOf("*") + 1);
+					varName = varName.trim();
+					varName = RAM.POINTERPREFIX + varName;
+				} else {
+					varName = varName.trim();					
+				}
+				
+				if (!ram.isExist(varName, type)) {
+					throw new DeclareException(String.format(
+							DeclareException.NOTDECLARE, varName));
+				}
+			} else {
+				// no type in command form : varName = value
+				varName = declare.substring(0, declare.indexOf("="));
+				if (varName.contains("*")) {
+					varName = varName.substring(varName.indexOf("*") + 1);
+					varName = varName.trim();
+					varName = RAM.POINTERPREFIX + varName;
+				} else {
+					varName = varName.trim();					
+				}
+				varName = varName.trim();
+				if (varName.contains("[")) {
+					// array element
+					String regArrayName = RAM.ARRAYPREFIX + varName.substring(0, varName.indexOf("["));
+					type = ram.getVarType(regArrayName);
+					type = type.substring(0, type.indexOf("_")); 
+				} else {
+					// variable
+					type = ram.getVarType(varName);
+					if (type == null) {
+						// ptr
+						type = ram.getVarType(RAM.POINTERPREFIX + varName);
+						if (type == null) {
+							// array
+							type = ram.getVarType(RAM.ARRAYPREFIX + varName);
+							if (type == null) {
+								// not declared yet
+								throw new DeclareException(String.format(
+										DeclareException.NOTDECLARE, varName));
+							}
+							type = type.substring(0, type.indexOf("_"));
+							varName = RAM.ARRAYPREFIX + varName;
+						}
+					}
+				}
+			}
+
+			String stringValue = declare.substring(declare.indexOf("=") + 1,
+					declare.length());
+			stringValue = stringValue.trim();
+
+			boolean number = true;
+			try {
+				Integer.parseInt(stringValue);
+			} catch (NumberFormatException e) {
+				if (!stringValue.contains("{")) {
+					number = false;
+				}
+			}
+			ArrayList<String> addresses;
+			ArrayList<String> values;
+			switch (type) {
+			case "char":
+			case "int":
+				addresses = assignVarName(varName, type);
+				values = assignValue(stringValue, type);
+				asmAssignCode += fillAssignForm(addresses, values, number);
+				break;
+			case "ushort":
+			case "short":
+				addresses = assignVarName(varName, type);
+				values = assignValue(stringValue, type);
+				asmAssignCode += fillAssignForm(addresses, values, number);
+				break;
+			case "ulong":
+			case "long":
+			case "float":
+				addresses = assignVarName(varName, type);
+				values = assignValue(stringValue, type);
+				asmAssignCode += fillAssignForm(addresses, values, number);
+				break;
+			}
+		}
+		asmcode = asmAssignCode;
+		return asmcode;
+	}
+
+	private String fillAssignForm(ArrayList<String> addresses,
+			ArrayList<String> values, boolean number) {
+		String asmCode = "";
+		if (number) {
+			for (int index = 0; index < addresses.size(); index++) {
+				if (index < values.size()) {
+					asmCode += String.format(InstructionSet.assignNumberToForm,
+							values.get(index), addresses.get(index));
+				} else {
+					asmCode += String.format(InstructionSet.assignRegToForm2,
+							addresses.get(index));
+				}
+			}
+		} else {
+			for (int index = 0; index < addresses.size(); index++) {
+				String val = values.get(index);
+				if ((val.length() == 0) && (val.equals("0"))) {
+					asmCode += String.format(InstructionSet.assignRegToForm2,
+							addresses.get(index));
+				} else {
+					asmCode += String.format(InstructionSet.assignRegToForm1,
+							val, addresses.get(index));
+				}
+			}
+		}
+		return asmCode;
+	}
+
+	public String compileCompareStructure(String lOpName, String rOpName, 
+			String operator, String trueCBlock, String falseCBlock) throws CompareException, AssignException, DeclareException {
+		String asmcode = "";
+		ArrayList<Object> lOpAdd = new ArrayList<Object>();
+		ArrayList<Object> rOpAdd = new ArrayList<Object>();
+		boolean lNumber = true, rNumber = true;
+		long lValue = 0;
+		long rValue = 0;
+		String ifLabel = other.randomString(LABELLENGTH);
+		String trueLabel = ifLabel;
+		String falseLabel = ifLabel;
+		String compareCode = "";
+		String trueABlock = "";
+		String falseABlock = "";
+		String compareChangeCondition = String.format(
+				InstructionSet.COMPARECHANGECONDITION, ifLabel);
+		
+		try {
+			lValue = Long.parseLong(lOpName);
+		} catch(NumberFormatException e) {
+			lNumber = false;
+		}		
+		try {
+			rValue = Long.parseLong(rOpName);
+		} catch(NumberFormatException e) {
+			rNumber = false;
+		}
+		if (lNumber && rNumber) {
+			switch(operator) {
+				case ">" :
+					if (lValue > rValue) {
+						compareCode = "GOTO @true" + trueLabel;
+						trueABlock = compile(trueCBlock);
+						falseABlock = "";
+					} else {
+						compareCode = "GOTO @false" + falseLabel;
+						trueABlock = "";
+						falseABlock = compile(falseCBlock);	
+					}
+					break;
+				case "<" :
+					if (lValue < rValue) {
+						compareCode = "GOTO @true" + trueLabel;
+						trueABlock = compile(trueCBlock);
+						falseABlock = "";
+					} else {
+						compareCode = "GOTO @false" + falseLabel;
+						trueABlock = "";
+						falseABlock = compile(falseCBlock);		
+					}
+					break;
+				case ">=" :
+					if (lValue >= rValue) {
+						compareCode = "GOTO @true" + trueLabel;
+						trueABlock = compile(trueCBlock);
+						falseABlock = "";
+					} else {
+						compareCode = "GOTO @false" + falseLabel;
+						trueABlock = "";
+						falseABlock = compile(falseCBlock);		
+					}
+					break;
+				case "<=" :
+					if (lValue <= rValue) {
+						compareCode = "GOTO @true" + trueLabel;
+						trueABlock = compile(trueCBlock);
+						falseABlock = "";
+					} else {
+						compareCode = "GOTO @false" + falseLabel;
+						trueABlock = "";
+						falseABlock = compile(falseCBlock);	
+					}
+					break;
+				case "==" :
+					if (lValue == rValue) {
+						compareCode = "GOTO @true" + trueLabel;
+						trueABlock = compile(trueCBlock);
+						falseABlock = "";
+					} else {
+						compareCode = "GOTO @false" + falseLabel;
+						trueABlock = "";
+						falseABlock = compile(falseCBlock);	
+					}
+					break;
+				case "!=" :
+					if (lValue != rValue) {
+						compareCode = "GOTO @true" + trueLabel;
+						trueABlock = compile(trueCBlock);
+						falseABlock = "";
+					} else {
+						compareCode = "GOTO @false" + falseLabel;
+						trueABlock = "";
+						falseABlock = compile(falseCBlock);		
+					}
+					break;
+				default :
+					throw new CompareException(String.format(
+							CompareException.WRONGOPERATOR, operator));
+			}
+		} else {
+			lOpAdd = getOperandAdd(lOpName);
+			rOpAdd = getOperandAdd(rOpName);
+			switch(operator) {
+				case ">" :
+					compareCode = fileCompareForm(InstructionSet.GTFORM, 
+							lOpAdd, rOpAdd, ifLabel);
+					break;
+				case "<" :
+					compareCode = fileCompareForm(InstructionSet.GTFORM,
+							rOpAdd, lOpAdd, ifLabel);
+					break;
+				case ">=" :
+					compareCode = fileCompareForm(InstructionSet.GTEQFORM,
+							lOpAdd, rOpAdd, ifLabel);
+					break;
+				case "<=" :
+					compareCode = fileCompareForm(InstructionSet.GTEQFORM,
+							rOpAdd, lOpAdd, ifLabel);
+					break;
+				case "==" :
+					compareCode = fileCompareForm(InstructionSet.EQMARKFORM 
+							+ InstructionSet.EQFORM, lOpAdd, rOpAdd, ifLabel);
+					break;
+				case "!=" :
+					compareCode = fileCompareForm(InstructionSet.NEQMARKFORM 
+							+ InstructionSet.EQFORM, lOpAdd, rOpAdd, ifLabel);
+					break;
+				default :
+					throw new CompareException(String.format(
+							CompareException.WRONGOPERATOR, operator));
+			}
+			
+			trueABlock = compile(trueCBlock);
+			falseABlock = compile(falseCBlock);
+		}
+		
+//		public static final String COMPARELOOPSTRUCTUREFORM =
+//				  "@%s" + constants.NEXTLINE
+//				+ "%s" + constants.NEXTLINE
+//				+ "@true%s" + constants.NEXTLINE
+//				+ NEXTCOLUMN + "%s" + constants.NEXTLINE
+//				+ "%s" + constants.NEXTLINE
+//				+ "@false%s" + constants.NEXTLINE
+//				+ NEXTCOLUMN + "%s" + constants.NEXTLINE
+//				+ "@end%s";
+		trueABlock.replace(constants.NEXTLINE, constants.NEXTLINE + InstructionSet.NEXTCOLUMN);
+		falseABlock.replace(constants.NEXTLINE, constants.NEXTLINE + InstructionSet.NEXTCOLUMN);
+		asmcode = String.format(InstructionSet.COMPARELOOPSTRUCTUREFORM, 
+				"IF" + ifLabel, compareCode, trueLabel, trueABlock, 
+				compareChangeCondition, falseLabel, falseABlock, ifLabel);
+		return asmcode;
+	}
+	
+	/**
+	 * Generate asm code for compare expression : >, <, >=, <=, ==, !=. 
+	 * <br>
+	 * Note : A > B, A is lOp, B is rOp.<br> 
+	 *        for A < B, reverse order of lOpAdd and rOpAdd when the method is called.<br>
+	 *        The same manner is applied for ">=" and "<=" operator.    
+	 * 		  Value of A and B is in range [0, 127]. 
+	 * @param formFormat 
+	 * 			compare form format : GTFORM, GTEQFORM, EQFORM 
+	 * @param lOpAdd
+	 * 			address array of left operand
+	 * @param rOpAdd
+	 *   		address array of right operand 	
+	 * @param structureLabel
+	 * 			Label of structure: 
+	 * <br>- @true+structureLabel is the label of true block commands. 
+	 * <br>- @false+structureLabel is the label of false block commands.
+	 * @return
+	 *  	  	asm code of compare expression.
+	 */
+	public String fileCompareForm(String formFormat, 
+			ArrayList<Object> lOpAdd, ArrayList<Object> rOpAdd, 
+			String structureLabel) {
+		String compareCode = "";
+		int lSize = lOpAdd.size();
+		String trueLabel = structureLabel;
+		String falseLabel = structureLabel;
+		String nextLabel = "";
+		String fCMD = "", sCMD = "";
+		
+		for (int index = lSize - 1; index >= 0; index--) {		
+			nextLabel = "@next" + structureLabel + "_" + index;	
+			if (formFormat.equals(InstructionSet.GTFORM)) {	
+				if (index == 0) {
+					nextLabel = "@false" + structureLabel;
+				}
+				if (rOpAdd.get(index) instanceof Integer) {
+					fCMD = String.format(InstructionSet.LOADSECOND0,
+							rOpAdd.get(index));
+				} else {
+					fCMD = String.format(InstructionSet.LOADSECOND, 
+							rOpAdd.get(index));
+				}
+				if (lOpAdd.get(index) instanceof Integer)  {
+					sCMD = String.format(InstructionSet.LOADSUBFIRST0,
+							lOpAdd.get(index));
+				} else {
+					sCMD = String.format(InstructionSet.LOADSUBFIRST, 
+							lOpAdd.get(index));
+				}
+				compareCode += String.format(formFormat, fCMD,
+						sCMD, nextLabel, falseLabel, 
+						trueLabel, nextLabel);
+			} else if (formFormat.equals(InstructionSet.GTEQFORM)) {
+				if (index == 0) {
+					nextLabel = "@true" + structureLabel;
+				}
+				if (rOpAdd.get(index) instanceof Integer) {
+					fCMD = String.format(InstructionSet.LOADSECOND0,
+							rOpAdd.get(index));
+				} else {
+					fCMD = String.format(InstructionSet.LOADSECOND, 
+							rOpAdd.get(index));
+				}
+				if (lOpAdd.get(index) instanceof Integer) {
+					sCMD = String.format(InstructionSet.LOADSUBFIRST0,
+							lOpAdd.get(index));
+				} else {
+					sCMD = String.format(InstructionSet.LOADSUBFIRST, 
+							lOpAdd.get(index));
+				}
+				compareCode += String.format(formFormat, fCMD, 
+						sCMD, falseLabel, nextLabel, 
+						trueLabel, nextLabel);
+			} else {//if (formFormat.equals(InstructionSet.EQFORM)) {
+				if (formFormat.startsWith(InstructionSet.EQMARKFORM)) {
+					if (index == 0) {
+						nextLabel = "@true" + structureLabel;
+					}
+					if (rOpAdd.get(index) instanceof Integer) {
+						fCMD = String.format(InstructionSet.LOADSECOND0, 
+								rOpAdd.get(index));
+					} else {
+						fCMD = String.format(InstructionSet.LOADSECOND, 
+								rOpAdd.get(index));
+					}
+					if (lOpAdd.get(index) instanceof Integer) {
+						sCMD = String.format(InstructionSet.LOADSUBFIRST0,
+								lOpAdd.get(index));
+					} else {
+						sCMD = String.format(InstructionSet.LOADSUBFIRST, 
+								lOpAdd.get(index));
+					}
+					compareCode += String.format(formFormat, fCMD, 
+							sCMD, nextLabel, falseLabel, 
+							nextLabel);
+				} else {
+					if (index == 0) {
+						nextLabel = "@false" + structureLabel;
+					}
+					if (rOpAdd.get(index) instanceof Integer) {
+						fCMD = String.format(InstructionSet.LOADSECOND0,
+								rOpAdd.get(index));
+					} else {
+						fCMD = String.format(InstructionSet.LOADSECOND, 
+								rOpAdd.get(index));
+					}
+					if (lOpAdd.get(index) instanceof Integer) {
+						sCMD = String.format(InstructionSet.LOADSUBFIRST0,
+								lOpAdd.get(index));
+					} else {
+						sCMD = String.format(InstructionSet.LOADSUBFIRST, 
+								lOpAdd.get(index));
+					}
+					compareCode += String.format(formFormat, fCMD, 
+							sCMD, nextLabel, trueLabel, 
+							nextLabel);
+				}
+			}
+		}
+		return compareCode;
+	}
+
+	/**
+	 * compile code form : "type varName = value", "type varName". 
+	 *           value is number, varName, ptrName. 
+	 *           varName is not pointer. 
+	 *           type : char, int, ushort, short, ulong, long. float.
+	 * 
+	 * @param Ccode
+	 *            code c to compile.
+	 * @return asm data-def code.
+	 * @throws AssignException
+	 */
+	public String compileDataDef(String Ccode) throws AssignException {
+		String asmcode = "";
+		Hashtable<String, Integer> dataDef = ram.getVarTable();
+		Set<String> keySet = dataDef.keySet();
+		String asmDefineCode = "";
+		String asmAssignCode = "";
+
+		Ccode = Ccode.trim();
+		String type, varName;
+		if (!Ccode.contains("=")) {
+			type = Ccode.substring(0, Ccode.indexOf(" "));
+			varName = Ccode.substring(Ccode.indexOf(" ") + 1,
+					Ccode.length());
+			varName = varName.trim();
+			ram.regVarType(varName, type);
+			switch (type) {
+				case "char":
+				case "int":
+					ram.declareVar(varName);
+					break;
+				case "ushort":
+				case "short":
+					ram.declareShort(varName);
+					break;
+				case "ulong":
+				case "long":
+				case "float":
+					ram.declareFloat(varName);
+					break;
+			}
+		} else {
+			type = Ccode.substring(0, Ccode.indexOf(" "));
+			varName = Ccode.substring(Ccode.indexOf(" ") + 1,
+					Ccode.indexOf("="));
+			varName = varName.trim();
+
+			ram.regVarType(varName, type);
+			switch (type) {
+				case "char":
+				case "int":
+					ram.declareVar(varName);
+					try {
+						asmAssignCode += compileAssignStructure(Ccode);
+					} catch (DeclareException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "ushort":
+				case "short":
+					ram.declareShort(varName);
+					try {
+						asmAssignCode += compileAssignStructure(Ccode);
+					} catch (DeclareException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "ulong":
+				case "long":
+					ram.declareLong(varName);
+					try {
+						asmAssignCode += compileAssignStructure(Ccode);
+					} catch (DeclareException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "float":
+					ram.declareFloat(varName);
+					try {
+						asmAssignCode += compileAssignStructure(Ccode);
+					} catch (DeclareException e) {
+						e.printStackTrace();
+					}
+					break;
+			}
+		}
+
+		for (String key : keySet) {
+			asmDefineCode += "#Define "
+					+ other.createFixedLengthString(other.LEFT, key, 30) + "0x"
+					+ other.toHexString(dataDef.get(key))
+					+ constants.NEXTLINE;
+		}
+		asmcode = asmDefineCode + constants.NEXTLINE + asmAssignCode;
+		return asmcode;
+	}
+
+	public String compilePtrDef(String Ccode) throws AssignException {
+		String asmcode = "";
+		String asmAssignCode = "";
+
+		Ccode = Ccode.trim();
+		String type, varName;
+		String stringValue = null;
+		type = Ccode.substring(0, Ccode.indexOf("*"));
+		type = type.trim();
+
+		if (Ccode.contains("=")) {
+			varName = Ccode.substring(Ccode.indexOf("*") + 1,
+					Ccode.indexOf("="));
+			varName = varName.trim();
+			stringValue = Ccode.substring(Ccode.indexOf("=") + 1,
+					Ccode.length());
+			stringValue = stringValue.trim();
+			boolean number = true;
+			try {
+				Integer.parseInt(stringValue);
+			} catch (NumberFormatException e) {
+				number = false;
+			}
+			ram.regVarType(RAM.POINTERPREFIX + varName, type);
+			switch (type) {
+				case "char":
+				case "int":
+					if (number) {
+						ram.declarePtr(varName, type);
+					} else {
+						ram.pointPtrToVar(varName, stringValue);
+					}
+					break;
+				case "ushort":
+				case "short":
+					if (number) {
+						ram.declarePtr(varName, type);
+					} else {
+						ram.pointPtrToVar(varName, stringValue);
+					}
+					break;
+				case "ulong":
+				case "long":
+				case "float":
+					if (number) {
+						ram.declarePtr(varName, type);
+					} else {
+						ram.pointPtrToVar(varName, stringValue);
+					}
+					break;
+			}
+		} else {
+			varName = Ccode.substring(Ccode.indexOf("*") + 1,
+					Ccode.length());
+			varName = varName.trim();
+			ram.regVarType(RAM.POINTERPREFIX + varName, type);
+			ram.declarePtr(varName, type);
+		}
+		asmcode = asmAssignCode;
+		return asmcode;
+	}
+
+	public String compileArrayDef(String Ccode) throws AssignException,
+			DeclareException {
+		String asmcode = "";
+		String asmDefineCode = "";
+		String asmAssignCode = "";
+		String type = "", varName = "", arraySize = "";
+
+		Ccode = Ccode.trim();
+
+		String stringValue = null;
+		type = Ccode.substring(0, Ccode.indexOf(" "));
+		type = type.trim();
+		if (!TestData.isValidType(type)) {
+			throw new AssignException(
+					AssignException.ARRAYSTRINGSYNTAXERROR);
+		}
+		varName = Ccode.substring(Ccode.indexOf(" ") + 1,
+				Ccode.indexOf("["));
+		varName = varName.trim();
+		arraySize = Ccode.substring(Ccode.indexOf("[") + 1,
+				Ccode.indexOf("]"));
+		arraySize = arraySize.trim();
+		if (Ccode.contains("=")) {
+			stringValue = Ccode.substring(Ccode.indexOf("=") + 1,
+					Ccode.length());
+			stringValue = stringValue.trim();
+			if (!((stringValue.contains("{") 
+					&& stringValue.contains("}"))
+					    || stringValue.contains("\""))) {
+				throw new AssignException(
+						AssignException.ARRAYSTRINGSYNTAXERROR);
+			}
+			int numberOfElement = 0;
+			ArrayList<Integer> assignedValues = new ArrayList<Integer>();
+			  
+			// int a[] = {1, 2, 3};
+			if (stringValue.matches(constants.ARRAYDECLAREPATTERN1)) {	
+				if (!stringValue.matches(constants.ARRAYDECLAREPATTERN3)) {
+					stringValue = stringValue.substring(
+							stringValue.indexOf("{") + 1, stringValue.indexOf("}"));
+					stringValue = stringValue.trim();
+					StringTokenizer countElement = new StringTokenizer(stringValue,
+							",");
+					numberOfElement = countElement.countTokens();				 
+					while (countElement.hasMoreTokens()) {
+						assignedValues.add(Integer.parseInt(countElement
+								.nextToken().trim()));
+					}
+				}
+			}
+			//  char a[] = "hi}";
+			else if (stringValue.matches(constants.ARRAYDECLAREPATTERN2)) {
+				if (!type.equals(constants.CHARTYPE)) {
+					throw new AssignException(
+						AssignException.ARRAYSTRINGSYNTAXERROR);
+				}
+				stringValue = stringValue.substring(1, 
+						stringValue.lastIndexOf("\""));
+				char characters[] = stringValue.toCharArray();
+				numberOfElement = characters.length;
+				for (char c : characters) {
+					assignedValues.add((int)c);	
+				}				
+			}
+
+			int sizeOfArray = 0;
+			if (arraySize.length() != 0) {
+				try {
+					sizeOfArray = Integer.parseInt(arraySize);
+				} catch (NumberFormatException e) {
+					throw new DeclareException(
+							DeclareException.ARRAYSIZEERROR);
+				}
+				if (sizeOfArray < numberOfElement) {
+					throw new AssignException(
+							AssignException.TOOMUCHARRAYELEMENT);
+				}
+				ram.regVarType(RAM.ARRAYPREFIX + varName, type
+						+ RAM.ARRAYSIZEMARK + sizeOfArray);
+				ram.declareArray(varName, sizeOfArray,
+						other.getSizeOf(type));
+			} else {
+				ram.regVarType(RAM.ARRAYPREFIX + varName, type
+						+ RAM.ARRAYSIZEMARK + numberOfElement);
+				ram.declareArray(varName, numberOfElement,
+						other.getSizeOf(type));
+			}
+
+			ArrayList<String> addresses;
+			ArrayList<String> values;
+			addresses = assignVarName(RAM.ARRAYPREFIX + varName, type);
+			values = assignArrayValue(assignedValues, type);
+			asmAssignCode += fillAssignForm(addresses, values, true);
+		} else {
+			if (arraySize.length() == 0) {
+				throw new DeclareException(String.format(
+						DeclareException.NOARRAYSIZE, varName));
+			}
+			int sizeOfArray = Integer.parseInt(arraySize);
+			ram.regVarType(RAM.ARRAYPREFIX + varName, type
+					+ RAM.ARRAYSIZEMARK + sizeOfArray);
+			ram.declareArray(varName, sizeOfArray, other.getSizeOf(type));
+		}
+
+		Hashtable<String, Integer> dataDef = ram.getVarTable();	
+		Set<String> keySet = dataDef.keySet();
+		for (String key : keySet) {
+			if (key.contains(RAM.INDEXMARK)) {
+				String tempVarName = key.substring(0, key.indexOf(RAM.INDEXMARK));
+				if (tempVarName.equals(varName)) {
+					asmDefineCode += "#Define "
+							+ other.createFixedLengthString(other.LEFT, key, 30) + "0x"
+							+ other.toHexString(dataDef.get(key))
+							+ constants.NEXTLINE;
+				}
+			}
+		}
+		asmcode = asmDefineCode + constants.NEXTLINE + asmAssignCode;
+		
+		return asmcode;
+	}
+
+	/**
+	 * create String-value array to fill form
+	 * 
+	 * @param stringValue
+	 *            value to assign
+	 * @param type
+	 *            type of assigned
+	 * @return
+	 * @throws AssignException
+	 * @throws DeclareException 
+	 */
+	private ArrayList<String> assignValue(String stringValue, String type)
+			throws AssignException, DeclareException {
+		int sizeOfType = 0;
+		String assignType = "";
+		ArrayList<String> values = new ArrayList<String>();
+		int value = 0;
+		boolean number = true;
+		try {
+			value = Integer.parseInt(stringValue);
+		} catch (NumberFormatException e) {
+			number = false;
+		}
+		if (number) {
+			// value is number
+			String fitType = other.getFitType(value);
+			if (!fitType.contains(type)) {
+				throw new AssignException(String.format(
+						AssignException.LARGENUMBER, value, type));
+			}
+			sizeOfType = other.getSizeOf(type);
+			for (int index = 0; index < sizeOfType; index++) {
+				values.add(index,
+						other.toHexString(value - ((value / 256) * 256)));
+				value /= 256;
+			}
+			return values;
+		} else {
+			// value is not number
+			if (stringValue.contains("{")) {
+				// value is string array
+				stringValue = stringValue.substring(
+						stringValue.indexOf("{") + 1, stringValue.indexOf("}"));
+				stringValue = stringValue.trim();
+				StringTokenizer countElement = new StringTokenizer(stringValue,
+						",");
+				ArrayList<Integer> assignedValues = new ArrayList<Integer>();
+				while (countElement.hasMoreTokens()) {
+					assignedValues.add(Integer.parseInt(countElement
+							.nextToken().trim()));
+				}
+				values = assignArrayValue(assignedValues, type);
+			} else {
+				// value is not string array
+				String addressName = "";
+				if (stringValue.contains("[")) {
+					addressName = stringValue
+							.substring(0, stringValue.indexOf("["));
+				} else {
+					addressName = stringValue;
+				}
+				// check type cast
+				if (stringValue.contains("(")) {
+					String typeCast = stringValue.substring(
+							stringValue.indexOf("(") + 1,
+							stringValue.lastIndexOf(")"));
+					if (!typeCast.equals(type)) {
+						throw new AssignException(String.format(
+								AssignException.CANNOTASSIGN, typeCast, type));
+					}
+				}
+				// check type
+				assignType = ram.getVarType(addressName);
+				if (!assignType.equals(type)) {
+					throw new AssignException(String.format(
+							AssignException.CANNOTASSIGN, assignType, type));
+				}
+	
+				if (addressName.contains("*")) {
+					// value is ptr
+					int sizeOfReceivedType = other.getSizeOf(type);
+					int sizeOfTranferType = other.getSizeOf(assignType);
+					value = ram.getPtrAddress(stringValue);
+					for (int index = 0; index < sizeOfReceivedType; index++) {
+						if (index < sizeOfTranferType) {
+							values.add(index,
+									"0x" + other.toHexString(value + index));
+						} else {
+							values.add(index, "");
+						}
+					}
+				} else if (addressName.contains("[")) {
+					// value is array element
+					String regArrayName = RAM.ARRAYPREFIX + stringValue.substring(0, 
+							stringValue.indexOf("["));
+					String indexString = stringValue.substring(stringValue.indexOf("[") + 1, 
+							stringValue.lastIndexOf("]"));
+					int index = 0;
+					try {
+						index = Integer.parseInt(indexString);
+					} catch(NumberFormatException e) {
+						throw new DeclareException(DeclareException.ARRAYSIZEERROR);
+					}
+					int address = ram.getArrayAdress(regArrayName, index);
+					sizeOfType = other.getSizeOf(type);
+					for (int ind = 0; ind < sizeOfType; ind++) {
+						values.add(ind, "0x" + other.toHexString(address + ind));
+					}
+				} else {
+					// value is varName
+					sizeOfType = other.getSizeOf(type);
+					for (int index = 0; index < sizeOfType; index++) {
+						values.add(index, stringValue + RAM.INDEXMARK + index);
+					}
+				}
+			}
+		}
+		return values;
+	}
+
+	private ArrayList<String> assignVarName(String varName, String type) throws DeclareException {
+		ArrayList<String> varNames = new ArrayList<String>();
+		if (varName.startsWith(RAM.ARRAYPREFIX)) {
+			// array
+//			String arrayName = varName.substring(RAM.ARRAYPREFIX.length());
+			int sizeOfType = other.getSizeOf(type);
+			String type_Size = ram.getVarType(varName);
+			String size = type_Size.substring(type_Size.indexOf("_") + 1);
+			int sizeOfArray = Integer.parseInt(size);
+			int address = ram.getArrayAdress(varName, 0);
+			int limitSpace = sizeOfArray * sizeOfType;
+			for (int index = 0; index < limitSpace; index++) {
+				varNames.add("0x" + other.toHexString(address + index));
+			}
+		} else if (varName.contains("*")) {
+			// ptr
+			int sizeOfType = other.getSizeOf(type);
+			int address = ram.getPtrAddress(varName);
+			for (int index = 0; index < sizeOfType; index++) {
+				varNames.add(index, "0x" + other.toHexString(address + index));
+			}
+		} else if (varName.contains("[")) {
+			// array element
+			String regArrayName = RAM.ARRAYPREFIX + varName.substring(0, varName.indexOf("["));
+			String indexString = varName.substring(varName.indexOf("[") + 1, varName.lastIndexOf("]"));
+			int index = 0;
+			try {
+				index = Integer.parseInt(indexString);
+			} catch(NumberFormatException e) {
+				throw new DeclareException(DeclareException.ARRAYSIZEERROR);
+			}
+			int address = ram.getArrayAdress(regArrayName, index);
+			int sizeOfType = other.getSizeOf(type);
+			for (int ind = 0; ind < sizeOfType; ind++) {
+				varNames.add(ind, "0x" + other.toHexString(address + ind));
+			}
+			return varNames;
+		} else {
+			// varName
+			int sizeOfType = other.getSizeOf(type);
+			if (sizeOfType == 1) {
+				varNames.add(0, varName);
+			} else {
+				for (int index = 0; index < sizeOfType; index++) {
+					varNames.add(index, varName + RAM.INDEXMARK + index);
+				}
+			}
+		}
+		return varNames;
+	}
+
+	private ArrayList<String> assignArrayValue(ArrayList<Integer> value,
+			String type) throws AssignException {
+		ArrayList<String> values = new ArrayList<String>();
+		int sizeOfType = other.getSizeOf(type);
+		for (int val : value) {
+			String fitType = other.getFitType(val);
+			if (!fitType.contains(type)) {
+				throw new AssignException(String.format(
+						AssignException.LARGENUMBER, value, type));
+			}
+			values.addAll(other.splitValue(val, sizeOfType));
+		}
+		return values;
+	}
+	// expression
+
+	// loop structure
+
+	// test
+
+	// branch
+
+	// define var, data structure
+
+	// memory access mechanism
+
+	// memory management
+	
+	public String compile(String codeC) throws DeclareException, AssignException {
+		String asmCode = "";
+		// >, <;
+		
+		// >=, <=;
+		
+		// ==, !=;
+		
+		// ? : ;
+		// for test
+
+		asmCode = compileAssignStructure(codeC);
+		return asmCode;
+	}
+	
+	/**
+	 * Get values or addresses of operand to fill form.
+	 * 
+	 * @param operand
+	 *            operand to get address or value.
+	 * @return
+	 *  	address of operand if it is variable, pointer, array element <br>
+	 *      or value of operand if it is number.
+	 * @throws AssignException
+	 * @throws DeclareException 
+	 */
+	private ArrayList<Object> getOperandAdd(String operand)
+			throws AssignException, DeclareException {
+		ArrayList<Object> values = new ArrayList<Object>();
+		int value = 0;
+		boolean number = true;
+		try {
+			value = Integer.parseInt(operand);
+		} catch (NumberFormatException e) {
+			number = false;
+		}
+		if (number) {
+			// operand is number
+			int index = 0;
+			do {
+				values.add(index,
+						new Integer(value - ((value / 256) * 256)));
+				value /= 256;
+				index++;
+			} while (value > 0);
+		} else {
+			// operand is not number
+			String addressName = operand;
+
+			if (addressName.contains("*")) {
+				// value is ptr
+				String type = ram.getVarType(addressName);
+				int sizeOfType = other.getSizeOf(type);
+				value = ram.getPtrAddress(operand);
+				for (int index = 0; index < sizeOfType; index++) {
+					if (index < sizeOfType) {
+						values.add(index,
+								"0x" + other.toHexString(value + index));
+					} else {
+						values.add(index, "");
+					}
+				}
+			} else if (addressName.contains("[")) {
+				// value is array element
+				String regArrayName = RAM.ARRAYPREFIX + operand.substring(0, operand.indexOf("["));
+				String indexString = operand.substring(operand.indexOf("[") + 1, operand.lastIndexOf("]"));
+				int index = 0;
+				try {
+					index = Integer.parseInt(indexString);
+				} catch(NumberFormatException e) {
+					throw new DeclareException(DeclareException.ARRAYSIZEERROR);
+				}
+				int address = ram.getArrayAdress(regArrayName, index);
+				String type = ram.getVarType(regArrayName);
+				type = type.substring(0, type.indexOf("_"));
+				int sizeOfType = other.getSizeOf(type);
+				for (int ind = 0; ind < sizeOfType; ind++) {
+					values.add(ind, "0x" + other.toHexString(address + ind));
+				}
+			} else {
+				// value is varName
+				String type = ram.getVarType(addressName);
+				int sizeOfType = other.getSizeOf(type);
+				for (int index = 0; index < sizeOfType; index++) {
+					values.add(index, operand + RAM.INDEXMARK + index);
+				}
+			}
+		}
+		return values;
+	}
+	
+	public String cStructuretoAsm(String[] cStructure) 
+			throws AssignException, DeclareException {
+		String asm = "";
+		if (cStructure.length == 1) {
+			String cString = cStructure[0];
+			// assign structure
+			if (cString.contains("=") && !cString.contains("==")) {
+				if (cString.contains("*")) {
+					asm = compilePtrDef(cString);
+				} else if (cString.contains("[") 
+						&& cString.contains("]")) {
+					asm = compileArrayDef(cString);
+				} else {
+					asm = compileDataDef(cString);
+				}
+				asm += compileAssignStructure(cString);
+			}
+		} else {
+//			// check starting word
+//			if (cStructure.startsWith("if")) {
+//				// if structure
+//				asm = compileCompareStructure(lOpName, 
+//						rOpName, operator, trueCBlock, falseCBlock);
+//			} else if (cStructure.startsWith("do")) {
+//				
+//			} else if (cStructure.startsWith("while")) {
+//				
+//			} else if (cStructure.startsWith("for")) {
+//				
+//			} else if (cStructure.startsWith("switch")) {
+//				
+//			} else {		
+//
+//			}
+		}			
+				
+		return asm;
+	}
+}

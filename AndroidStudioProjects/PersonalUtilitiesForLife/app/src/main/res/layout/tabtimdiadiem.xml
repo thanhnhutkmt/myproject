@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtSearch_TabTimDiaDiem"
+            android:layout_weight="1"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/btnSearch_TabTimDiaDiem"
+            android:src="@drawable/mg"
+            android:scaleType="centerInside"
+            android:padding="0dp"
+            android:layout_gravity="right" />
+
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/mapCoiBanDo"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/powered_by_google_on_white"
+            android:layout_weight="1"
+            android:layout_gravity="right" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sbrZoom_TabTimDiaDiem"
+            android:max="19"
+            android:progress="0"
+            android:indeterminate="false"
+            android:layout_weight="5"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txttemp"
+        android:layout_weight="0.1"
+        android:allowUndo="true" />
+
+    <!--// This example requires the Places library. Include the libraries=places-->
+    <!--// parameter when you first load the API. For example:-->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRBLrRYsFF1CxW7rswz1dxExqzjtYkTKA&libraries=places">-->
+
+    <!--function initMap() {-->
+    <!--var map = new google.maps.Map(document.getElementById('mapCoiBanDo'), {-->
+    <!--center: {lat: -33.866, lng: 151.196},-->
+    <!--zoom: 15-->
+    <!--});-->
+
+    <!--var infowindow = new google.maps.InfoWindow();-->
+    <!--var service = new google.maps.places.PlacesService(map);-->
+
+    <!--service.getDetails({-->
+    <!--placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'-->
+    <!--}, function(place, status) {-->
+    <!--if (status === google.maps.places.PlacesServiceStatus.OK) {-->
+    <!--var marker = new google.maps.Marker({-->
+    <!--map: map,-->
+    <!--position: place.geometry.location-->
+    <!--});-->
+    <!--google.maps.event.addListener(marker, 'click', function() {-->
+    <!--infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +-->
+    <!--'Place ID: ' + place.place_id + '<br>' +-->
+    <!--place.formatted_address + '</div>');-->
+    <!--infowindow.open(map, this);-->
+    <!--});-->
+    <!--}-->
+    <!--});-->
+    <!--}-->
+    <!--</script>-->
+</LinearLayout>

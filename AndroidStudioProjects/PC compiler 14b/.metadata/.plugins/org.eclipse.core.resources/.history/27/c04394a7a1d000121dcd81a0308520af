@@ -1,0 +1,48 @@
+/**
+ * 
+ */
+package compiler;
+
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+import util.other;
+
+/**
+ * @author ThanhNhut
+ *
+ */
+public class FunctionCompiler {
+	private static final String FUNCTIONFORM = "";
+	private String functionACode;
+	public FunctionCompiler() {
+		functionACode = FUNCTIONFORM;
+	}
+	
+	public String[] splitCCodeLine(String Ccode) {
+		String[] codeLines;
+		StringTokenizer token = new StringTokenizer(Ccode, ";");
+		ArrayList<String> code = new ArrayList<String>();
+		int index = 0;
+		while(token.hasMoreTokens()) {
+			code.add(index, token.nextToken());
+			index++;
+		}
+		codeLines = other.toArray(code);
+		return codeLines;
+	}
+	
+	public String[] splitStructure(String Ccode) {
+		String[] structureGroups = null;
+		
+		
+		return structureGroups;
+	}
+	
+	public String[] splitFunction(String functionCode) {
+		String[] functionParts = new String[3];
+//		String regex = "%s %s()"
+		
+		return functionParts;
+	}
+}

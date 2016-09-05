@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/green"
+    android:orientation="vertical" >
+
+	<TextView 
+	    android:id="@+id/path"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:textColor="@color/black"      
+        android:text="test"
+	    />
+<!-- 	<include -->
+<!--         android:id="@+id/header"  -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         layout="@layout/fileitem" /> -->
+	
+		<LinearLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@color/purple"
+		    android:orientation="horizontal" >
+	    <TextView 
+	        android:layout_width="@dimen/surfscreen.namecolumn"
+	        android:layout_height="wrap_content"  
+	        android:textColor="@color/black"      
+	        android:text="@string/surfscreen.namecolumnlabel"
+	        />
+	    <TextView 
+	        android:layout_width="@dimen/surfscreen.typecolumn"
+	        android:layout_height="wrap_content" 
+	        android:textColor="@color/black"   
+	        android:text="@string/surfscreen.typecolumnlabel"      
+	        />
+	    <TextView 
+	        android:layout_width="@dimen/surfscreen.datecolumn"
+	        android:layout_height="wrap_content"   
+	        android:textColor="@color/black"   
+	        android:text="@string/surfscreen.datecolumnlabel"    
+	        />
+	     <TextView 
+	        android:layout_width="@dimen/surfscreen.sizecolumn"
+	        android:layout_height="wrap_content"  
+	        android:textColor="@color/black"  
+	        android:text="@string/surfscreen.sizecolumnlabel"      
+	        />
+	     <ImageView 
+	        android:id="@+id/checkbox"
+	        android:layout_width="@dimen/surfscreen.selectboxcolumn"
+	        android:layout_height="@dimen/surfscreen.selectboxcolumn" 
+	        android:src="@drawable/checkbox_uncheck"   
+	        android:scaleType="fitXY"  
+			android:clickable="true"
+			android:visibility="gone" 
+	        />
+	</LinearLayout>
+
+	<ListView 
+	    android:id="@+id/listfile"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:scrollbars="vertical"
+	    />
+
+</LinearLayout>

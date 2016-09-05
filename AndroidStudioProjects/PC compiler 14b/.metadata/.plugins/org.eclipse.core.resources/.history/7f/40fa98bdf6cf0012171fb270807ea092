@@ -1,0 +1,232 @@
+/**
+ * 
+ */
+package MicroController;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import util.FHandler;
+import util.constants;
+
+/**
+ * @author ThanhNhut
+ *
+ */
+public class InstructionSet {
+/*
+	ADDWF 
+	ANDWF
+	CLRF
+	CLRW
+	COMF
+	DECF
+	DECFSZ
+	INCF
+	INCFSZ
+	IORWF
+	MOVF
+	MOVWF
+	NOP
+	RLF
+	RRF
+	SUBWF
+	SWAPF
+	XORWF
+
+	BIT-ORIENTED FILE REGISTER OPERATIONS
+	BCF
+	BSF
+	BTFSC
+	BTFSS
+	
+	LITERAL AND CONTROL OPERATIONS
+	ADDLW
+	ANDLW
+	CALL
+	CLRWDT
+	GOTO
+	IORLW
+	MOVLW
+	RETFIE
+	RETLW
+	RETURN
+	SLEEP
+	SUBLW
+	XORLW
+	*/
+	public static final String NEXTCOLUMN = "    "; 
+	/*============= command form ================*/
+	// assign structure
+		public static final String assignNumberToForm = 
+				  "MOVLW 0x%s" + constants.NEXTLINE
+				+ "MOVWF %s" + constants.NEXTLINE;
+		public static final String assignRegToForm1 = 
+				  "MOVF %s, 0" + constants.NEXTLINE
+				+ "MOVWF %s" + constants.NEXTLINE;
+		public static final String assignRegToForm2 = 
+				  "CLRF %s" + constants.NEXTLINE;
+	// compare structure
+		public static final String LOADSECOND = "MOVF %s, 0";
+		public static final String LOADSUBFIRST = "SUBWF %s, 0"; 
+		public static final String LOADSECOND0 = "MOVLW %d";
+		public static final String LOADSUBFIRST0 = "SUBLW %d";
+		/**
+		 * A > B
+		 * String format B , A, nextLabel, falseLabel, trueLabel, nextLabel
+		 * <br>
+		 * A < B
+		 * String format A , B, nextLabel, falseLabel, trueLabel, nextLabel 
+		 */
+		public static final String GTFORM = 
+				  "BCF STATUS, C" + constants.NEXTLINE
+				+ "BCF STATUS, Z" + constants.NEXTLINE
+				+ "%s" /*"MOVF %s, 0"*/ + constants.NEXTLINE
+				+ "%s" /*"SUBWF %s, 0"*/ + constants.NEXTLINE
+				+ "BTFSC STATUS, Z" + constants.NEXTLINE
+				+ "GOTO %s" + constants.NEXTLINE
+				+ "BTFSC STATUS, C" + constants.NEXTLINE
+				+ "GOTO @false%s" + constants.NEXTLINE
+				+ "GOTO @true%s" + constants.NEXTLINE
+				+ "@%s" + constants.NEXTLINE;
+		/**
+		 * A >= B
+		 * String format B , A, falseLabel, nextLabel, trueLabel, nextLabel
+		 * <br>
+		 * A <= B
+		 * String format A , B, falseLabel, nextLabel, trueLabel, nextLabel 
+		 */
+		public static final String GTEQFORM =
+				  "BCF STATUS, C" + constants.NEXTLINE
+				+ "BCF STATUS, Z" + constants.NEXTLINE
+				+ "%s" /*"MOVF %s, 0"*/ + constants.NEXTLINE
+				+ "%s" /*"SUBWF %s, 0"*/ + constants.NEXTLINE
+				+ "BTFSC STATUS, C" + constants.NEXTLINE
+				+ "GOTO @false%s" + constants.NEXTLINE
+				+ "BTFSC STATUS, Z" + constants.NEXTLINE
+				+ "GOTO %s" + constants.NEXTLINE
+				+ "GOTO @true%s" + constants.NEXTLINE
+				+ "@%s" + constants.NEXTLINE;
+		
+		public static final String EQMARKFORM = ";==" + constants.NEXTLINE;
+		public static final String NEQMARKFORM = ";!=" + constants.NEXTLINE;
+		/**
+		 * A == B
+		 * String format : ";==", A , B, trueLabel/nextLabel, falseLabel, nextLabel
+		 * <br>
+		 * A != B
+		 * String format : ";!=", A , B, falseLabel/nextLabel, trueLabel, nextLabel 
+		 */
+		public static final String EQFORM =
+//				  ";%s"
+				  "BCF STATUS, Z" + constants.NEXTLINE
+				+ "%s" /*"MOVF %s, 0"*/ + constants.NEXTLINE
+				+ "%s" /*"SUBWF %s, 0"*/ + constants.NEXTLINE
+				+ "BTFSC STATUS, Z" + constants.NEXTLINE
+				+ "GOTO %s" + constants.NEXTLINE
+				+ "GOTO %s" + constants.NEXTLINE
+				+ "@%s" + constants.NEXTLINE;
+		
+		public static final String COMPARELOOPSTRUCTUREFORM =
+				  "@%s" + constants.NEXTLINE
+				+ "%s" + constants.NEXTLINE
+				+ "@true%s" + constants.NEXTLINE
+				+ NEXTCOLUMN + "%s" + constants.NEXTLINE
+				+ "%s" + constants.NEXTLINE
+				+ "@false%s" + constants.NEXTLINE
+				+ NEXTCOLUMN + "%s" + constants.NEXTLINE
+				+ "@end%s";
+		public static final String COMPARECHANGECONDITION = "GOTO @end%s";
+	/*===========================================*/
+
+	ArrayList<String> testIS;
+	ArrayList<String> goIS;
+	ArrayList<String> calculateIS;
+	ArrayList<String> logicIS;
+	ArrayList<String> loadIS;
+	ArrayList<String> specificIS;
+	
+	private final String TESTISMARK = "[[testIS";
+	private final String GOISMARK = "[[goIS";
+	private final String CALCULATEISMARK = "[[calculateIS";
+	private final String LOGICISMARK = "[[logicIS";
+	private final String LOADISMARK = "[[loadIS";
+	private final String SPECIFICISMARK = "[[specIS";
+	
+	public void readIS(String isPath) {
+		String path;
+		String[] insData;
+		if (isPath == null) {
+			path = System.getProperty("user.dir") + "\\" + constants.DFIS + "\\p16.is";
+		} else {
+			path = isPath;			
+		}
+		insData = FHandler.readFile(new File(path), 0);
+		testIS = new ArrayList<String>();
+		goIS = new ArrayList<String>();
+		calculateIS = new ArrayList<String>();
+		logicIS = new ArrayList<String>();
+		loadIS = new ArrayList<String>();
+		specificIS = new ArrayList<String>();
+		
+		for (int index = 0; index < insData.length; index++) {
+			if (insData[index].startsWith(TESTISMARK)) {
+				index++;
+				while(!insData[index].startsWith("]]")) {
+					testIS.add(insData[index]);
+					index++;
+				}
+			}
+		}
+		
+		for (int index = 0; index < insData.length; index++) {
+			if (insData[index].startsWith(GOISMARK)) {
+				index++;
+				while(!insData[index].startsWith("]]")) {
+					goIS.add(insData[index]);
+					index++;
+				}
+			}
+		}
+		
+		for (int index = 0; index < insData.length; index++) {
+			if (insData[index].startsWith(CALCULATEISMARK)) {
+				index++;
+				while(!insData[index].startsWith("]]")) {
+					calculateIS.add(insData[index]);
+					index++;
+				}
+			}
+		}
+		
+		for (int index = 0; index < insData.length; index++) {
+			if (insData[index].startsWith(LOGICISMARK)) {
+				index++;
+				while(!insData[index].startsWith("]]")) {
+					logicIS.add(insData[index]);
+					index++;
+				}
+			}
+		}
+		
+		for (int index = 0; index < insData.length; index++) {
+			if (insData[index].startsWith(LOADISMARK)) {
+				index++;
+				while(!insData[index].startsWith("]]")) {
+					loadIS.add(insData[index]);
+					index++;
+				}
+			}
+		}
+		
+		for (int index = 0; index < insData.length; index++) {
+			if (insData[index].startsWith(SPECIFICISMARK)) {
+				index++;
+				while(!insData[index].startsWith("]]")) {
+					specificIS.add(insData[index]);
+					index++;
+				}
+			}
+		}
+	}
+}

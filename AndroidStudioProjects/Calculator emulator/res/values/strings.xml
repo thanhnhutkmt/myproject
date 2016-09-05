@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Calculator</string>
+    <string name="menu_settings">test</string>
+    <string name="numberzero">0</string>
+    
+    <string name="btclear">Cl</string>
+    <string name="btreset">R</string>
+    <string name="btplus">+</string>
+    <string name="btminus">-</string>
+    <string name="btmultiply">x</string>
+    <string name="btdivide">/</string>
+    <string name="btequal">=</string>
+    <string name="btpower">^</string>
+    <string name="btroot">V</string>
+    <string name="btfactorial">!</string>
+    <string name="btlog">Log</string>
+    
+    <string name="btone">1</string>
+    <string name="bttwo">2</string>
+    <string name="btthree">3</string>
+    <string name="btfour">4</string>
+    <string name="btfive">5</string>
+    <string name="btsix">6</string>
+    <string name="btseven">7</string>
+    <string name="bteight">8</string>
+    <string name="btnine">9</string>
+    <string name="btzero">0</string>
+    <string name="btdot">.</string>
+
+	<string name="btselectmode">Sel</string>
+	<string name="btmode">Mo</string>
+	<string name="btreverse">1/x</string>
+    <string name="btoneminus">1-x</string>
+    <string name="btremainder">Re</string>
+    <string name="btpercent">%</string>
+    <string name="btnegative">-</string>
+    <string name="btrootmeansquare">2V</string>
+    <string name="btcube">^3</string>
+    <string name="btarea">^2</string>
+    
+</resources>

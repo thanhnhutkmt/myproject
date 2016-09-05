@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*" >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:layout_span="4"
+            android:gravity="center_horizontal"
+            android:text="Table" >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:gravity="center"
+            android:text="" >
+        </TextView>
+
+        <TextView
+            android:gravity="center"
+            android:text="data"
+            android:typeface="serif" >
+        </TextView>
+
+        <TextView
+            android:gravity="center"
+            android:text="data1"
+            android:textStyle="bold"
+            android:typeface="serif" >
+        </TextView>
+
+        <TextView
+            android:gravity="center"
+            android:text="data2"
+            android:typeface="serif" >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:gravity="center"
+            android:text="product1" >
+        </TextView>
+
+        <TextView
+            android:gravity="center"
+            android:text="10"
+            android:typeface="serif" >
+        </TextView>
+
+        <TextView
+            android:gravity="center"
+            android:text="yes"
+            android:textStyle="bold"
+            android:typeface="serif" >
+        </TextView>
+
+        <TextView
+            android:gravity="center"
+            android:text="ok2"
+            android:typeface="serif" >
+        </TextView>
+    </TableRow>
+
+</TableLayout>

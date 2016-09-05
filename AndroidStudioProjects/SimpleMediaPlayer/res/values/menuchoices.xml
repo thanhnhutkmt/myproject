@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<resources>  
+	 <string-array name="choices">  
+	    <item>Paste</item>
+		<item>Copy</item>  
+		<item>Cut</item>  
+		<item>Rename</item>  
+		<item>Delete</item>  
+		<item>Properties</item>
+		<item>Add to playlist</item>    
+	 </string-array>
+</resources>

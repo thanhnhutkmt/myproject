@@ -1,0 +1,12 @@
+PC compiler 14b :
+	f-- compiler.jar
+	f-- config.ini
+	d-- support
+		f-- *.inc
+		f-- *.pd
+	d-- ins Set
+	    f-- *.is
+	d-- compilerlib
+		f-- *.c
+		f-- *.h	  
+		

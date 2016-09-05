@@ -1,0 +1,89 @@
+[[PIC device
+_16F887                              ; PIC16F887
+_12F683                              ; PIC12F683
+_18F2550                             ; PIC18F2550
+_18F4550                             ; PIC18F4550
+]]
+[[Oscillator
+_FOSC_LP             EQU  H'3FF8'    ; LP oscillator: Low-power crystal on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN
+_LP_OSC              EQU  H'3FF8'    ; LP oscillator: Low-power crystal on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN
+_FOSC_XT             EQU  H'3FF9'    ; XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN
+_XT_OSC              EQU  H'3FF9'    ; XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN
+_FOSC_HS             EQU  H'3FFA'    ; HS oscillator: High-speed crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN
+_HS_OSC              EQU  H'3FFA'    ; HS oscillator: High-speed crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN
+_FOSC_EC             EQU  H'3FFB'    ; EC: I/O function on RA6/OSC2/CLKOUT pin, CLKIN on RA7/OSC1/CLKIN
+_EC_OSC              EQU  H'3FFB'    ; EC: I/O function on RA6/OSC2/CLKOUT pin, CLKIN on RA7/OSC1/CLKIN
+_FOSC_INTRC_NOCLKOUT EQU  H'3FFC'    ; INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN
+_INTRC_OSC_NOCLKOUT  EQU  H'3FFC'    ; INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN
+_INTOSCIO            EQU  H'3FFC'    ; INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN
+_FOSC_INTRC_CLKOUT   EQU  H'3FFD'    ; INTOSC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN
+_INTRC_OSC_CLKOUT    EQU  H'3FFD'    ; INTOSC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN
+_INTOSC              EQU  H'3FFD'    ; INTOSC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN
+_FOSC_EXTRC_NOCLKOUT EQU  H'3FFE'    ; RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN
+_EXTRC_OSC_NOCLKOUT  EQU  H'3FFE'    ; RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN
+_EXTRCIO             EQU  H'3FFE'    ; RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN
+_FOSC_EXTRC_CLKOUT   EQU  H'3FFF'    ; RC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN
+_EXTRC_OSC_CLKOUT    EQU  H'3FFF'    ; RC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN
+_EXTRC               EQU  H'3FFF'    ; RC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN
+]]                                  
+[[Watch Dog Timer
+_WDTE_OFF            EQU  H'3FF7'    ; WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+_WDT_OFF             EQU  H'3FF7'    ; WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+_WDTE_ON             EQU  H'3FFF'    ; WDT enabled
+_WDT_ON              EQU  H'3FFF'    ; WDT enabled
+]]
+[[Power on reset
+_PWRTE_ON            EQU  H'3FEF'    ; PWRT enabled
+_PWRTE_OFF           EQU  H'3FFF'    ; PWRT disabled
+]]
+[[Master clear on E3 pin
+_MCLRE_OFF           EQU  H'3FDF'    ; RE3/MCLR pin function is digital input, MCLR internally tied to VDD
+_MCLRE_ON            EQU  H'3FFF'    ; RE3/MCLR pin function is MCLR
+]]
+[[Program memory
+_CP_ON               EQU  H'3FBF'    ; Program memory code protection is enabled
+_CP_OFF              EQU  H'3FFF'    ; Program memory code protection is disabled
+]]
+[[Data memory
+_CPD_ON              EQU  H'3F7F'    ; Data memory code protection is enabled
+_CPD_OFF             EQU  H'3FFF'    ; Data memory code protection is disabled
+]]
+[[Brown out reset
+_BOREN_OFF           EQU  H'3CFF'    ; BOR disabled
+_BOR_OFF             EQU  H'3CFF'    ; BOR disabled
+_BOREN_SBODEN        EQU  H'3DFF'    ; BOR controlled by SBOREN bit of the PCON register
+_BOR_SBODEN          EQU  H'3DFF'    ; BOR controlled by SBOREN bit of the PCON register
+_BOREN_NSLEEP        EQU  H'3EFF'    ; BOR enabled during operation and disabled in Sleep
+_BOR_NSLEEP          EQU  H'3EFF'    ; BOR enabled during operation and disabled in Sleep
+_BOREN_ON            EQU  H'3FFF'    ; BOR enabled
+_BOR_ON              EQU  H'3FFF'    ; BOR enabled
+]]
+[[Switch mode
+_IESO_OFF            EQU  H'3BFF'    ; Internal/External Switchover mode is disabled
+_IESO_ON             EQU  H'3FFF'    ; Internal/External Switchover mode is enabled
+]]
+[[Fail-Safe clock monitor
+_FCMEN_OFF           EQU  H'37FF'    ; Fail-Safe Clock Monitor is disabled
+_FCMEN_ON            EQU  H'3FFF'    ; Fail-Safe Clock Monitor is enabled
+]]
+[[Low voltage programming
+_LVP_OFF             EQU  H'2FFF'    ; RB3 pin has digital I/O, HV on MCLR must be used for programming
+_LVP_ON              EQU  H'3FFF'    ; RB3/PGM pin has PGM function, low voltage programming enabled
+]]
+[[Debug
+_DEBUG_ON            EQU  H'1FFF'    ; In_Circuit Debugger enabled, RB6/ICSPCLK and RB7/ICSPDAT are dedicated to the debugger
+_DEBUG_OFF           EQU  H'3FFF'    ; In-Circuit Debugger disabled, RB6/ICSPCLK and RB7/ICSPDAT are general purpose I/O pins
+]]
+;----- CONFIG2 Options --------------------------------------------------
+[[Brown out reset voltage
+_BOR4V_BOR21V        EQU  H'3EFF'     Brown-out Reset set to 2.1V
+_BOR21V              EQU  H'3EFF'    ; Brown-out Reset set to 2.1V
+_BOR4V_BOR40V        EQU  H'3FFF'     Brown-out Reset set to 4.0V
+_BOR40V              EQU  H'3FFF'    ; Brown-out Reset set to 4.0V
+]]
+[[Write protect
+_WRT_HALF            EQU  H'39FF'    ; 0000h to 0FFFh write protected, 1000h to 1FFFh may be modified by EECON control
+_WRT_1FOURTH         EQU  H'3BFF'    ; 0000h to 07FFh write protected, 0800h to 1FFFh may be modified by EECON control
+_WRT_256             EQU  H'3DFF'    ; 0000h to 00FFh write protected, 0100h to 1FFFh may be modified by EECON control
+_WRT_OFF             EQU  H'3FFF'    ; Write protection off
+]]

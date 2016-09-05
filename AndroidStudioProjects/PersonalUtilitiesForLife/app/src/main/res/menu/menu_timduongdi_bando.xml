@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mnuBanDo_showSavedMarker" android:title="@string/OptionMenu_TimDuongDi_Bando_ShowSavedMarker"></item>
+    <item android:id="@+id/OptionMenu_TimDuongDi_Bando_SaveMapInstruction" android:title="@string/OptionMenu_TimDuongDi_Bando_SaveMapInstruction"></item>
+    <item android:id="@+id/OptionMenu_TimDuongDi_Bando_ClearOnMap" android:title="@string/OptionMenu_TimDuongDi_Bando_ClearOnMap"></item>
+    <item android:id="@+id/OptionMenu_TimDuongDi_Bando_ClearOnDisk" android:title="@string/OptionMenu_TimDuongDi_Bando_ClearOnDisk"></item>
+
+    <item android:id="@+id/travel_mode_timduongdi_bando"
+        android:title="@string/OptionMenu_travel_mode_timduongdi_bando" >
+        <menu>
+            <item android:id="@+id/OptionMenu_TimDuongDi_Bando_Walking" android:title="@string/OptionMenu_TimDuongDi_Bando_Walking"></item>
+            <item android:id="@+id/OptionMenu_TimDuongDi_Bando_Transit" android:title="@string/OptionMenu_TimDuongDi_Bando_Transit"></item>
+            <item android:id="@+id/OptionMenu_TimDuongDi_Bando_Driving" android:title="@string/OptionMenu_TimDuongDi_Bando_Driving"></item>
+        </menu>
+    </item>
+
+
+</menu>

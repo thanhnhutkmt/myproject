@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mode"
+        android:title="@string/OptionMenu_BanDo_CheDoHienThi" >
+        <menu>
+            <item android:id="@+id/mnuBanDo_Normal" android:title="@string/OptionMenu_BanDo_Normal" />
+            <item android:id="@+id/mnuBanDo_Satellite" android:title="@string/OptionMenu_BanDo_Satellite" />
+            <item android:id="@+id/mnuBanDo_Terrain" android:title="@string/OptionMenu_BanDo_Terrain" />
+            <item android:id="@+id/mnuBanDo_Hybrid" android:title="@string/OptionMenu_BanDo_Hybrid" />
+        </menu>
+    </item>
+    <item android:id="@+id/ps"
+        android:title="@string/OptionMenu_BanDo_CheDoDinhVi" >
+        <menu>
+            <item android:id="@+id/mnuBanDo_CheDoGPS" android:title="@string/OptionMenu_BanDo_CheDoGPS" />
+            <item android:id="@+id/mnuBanDo_CheDoWifi3G" android:title="@string/OptionMenu_BanDo_CheDoWifi3G" />
+        </menu>
+    </item>
+</menu>

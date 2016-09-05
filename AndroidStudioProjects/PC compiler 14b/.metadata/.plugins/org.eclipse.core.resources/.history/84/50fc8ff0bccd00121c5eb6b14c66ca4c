@@ -1,0 +1,78 @@
+/**
+ * 
+ */
+package run;
+
+import exception.AssignException;
+import gui.configUI;
+import gui.mainUI;
+
+import java.awt.EventQueue;
+
+import MicroController.InstructionSet;
+import MicroController.memory;
+
+import compiler.structureCompiler;
+
+import util.constants;
+
+/**
+ * @author ThanhNhut
+ *
+ */
+public class starter {
+	private static String module;
+	/**
+	 * @param args
+	 * @throws AssignException 
+	 */
+	public static void main(String[] args) throws AssignException {
+		InstructionSet is = new InstructionSet();
+		is.readIS(null);
+		structureCompiler com = new structureCompiler(new memory());
+		String codeC = "short tempdata = 10; int temp1data = 16; long temp2data = 1099;";
+		com.compileDataDef(codeC);
+		codeC = "int *temppointer; int *temp = 16;" +
+				" long *testpointer; long *test = 999999;" + 
+				"short *ptrtempdata = tempdata;";
+		com.compilePtrAr(codeC);
+		if (args.length != 0) {
+			module = args[0];
+		} else {
+			module = "";
+		}
+		module = "-c";
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+						callUI(module);					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});	
+	}
+
+	static void callUI(String UI) {
+		
+		switch(UI) {
+			case "-e" :
+				System.exit(0);
+				break;
+		    case "-c" :
+		    	configUI cui = new configUI();
+		    	cui.setVisible(true);
+		    	break;
+//		    case "-pr" :
+//		    	projectUI pui = new projectUI();
+//		    	pui.setVisible(true);
+//		    	break;
+		    default :
+		    	String defaultConfig[] = {constants.PROCESSOR, constants.INCLUDEFILE, constants.CONFIG1, constants.CONFIG2};
+		    	
+		    	mainUI frame = new mainUI(defaultConfig, "");
+		    	frame.setVisible(true);
+		    	break;
+		}
+	}
+}

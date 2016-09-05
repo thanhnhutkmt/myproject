@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <dimen name="buttonsize">50dp</dimen>
+    
+    <dimen name="surfscreen.buttonmargin">40dp</dimen>
+    <dimen name="surfscreen.textviewmargin">15dp</dimen>
+    
+    <dimen name="surfscreen.namecolumn">115dp</dimen>
+    <dimen name="surfscreen.typecolumn">50dp</dimen>
+    <dimen name="surfscreen.sizecolumn">50dp</dimen>
+    <dimen name="surfscreen.datecolumn">70dp</dimen>
+    <dimen name="surfscreen.selectboxcolumn">30dp</dimen>
+    <dimen name="surfscreen.durationcolumn">70dp</dimen>
+    
+     <dimen name="surfscreen.bufferitem.bottommargin">50dp</dimen>
+     
+     <dimen name="playlist.listview_height">150dp</dimen>
+     
+     
+</resources>

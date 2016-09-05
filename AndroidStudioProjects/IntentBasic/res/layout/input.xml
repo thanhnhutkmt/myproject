@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="A = " >
+    </TextView>
+
+    <EditText
+        android:id="@+id/txtNum1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/TextView01"
+        android:layout_marginRight="10dip"
+        android:layout_toRightOf="@id/TextView01"
+        android:background="@android:drawable/editbox_background"
+        android:text="0" >
+    </EditText>
+
+    <TextView 
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="B = "
+        />
+    
+    <EditText 
+        android:id="@+id/txtNum2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/TextView02"
+        android:layout_toRightOf="@id/TextView02"
+        android:layout_marginRight="10dp"
+        android:background="@android:drawable/editbox_background"
+        android:text="0"
+        />
+    
+    <Button 
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtNum2"
+        android:layout_margin="10dp"
+        android:text="Send"
+        />
+</LinearLayout>

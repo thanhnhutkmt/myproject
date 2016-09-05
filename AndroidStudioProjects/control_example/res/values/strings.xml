@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Control_exampleActivity!</string>
+    <string name="app_name">Control_example</string>
+    <string name="continuebtn">Resume</string>
+    <string name="exitbtn">Exit</string>
+    <string name="WebDiplayer">Web displayer</string>
+</resources>

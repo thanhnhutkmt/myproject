@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Simple Media Player</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="play_button">></string>
+    <string name="pause_button">II</string>
+    <string name="stop_button">O</string>
+    <string name="next_button">v</string>
+    <string name="previous_button">^</string>
+    <string name="repeat_button">[R]</string>
+    <string name="fullscreen_button">[()]</string>
+    <string name="minimize_button">[_]</string>
+    	
+    <!--  -->
+    <string name="surfscreen.namecolumnlabel">Name</string>
+    <string name="surfscreen.typecolumnlabel">Type</string>
+    <string name="surfscreen.sizecolumnlabel">Size</string>
+    <string name="surfscreen.datecolumnlabel">Created date</string>
+    <string name="surfscreen.durationcolumnlabel">Duration</string>
+    <string name="surfscreen.exitconfirmdialog.title">Confirmed</string>
+    <string name="surfscreen.exitconfirmdialog.message">Are you sure you want to exit?</string>
+    <string name="surfscreen.exitconfirmdialog.buttonyes">Yes</string>
+    <string name="surfscreen.exitconfirmdialog.buttonno">No</string>
+    <string name="surfscreen.selectmenu.title">File menu</string>
+    <string name="surfscreen.selectmenu.choice.copy">Copy</string>
+    <string name="surfscreen.selectmenu.choice.cut">Cut</string>
+    <string name="surfscreen.selectmenu.choice.rename">Rename</string>
+    <string name="surfscreen.selectmenu.choice.delete">Delete</string>
+    <string name="surfscreen.selectmenu.choice.cancel">Cancel</string>
+    <string name="surfscreen.selectmenu.choice.properties">Properties</string>
+    <string name="surfscreen.renamedialog.title">Rename</string>
+    <string name="surfscreen.renamedialog.oldfilename">Old name</string>
+    <string name="surfscreen.renamedialog.newfilename">New name</string>
+    <string name="surfscreen.renamedialog.buttonchange">Change</string>
+    <string name="surfscreen.renamedialog.buttoncancel">Cancel</string>
+    <string name="surfscreen.renamedialog.hint">Enter new name</string>
+    <string name="surfscreen.renamedialog.warnmessage">This file or folder can not be renamed.</string>
+    <string name="surfscreen.delete.resultsuccessmessage">Deleted sucessfully.</string>
+    <string name="surfscreen.delete.resulterrormessage">Deleted unsucessfully.</string>
+    <string name="surfscreen.delete.accesserrormessage">This file or folder can not be changed.</string>
+    <string name="surfscreen.openfolder.accesserrormessage">This folder can not be opened.</string>
+    
+    <string name="menu.file">File</string>
+    <string name="menu.file.copy">Copy</string>
+    <string name="menu.file.cut">Cut</string>
+    <string name="menu.file.delete">Delete</string>
+    <string name="menu.select">Select</string>
+    <string name="menu.select.all">Select all</string>
+    <string name="menu.select.revert">Revert select</string>
+    <string name="menu.select.none">Cancel all select</string>
+    <string name="menu.select.manyfileson">Select files mode on</string>
+    <string name="menu.select.manyfilesoff">Select files mode off</string>
+    <string name="menu.buffer">Buffer</string>
+    <string name="menu.buffer.remove">Clear buffer</string>
+    <string name="menu.buffer.show">Show buffer</string>
+    <string name="menu.location">Location</string>
+    <string name="menu.location.sdcard">SD card</string>
+    <string name="menu.location.sdcard.errormessage">SD card can not access.</string>
+    <string name="menu.location.root">Root folder</string>
+	<string name="test">Test</string>
+	
+	<string name="buffer.infobox.title">List select file</string>
+	<string name="buffer.infobox.buttonclose">Close</string>
+	<string name="buffer.copy.title">List cut file</string>
+	<string name="buffer.cut.title">List copy file</string>
+	<string name="buffer.delete.title">List delete file</string>
+	<string name="buffer.copy.confirmdialog.title">Replace confirm ?</string>
+	<string name="buffer.copy.confirmdialog.content">Are you sure want to replace existing file %s ?</string>
+	<string name="buffer.copy.confirmdialog.buttonyes">Yes</string>
+	<string name="buffer.copy.confirmdialog.buttonno">No</string>
+	<string name="buffer.cut.confirmdialog.title">Replace confirm ?</string>
+	<string name="buffer.delete.confirmdialog.title">Delete confirm ?</string>
+	 <!--  -->
+	 
+	<string name="menu.playlist">Playlist</string>
+	<string name="menu.playlist.showcurrent">Now playing</string>
+	<string name="menu.playlist.showplaylistname">Playlist name list</string>
+	<string name="menu.playlist.create">New playlist</string>
+	<string name="menu.buffer.showselectedsong">Selected songs</string>
+	
+	<string name="menu.open">Open</string>
+	<string name="menu.open.sdcard">Sdcard</string>
+	<string name="menu.open.root">Root</string>
+	
+	<string name="menu.exit">Exit</string>
+	
+	<string name="playlist.title">Playing playlist</string>
+	<string name="playlist.closebutton">Close</string>
+	<string name="playlist.addbutton">Add</string>
+	<string name="playlist.removebutton">Remove</string>
+	<string name="playlist.removeallbutton">Clear</string>
+	
+	<string name="Noextension">Unknown</string>
+	
+</resources>

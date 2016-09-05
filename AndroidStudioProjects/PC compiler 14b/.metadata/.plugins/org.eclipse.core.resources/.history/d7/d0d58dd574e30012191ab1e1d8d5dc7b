@@ -1,0 +1,144 @@
+/**
+ * 
+ */
+package util;
+
+/**
+ * @author ThanhNhut
+ * 
+ */
+public class constants {
+	public static final String APPNAME = "PC compiler 14b ";
+	public static final String VERSION = "1.0";
+	public static final String DFSP = "working folder\\support\\";
+	public static final String DFLIB = "working folder\\compilerLib\\";
+	public static final String DFIS = "working folder\\ins set\\";
+	public static final String DFCONFIG = "working folder\\config.ini";
+	public static final String DFDLIST = "working folder\\support\\supportedDevices";
+	public static final String TESTPROJECTPATH = "working folder\\testproject";
+	
+	// project Structure
+	public static final String HEADERFOLDER = "\\header files";
+	public static final String SOURCEFOLDER = "\\source files";
+	public static final String LIBFOLDER = "\\lib";
+	public static final String OTHERFOLDER = "\\other files";
+	public static final String DOCFOLDER = "\\doc";
+	
+	public static final String NEXTLINE = System.lineSeparator();
+	public static final String ABOUTSTRING = " C compiler for PIC16F " + VERSION + "."
+			+ NEXTLINE + NEXTLINE + "  Engineer Luu Thanh Nhut : " + NEXTLINE
+			+ "    University of Technical Education HCM city, Viet Nam." + NEXTLINE
+			+ "    Email TnhutKMT@gmail.com." + NEXTLINE
+			+ "    Phone 01294 270 872." + NEXTLINE
+			+ NEXTLINE + " Copyright " + (char)169 + " 2013. All right Reserved.";
+	public static final String FILETAB_TOOLTIP = "File name";
+	
+	public static final int BYTEBUFFER = 32768; // 32kB
+
+	public static final int NULL = -1;
+	
+	// UI
+	public static final String SELECTDEVICEUI_TITLE = "Select PIC for project";
+	public static final String SELECTDEVICEUI_DEVICELISTLABEL = "Device : ";	
+	public static final String CONFIGUI_TITLE = "Select options for ";
+	public static final String CONFIGUI_SELECTBT = "Next";
+	public static final String CONFIGUI_BACKBT = "Back";
+	public static final String PROJECTUI_NOPROJECTPATH_ERROR = "Please select project folder";
+	public static final String PROJECTUI_EMPTYPROJECTNAME_ERROR = "Please input project name";
+	public static final String PROJECTUI_EXISTINGPROJECTFOLDER_ERROR = "Please select another place";
+	
+	
+	// ASM FILE
+	public static final String INTROFORM =
+	";**********************************************************************" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";    Filename:       %s    *" + NEXTLINE +
+	";    Date:           %s    *" + NEXTLINE +
+	";    File Version:   %s    *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";    Author:         %s    *" + NEXTLINE +
+	";    Company:        %s    *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";**********************************************************************" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";    Files required: %s    *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";**********************************************************************" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";    Notes:                                                           *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";                                                                     *" + NEXTLINE +
+	";**********************************************************************" + NEXTLINE;
+	
+	public static final int STRINGLENGTH = 45;
+	public static final String CONFIGSTRINGFORM = "list        p=%s   ; list directive to define processor" + NEXTLINE +
+												  "#include <%s> ; processor specific variable definitions" + NEXTLINE +
+												  "; '__CONFIG' directive is used to embed configuration data within .asm file. "  + NEXTLINE +
+												  "; The labels following the directive are located in the respective .inc file. " + NEXTLINE +
+												  "; See respective data sheet for additional information on configuration word. " + NEXTLINE +
+												  "__CONFIG    _CONFIG1, %s" + NEXTLINE + 
+												  "__CONFIG    _CONFIG2, %s" + NEXTLINE;  
+	public static final String CONFIG1 = "_LVP_OFF & _FCMEN_ON & _IESO_OFF & _BOR_OFF & _CPD_OFF & _CP_OFF & _MCLRE_ON & _PWRTE_ON & _WDTE_OFF & _INTRC_OSC_NOCLKOUT";
+	public static final String CONFIG2 = "_WRT_OFF & _BOR40V";
+	public static final String PROCESSOR = "16F887";
+	public static final String INCLUDEFILE = "p16f887.inc";
+	
+	
+	public static final String DATEFORMAT = "EEE dd MMM yyyy hh:mm:ss aa";
+	
+	// output
+	public static final String OUTPUTPATH = "C:\\Users\\ThanhNhut\\Desktop\\code.asm";
+	
+	// data type
+	public static final String CHARTYPE = "char";
+	public static final String INTTYPE = "int";
+	public static final String USHORTTYPE = "ushort";
+	public static final String SHORTTYPE = "short";
+	public static final String ULONGTYPE = "ulong";
+	public static final String LONGTYPE = "long";
+	public static final String floatTYPE = "float";
+		
+	public static final int SIZEOFCHAR = 1;
+	public static final int SIZEOFINT = 1;
+	public static final int SIZEOFUSHORT = 2;
+	public static final int SIZEOFSHORT = 2;
+	public static final int SIZEOFULONG = 4;
+	public static final int SIZEOFLONG = 4;
+	public static final int SIZEOFFLOAT = 4;
+	public static final int MAXCHAR = 255;
+	public static final int MINCHAR = 0;
+	public static final int MAXINT = 127;
+	public static final int MININT = -128;
+	public static final int MAXUSHORT = 65535;
+	public static final int MINUSHORT = 0;
+	public static final int MAXSHORT = 32767;
+	public static final int MINSHORT = -32768;
+	public static final long MAXULONG = 4294967295l;
+	public static final long MINULONG = 0;
+	public static final long MAXLONG = 2147483647;
+	public static final long MINLONG = -2147483648;
+	public static final float MAXFLOAT = 8388607.99609375f;
+	public static final float MINFLOAT = -8388608;
+	
+	// compiler
+	public static final String FUNCTIONHEADERPATTERN1 = 
+			"\\w+\\s{1,}\\w+\\s{0,}\\x28[\\p{ASCII}]{0,}\\x29[\\s{0,}\\x7B";
+	public static final String FUNCTIONHEADERPATTERN2 = 
+			"\\w+\\s{1,}\\w+\\s{0,}\\x28[\\p{ASCII}]{0,}\\x29";
+	public static final String FUNCTIONHEADERPATTERN3 = 
+			"\\w+\\s{1,}\\w+\\s{0,}\\x28[\\p{ASCII}]{0,}\\x29[\\p{ASCII}]{0,}";
+	public static final String FUNCTIONPROTOTYPEPATTERN = 
+			"\\w+\\s{1,}\\w+\\s{0,}\\x28[\\p{ASCII}]{0,}\\x29\\x3B";
+	public static final String GLOBALVARPATTERN = 
+			"\\w+\\s{1,}\\w+\\s{1,}\\x3D\\s{1,1}[\\p{ASCII}]{1,}\\x3B";
+	
+	// data array
+	public static final String ARRAYDECLAREPATTERN1 = "\\x7B[\\p{ASCII}]{1,}\\x7D[\\p{Space}]{0,}\\x3B";
+	public static final String ARRAYDECLAREPATTERN2 = "\\x22[\\p{ASCII}]{1,}\\x22[\\p{Space}]{0,}\\x3B";
+	public static final String ARRAYDECLAREPATTERN2 = "\\x22[\\p{ASCII}]{1,}\\x22[\\p{Space}]{0,}\\x3B";
+}

@@ -1,0 +1,317 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/mainscreen"
+        android:layout_width="@dimen/mainscreen_screenwidth"
+        android:layout_height="@dimen/mainscreen_screenheight"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/mainscreen_bottommargin"
+        android:layout_marginTop="@dimen/mainscreen_topmargin"
+        android:background="@drawable/shapeborder"
+        android:gravity="right|center_vertical"
+        android:padding="@dimen/mainscreen_padding"
+        android:text="@string/numberzero"
+        android:textSize="@dimen/mainscreen_textsize" />
+
+    <LinearLayout
+        android:layout_width="@dimen/numberpad_width"
+        android:layout_height="@dimen/numberpad_height"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="@dimen/numberpadrow_width"
+            android:layout_height="@dimen/numberpadrow_height"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/power"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btpower"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/root"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btroot"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/factorial"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btfactorial"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/log"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btlog"
+                android:textSize="@dimen/buttonnumber_textsize" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/numberpadrow_width"
+            android:layout_height="@dimen/numberpadrow_height"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/seven"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btseven"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/eight"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/bteight"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/nine"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btnine"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/plus"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btplus"
+                android:textSize="@dimen/buttonnumber_textsize" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/numberpadrow_width"
+            android:layout_height="@dimen/numberpadrow_height"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/four"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btfour"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/five"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btfive"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/six"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btsix"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/minus"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btminus"
+                android:textSize="@dimen/buttonnumber_textsize" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/numberpadrow_width"
+            android:layout_height="@dimen/numberpadrow_height"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/one"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btone"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/two"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/bttwo"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/three"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btthree"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/multiply"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btmultiply"
+                android:textSize="@dimen/buttonnumber_textsize" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/numberpadrow_width"
+            android:layout_height="@dimen/numberpadrow_height"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/zero"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btzero"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/dot"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btdot"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/equal"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btequal"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/divide"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btdivide"
+                android:textSize="@dimen/buttonnumber_textsize" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/fpad_width"
+        android:layout_height="@dimen/fpad_height"
+        android:layout_gravity="center_horizontal"
+        android:gravity="top|center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="@dimen/fpadrow_width"
+            android:layout_height="@dimen/fpadrow_height"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/reverse"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btreverse"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/oneminus"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btoneminus"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/remainder"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btremainder"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/percent"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btpercent"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/negative"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btnegative"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/rootmeansquare"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btrootmeansquare"
+                android:textSize="@dimen/buttonnumber_textsize" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/fpadrow_width"
+            android:layout_height="@dimen/fpadrow_height"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btclear"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/reset"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btreset"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/mode"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btmode"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/selectmode"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btselectmode"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/power2"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btarea"
+                android:textSize="@dimen/buttonnumber_textsize" />
+
+            <Button
+                android:id="@+id/power3"
+                android:layout_width="@dimen/buttonnumber_width"
+                android:layout_height="@dimen/buttonnumber_height"
+                android:text="@string/btcube"
+                android:textSize="@dimen/buttonnumber_textsize" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

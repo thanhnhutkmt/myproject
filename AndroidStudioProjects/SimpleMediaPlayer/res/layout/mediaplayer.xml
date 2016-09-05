@@ -1,0 +1,79 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".Mediaplayer" >
+
+    <VideoView
+        android:id="@+id/video"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
+         />
+
+    <LinearLayout
+        android:id="@+id/btarray1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/play"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
+            android:text="@string/play_button" />
+
+        <Button
+            android:id="@+id/pause"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
+            android:text="@string/pause_button" />
+
+        <Button
+            android:id="@+id/stop"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
+            android:text="@string/stop_button" />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
+            android:text="@string/next_button" />
+
+        <Button
+            android:id="@+id/previous"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
+            android:text="@string/previous_button" />
+
+        <Button
+            android:id="@+id/repeat"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
+            android:text="@string/repeat_button" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btarray2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/fullscreen"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
+            android:text="@string/fullscreen_button" />
+
+        <Button
+            android:id="@+id/minimize"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
+            android:text="@string/minimize_button" />
+    </LinearLayout>
+
+</LinearLayout>

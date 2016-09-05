@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/search_menu_karaoke"
+        android:title="@string/search_title_menu_karaoke"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
+    <item android:id="@+id/OptionMenu_Karaoke_SapXepTheoMa" android:title="@string/OptionMenu_Karaoke_SapXepTheoMa"></item>
+    <item android:id="@+id/OptionMenu_Karaoke_SapXepTheoTenBaiHat" android:title="@string/OptionMenu_Karaoke_SapXepTheoTenBaiHat"></item>
+    <item android:id="@+id/OptionMenu_Karaoke_SapXepTheoTenTacGia" android:title="@string/OptionMenu_Karaoke_SapXepTheoTenTacGia"></item>
+    <item android:id="@+id/OptionMenu_Karaoke_MoDanhSachBaiHat" android:title="@string/OptionMenu_Karaoke_MoDanhSachBaiHat"></item>
+</menu>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mnuNhom_quanlytinnhan"
+        android:title="@string/mnuNhom_quanlytinnhan" >
+        <menu>
+            <item android:id="@+id/mnuTaoNhomMoi_quanlytinnhan" android:title="@string/mnuTaoNhomMoi_quanlytinnhan"></item>
+            <item android:id="@+id/mnuThietDatNhom_quanlytinnhan" android:title="@string/mnuThietDatNhom_quanlytinnhan"></item>
+        </menu>
+    </item>
+    <item android:id="@+id/mnuContact_quanlytinnhan"
+        android:title="@string/mnuContact_quanlytinnhan" >
+        <menu>
+            <item android:id="@+id/mnuTaoContactMoi_quanlytinnhan" android:title="@string/mnuTaoContactMoi_quanlytinnhan"></item>
+            <item android:id="@+id/mnuXoaHetContact_quanlytinnhan" android:title="@string/mnuXoaHetContact_quanlytinnhan"></item>
+            <item android:id="@+id/mnuXoaNhieuContact_quanlytinnhan" android:title="@string/mnuXoaNhieuContact_quanlytinnhan"></item>
+        </menu>
+    </item>
+    <item android:id="@+id/mnuSapXep_quanlytinnhan"
+        android:title="@string/mnuSapXep_quanlytinnhan" >
+        <menu>
+            <item android:id="@+id/mnuSapXepTheoGroup_quanlytinnhan" android:title="@string/mnuSapXepTheoGroup_quanlytinnhan"></item>
+            <item android:id="@+id/mnuSapXepTheoContact_quanlytinnhan" android:title="@string/mnuSapXepTheoContact_quanlytinnhan"></item>
+            <item android:id="@+id/mnuDaoSapXep_quanlytinnhan" android:title="@string/mnuDaoSapXep_quanlytinnhan"></item>
+        </menu>
+    </item>
+    <item android:title="@string/mnuSapXep_other">
+        <menu>
+            <item android:id="@+id/mnuGuiTinNhan_quanlytinnhan" android:title="@string/mnuGuiTinNhan_quanlytinnhan"></item>
+            <item android:id="@+id/mnuXoaDia_quanlytinnhan" android:title="@string/mnuXoaDia_quanlytinnhan"></item>
+            <item android:id="@+id/mnuXoaPhoneSim_quanlytinnhan" android:title="@string/mnuXoaPhoneSim_quanlytinnhan"></item>
+            <item android:id="@+id/mnuLayDataPhone_quanlytinnhan" android:title="@string/mnuLayDataPhone_quanlytinnhan"></item>
+            <item android:id="@+id/mnuLayDataFile_quanlytinnhan" android:title="@string/mnuLayDataFile_quanlytinnhan"></item>
+            <item android:id="@+id/mnuTimKiem_quanlytinnhan" android:title="@string/mnuTimKiem_quanlytinnhan"></item>
+            <item android:id="@+id/mnuThietDatNhacChuongTinNhan_quanlytinnhan" android:title="@string/mnuThietDatNhacChuongTinNhan_quanlytinnhan"></item>
+            <item android:id="@+id/mnuImportContactFromFile_quanlytinnhan" android:title="@string/mnuImportContactFromFile_quanlytinnhan"></item>
+        </menu>
+    </item>
+</menu>

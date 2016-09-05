@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mnuThem" android:title="@string/mnuThem"></item>
+    <item android:id="@+id/mnuXoaHet" android:title="@string/mnuXoaHet"></item>
+    <item android:id="@+id/mnuDocTuFile" android:title="@string/mnuDocTuFile"></item>
+    <item android:id="@+id/mnuGhiRaFile" android:title="@string/mnuGhiRaFile"></item>
+</menu>

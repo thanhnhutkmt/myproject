@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="A + B = " >
+    </TextView>
+
+    <EditText
+        android:id="@+id/txtSum"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/TextView01"
+        android:layout_marginRight="10dip"
+        android:layout_toRightOf="@id/TextView01"
+        android:background="@android:drawable/editbox_background"
+        android:text="0" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="A * B = " />
+
+    <EditText
+        android:id="@+id/txtMul"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/TextView02"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/TextView02"
+        android:background="@android:drawable/editbox_background"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/btnNex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtMul"
+        android:layout_margin="10dp"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtMul"
+        android:layout_margin="10dp"
+        android:text="Reset" />
+
+</LinearLayout>

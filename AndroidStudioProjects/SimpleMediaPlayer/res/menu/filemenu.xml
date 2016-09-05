@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+	    <item android:id="@+id/filemenu"
+	          android:title="@string/menu.file" >
+	        <!-- "file" submenu -->
+	        <menu>
+	            <item android:id="@+id/filecopy"
+	                  android:title="@string/menu.file.copy" />
+	            <item android:id="@+id/filecut"
+	                  android:title="@string/menu.file.cut" />
+	            <item android:id="@+id/filedelete"
+	                  android:title="@string/menu.file.delete" />
+	        </menu>
+	    </item>
+	    
+	    <item android:id="@+id/selectmenu"
+	          android:title="@string/menu.select" >
+	        <!-- "select" submenu -->
+	        <menu>
+	            <item android:id="@+id/selectall"
+	                  android:title="@string/menu.select.all" />
+	            <item android:id="@+id/selectmanyfiles"
+	                  android:title="@string/menu.select.manyfileson" />
+	            <item android:id="@+id/selectnone"
+	                  android:title="@string/menu.select.none" />
+	            <item android:id="@+id/selectrevert"
+	                  android:title="@string/menu.select.revert" />
+	        </menu>
+	    </item>
+	    
+	    <item android:id="@+id/buffermenu"
+	          android:title="@string/menu.buffer" >
+	        <!-- "buffer" submenu -->
+	        <menu>
+	            <item android:id="@+id/bufferremove"
+	                  android:title="@string/menu.buffer.remove" />
+	            <item android:id="@+id/buffershow"
+	                  android:title="@string/menu.buffer.show" />
+				<item android:id="@+id/showselectedsongs"
+	                  android:title="@string/menu.buffer.showselectedsong" />
+	        </menu>
+	    </item>   
+	    
+	    <item android:id="@+id/locationmenu"
+	          android:title="@string/menu.location" >
+	        <!-- "location" submenu -->
+	        <menu>
+	            <item android:id="@+id/sdcard"
+	                  android:title="@string/menu.location.sdcard" />
+	            <item android:id="@+id/root"
+	                  android:title="@string/menu.location.root" />
+	        </menu>
+	    </item> 	      
+    </menu>

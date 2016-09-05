@@ -1,0 +1,38 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/playlistmenu"
+          android:title="@string/menu.playlist" >
+        <!-- "playlist" submenu -->
+        <menu>
+            <item android:id="@+id/showcurrentplaylist"
+                  android:title="@string/menu.playlist.showcurrent" />
+            <item android:id="@+id/showallplaylistname"
+                  android:title="@string/menu.playlist.showplaylistname" />
+            <item android:id="@+id/createplaylist"
+                  android:title="@string/menu.playlist.create" />
+        </menu>
+    </item>
+    
+    <item android:id="@+id/openmenu"
+          android:title="@string/menu.open" >
+        <!-- "open" submenu -->
+        <!--<menu>
+            <item android:id="@+id/sdcard"
+                  android:title="@string/menu.open.sdcard" />
+            <item android:id="@+id/root"
+                  android:title="@string/menu.open.root" />
+        </menu>
+        -->
+    </item> 
+
+    <item android:id="@+id/exitmenu"
+          android:title="@string/menu.exit" >
+        <!-- "open" submenu -->
+        <!--<menu>
+            <item android:id="@+id/sdcard"
+                  android:title="@string/menu.open.sdcard" />
+            <item android:id="@+id/root"
+                  android:title="@string/menu.open.root" />
+        </menu>
+        -->
+    </item> 
+</menu>

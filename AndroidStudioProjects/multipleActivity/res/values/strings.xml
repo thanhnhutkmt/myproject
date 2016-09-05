@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome">Welcome to multiple activity demo</string>
+    <string name="titleinput">Input requestCode</string>
+    <string name="app_name">Multiple Activity</string>
+
+</resources>

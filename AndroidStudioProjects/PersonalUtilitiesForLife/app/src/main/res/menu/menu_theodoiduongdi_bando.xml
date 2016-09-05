@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mnuBanDo_showSavedMarker" android:title="@string/OptionMenu_TimDuongDi_Bando_ShowSavedMarker"></item>
+    <item android:id="@+id/mnuBanDo_theodoiduongdi_lockway" android:title="@string/mnuBanDo_theodoiduongdi_lockway"></item>
+    <item android:id="@+id/theodoiduongdi_travelmode_bando"
+        android:title="@string/OptionMenu_travel_mode_timduongdi_bando" >
+        <menu>
+            <item android:id="@+id/OptionMenu_TimDuongDi_Bando_Walking" android:title="@string/OptionMenu_TimDuongDi_Bando_Walking"></item>
+            <item android:id="@+id/OptionMenu_TimDuongDi_Bando_Transit" android:title="@string/OptionMenu_TimDuongDi_Bando_Transit"></item>
+            <item android:id="@+id/OptionMenu_TimDuongDi_Bando_Driving" android:title="@string/OptionMenu_TimDuongDi_Bando_Driving"></item>
+        </menu>
+    </item>
+    <item android:id="@+id/theodoiduongdi_positioning_system_mode"
+        android:title="@string/OptionMenu_BanDo_CheDoDinhVi" >
+        <menu>
+            <item android:id="@+id/mnuBanDo_CheDoGPS" android:title="@string/OptionMenu_BanDo_CheDoGPS" />
+            <item android:id="@+id/mnuBanDo_CheDoWifi3G" android:title="@string/OptionMenu_BanDo_CheDoWifi3G" />
+        </menu>
+    </item>
+</menu>

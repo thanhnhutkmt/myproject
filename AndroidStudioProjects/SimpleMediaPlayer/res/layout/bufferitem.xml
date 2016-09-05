@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bluescreencolor"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="@dimen/surfscreen.namecolumn"
+            android:layout_height="wrap_content"
+            android:text="@string/surfscreen.namecolumnlabel"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="@dimen/surfscreen.typecolumn"
+            android:layout_height="wrap_content"
+            android:text="@string/surfscreen.typecolumnlabel"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="@dimen/surfscreen.datecolumn"
+            android:layout_height="wrap_content"
+            android:text="@string/surfscreen.datecolumnlabel"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="@dimen/surfscreen.sizecolumn"
+            android:layout_height="wrap_content"
+            android:text="@string/surfscreen.sizecolumnlabel"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listfile"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/surfscreen.bufferitem.bottommargin" />
+    
+</LinearLayout>

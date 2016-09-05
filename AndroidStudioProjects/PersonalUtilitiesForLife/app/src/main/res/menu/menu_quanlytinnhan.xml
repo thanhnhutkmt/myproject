@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mnuTaoNhomMoi_quanlytinnhan" android:title="@string/mnuTaoNhomMoi_quanlytinnhan"></item>
+    <item android:id="@+id/mnuXoaHetTinNhan_quanlytinnhan" android:title="@string/mnuXoaHetTinNhan_quanlytinnhan"></item>
+    <item android:id="@+id/mnuXoaNhieuTinNhan_quanlytinnhan" android:title="@string/mnuXoaNhieuTinNhan_quanlytinnhan"></item>
+    <item android:id="@+id/mnuSapXepTheoContact_quanlytinnhan" android:title="@string/mnuSapXepTheoContact_quanlytinnhan"></item>
+    <item android:id="@+id/mnuSapXepTheoThoiGian_quanlytinnhan" android:title="@string/mnuSapXepTheoThoiGian_quanlytinnhan"></item>
+    <item android:id="@+id/mnuSapXepTheoLoai_quanlytinnhan" android:title="@string/mnuSapXepTheoLoai_quanlytinnhan"></item>
+    <item android:id="@+id/mnuDaoSapXep_quanlytinnhan" android:title="@string/mnuDaoSapXep_quanlytinnhan"></item>
+    <item android:id="@+id/mnuTimKiem_quanlytinnhan" android:title="@string/mnuTimKiem_quanlytinnhan"></item>
+</menu>

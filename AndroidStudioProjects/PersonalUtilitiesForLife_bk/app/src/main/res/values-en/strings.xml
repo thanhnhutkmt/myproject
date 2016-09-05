@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PersonalUtilitiesForLife</string>
+
+    <string name="btnCuocHen">Appointment</string>
+    <string name="btnKaraoke">Karaoke</string>
+    <string name="btnTinNhan">Message</string>
+    <string name="btnGame">Game</string>
+    <string name="btnHinhPhim">Multimedia</string>
+    <string name="btnDoiTien">Exchange rate</string>
+    <string name="btnBanDo">Google Map</string>
+    <string name="btnGhiChu">Note</string>
+    <string name="btnDongBoMayTinh">Synchronization</string>
+
+    <string name="mnuThem">Add</string>
+    <string name="mnuXoaHet">Clear all</string>
+    <string name="mnuDocTuFile">Import from file</string>
+    <string name="mnuGhiRaFile">Export to file</string>
+    <string name="mnuChinhSua">Edit</string>
+    <string name="mnuXoa">Remove</string>
+    <string name="mnuTatMo">Disable/Enable</string>
+    <string name="mnuPasteTuClipBoard">Paste from clipboard</string>
+    <string name="mnuLayTinNhan">Get message</string>
+    <string name="mnuLayTuDanhBa">Get from contact book</string>
+    <string name="mnuNhapTay">Type text</string>
+    <string name="mnuLayTuGoogleMap">From Google Map</string>
+
+    <string name="Toast_XoaHet">All item cleared!</string>
+    <string name="Toast_Xoa">Removed!</string>
+    <string name="Toast_TatMo_Tat">Disabled item!</string>
+    <string name="Toast_TatMo_Mo">Enabled item!</string>
+    <string name="Toast_TatMoQuaNgay">This item is over!</string>
+    <string name="Toast_Them">Added item(s)</string>
+    <string name="Toast_GhiRaFile_ThanhCong">Save Ok</string>
+    <string name="Toast_GhiRaFile_BiLoi">Save error!</string>
+    <string name="Toast_txtlistInput_ChiTietCuocHen">Saved</string>
+    <string name="AlertDialog_Title_ChonFileDoc_QuanLyCuocHen">Select file to load</string>
+    <string name="AlertDialog_Title_TenFileLuu_QuanLyCuocHen">Type file name to save</string>
+    <string name="ProgressDialog_GhiFile">Writing file</string>
+    <string name="ProgressDialog_DocFile">Loading file</string>
+
+    <string name="txtDiaDiem">Locations</string>
+    <string name="txtThongDiep">Messages</string>
+    <string name="txtNguoiLienHe">Contact persons</string>
+    <string name="HintGioThuNgayThangNam_ChiTietCuocHen">09:00 Mon 25 Jul 2016</string>
+    <string name="HintTuaDe_ChiTietCuocHen">Title</string>
+    <string name="HintNoiDung_ChiTietCuocHen">Content</string>
+    <string name="txtInputDialog_Title_ChiTietCuocHen">Type input text below</string>
+    <string name="txtlistDanhBaInput_Title_ChiTietCuocHen">Contact book</string>
+    <string name="txtlistTinNhanInput_Title_ChiTietCuocHen">Messages</string>
+    <string name="txtInput_NutHuy_ChiTietCuocHen">Close</string>
+    <string name="txtInput_NutLuu_ChiTietCuocHen">Save</string>
+    <string name="txtInput_NutMo_ChiTietCuocHen">Load</string>
+    <string name="title_activity_maps">Google Map</string>
+    <string name="btnMyLocationGM_title_marker">Current Position</string>
+    <string name="btnMyLocationGM_NoCurrentPosition">Current Position is not available!</string>
+
+    <string name="OptionMenu_BanDo_CheDoHienThi">Map mode</string>
+    <string name="OptionMenu_BanDo_Normal">Normal</string>
+    <string name="OptionMenu_BanDo_Satellite">Satellite</string>
+    <string name="OptionMenu_BanDo_Terrain">Terrain</string>
+    <string name="OptionMenu_BanDo_Hybrid">Hybrid</string>
+    <string name="OptionMenu_BanDo_CheDoDinhVi">Position</string>
+    <string name="OptionMenu_BanDo_CheDoGPS">GPS</string>
+    <string name="OptionMenu_BanDo_CheDoWifi3G">Wifi_3G</string>
+</resources>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:padding="20dp"
+        android:layout_weight="0.5"
+        android:layout_margin="3dp"
+        >
+        
+    <EditText
+        android:id="@+id/inputtext"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_gravity="center_horizontal"
+    />
+    <LinearLayout 
+        android:id="@+id/buttongroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
+    <Button
+        android:id="@+id/send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:text="Send"
+        android:layout_margin="15dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/mybutton"
+    />
+    
+    <ImageButton
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_launcher" />
+    
+    </LinearLayout>
+    <TextView 
+        android:id="@+id/label"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:lines="2"
+        android:scrollbars="vertical"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:background="@drawable/border"
+        android:hint="Click send to send the input text to this TextView"
+        android:textSize="30px"
+        android:textColor="@color/black"
+    />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:background="@drawable/border"
+        android:padding="20dp"
+        android:layout_weight="0.5"
+        android:layout_margin="3dp"
+        >
+
+        <RadioGroup 
+             android:id="@+id/options"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             android:background="@drawable/border"
+             android:padding="10dp"
+             android:layout_margin="10dp"
+             >
+            <RadioButton
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/red"
+                android:text="Red"
+                android:textColor="@color/black"
+            />
+            <RadioButton
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/green"
+                android:text="Green"
+                android:textColor="@color/black"
+            />
+            <RadioButton
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/blue"
+                android:text="Blue"
+                android:textColor="@color/black"
+            />
+        </RadioGroup>
+
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            >
+        <CheckBox 
+            android:id="@+id/enable_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Enable label"
+            android:textColor="@color/black"
+            />
+        <ImageView 
+	        android:id="@+id/image"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:scaleType="centerCrop"
+	        android:background="@drawable/bg"
+	        android:longClickable="true"
+            />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

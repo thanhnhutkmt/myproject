@@ -1,0 +1,232 @@
+/**
+ * 
+ */
+package run;
+
+import java.awt.EventQueue;
+import java.io.File;
+import java.util.ArrayList;
+
+import compiler.FileCompiler;
+import compiler.FunctionCompiler;
+import compiler.structureCompiler;
+
+import util.TestData;
+import util.constants;
+import MicroController.InstructionSet;
+import MicroController.memory;
+import exception.AssignException;
+import exception.CompareException;
+import exception.DeclareException;
+import exception.PreProcessorException;
+import gui.configUI;
+import gui.mainUI;
+
+/**
+ * @author ThanhNhut
+ * 
+ */
+public class starter {
+	private static String module;
+
+	/**
+	 * @param args
+	 * @throws AssignException
+	 * @throws DeclareException 
+	 * @throws CompareException 
+	 */
+	public static void main(String[] args) throws AssignException, DeclareException, CompareException {
+		InstructionSet is = new InstructionSet();
+		is.readIS(null);
+		structureCompiler com = new structureCompiler(new memory());
+		String asmcode = "";
+		String codeC = ""; //= TestData.VARDECLARE;
+//		asmcode += com.compileDataDef(codeC);
+//		codeC = "int *temppointer; int *temp = 16;"
+//				+ " long *testpointer; long *test = 999999;"
+//				+ "short *ptrtempdata = tempdata;";
+//		codeC = TestData.PTRDECLARE;
+//		asmcode += com.compilePtrDef(codeC);
+//		codeC = TestData.PTRDNA;
+//		asmcode += com.compilePtrDef(codeC);
+//		asmcode += com.compileAssignStructure(codeC);
+		
+//		codeC = TestData.PTRA;
+//		asmcode += com.compileAssignStructure(codeC);
+//		codeC = "int arraytests[2] = {100, 60};";//"short arrays[2] = {1, 2, 3}; int arraytest[3] = {2048, 1024};"// int notassigni[5]; short notassigns[2]; float notassignf[2];"
+				
+//				+ "int arraye[] = {1, 2, 2048, 4, 1023, 6};"
+//				+ "long arrays[2] = {99799, 99999};" ;
+//		asmcode += com.compileArrayDef(codeC);		
+//		codeC = "short arraye[5] = {2047, 4095, 1024, 4, 5};" ;
+//		asmcode += com.compileArrayDef(codeC);	
+//		codeC = "arraytests = {10, 16}; arraytests[1] = 18; arraytests[0] = *testIntPtr";		
+//		asmcode += com.compileAssignStructure(codeC);
+//		String trueBlock = "arraytests = {10, 16}";
+//		String falseBlock = "arraytests = {18, 22}";
+//		asmcode += com.compileCompareStructure("arraytests[0]", 	
+//				"arraytests[1]", ">", trueBlock, falseBlock);
+		FunctionCompiler fc = new FunctionCompiler();
+//		codeC = "void test() {" +
+//				"int a = 0;" +
+//				"int b = 0;" +
+//				"int c[] = {10, 16, 22, 99};" +
+//				"a = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};" +
+//				"while(a < 100) {" +
+//				"a++;" +
+//				"b = 99;" +
+//				"int c[] = {10, 16, 22, 99};" +
+//				"}" +
+//				"" +
+//				"do {" +
+//				"a = 100;" +
+//				"a = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};" +
+//				"c = {10, 16, 22, 99};" +
+//				"if (b > 0) {" +
+//				"b = 16;" +
+//				"a = 10;" +
+//				"a = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};" +
+//				"}" +
+//				"else {" +
+//				"b = 1;" +
+//				"a = 5;" +
+//				"a = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};" +
+//				"}" +
+//				"} while((boola && boolb) || (boola && !boolc))" +
+//				"if (b > 0) {" +
+//				"b = 16;" +
+//				"a = 10;" +
+//				"}" +
+//				"" +
+//				"for(int index = 0; index < 100; index++) {" +
+//				"a = 100;" +
+//				"c = 100;" +
+//				"a = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};" +
+//				"}" +
+//				"" +
+//				"if (b > 0) {" +
+//				"b = 16;" +
+//				"a = 10;" +
+//				"a = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};" +
+//				"}" +
+//				"else {" +
+//				"b = 1;" +
+//				"a = 5;" +
+//				"a = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};" +
+//				"}" +
+//				"" +
+//				"switch(a) {" +
+//				"case 1 :" +
+//				"a++;" +
+//				"break;" +
+//				"case 2 : " +
+//				"b++;" +
+//				"break;" +
+//				"case 3 :" +
+//				"if (a > b) {" +
+//				"a = b;" +
+//				"} else {" +
+//				"a++;" +
+//				"}" +
+//				"break;" +
+//				"default :" +
+//				"a++; b++;" +
+//				"break;" +
+//				"}" +
+//				"" +
+//				"if (c > 0) {" +
+//				"b = 16;" +
+//				"a = 10;" +
+//				"a = {{100, 100}, {400, 400}};" +
+//				"}" +
+//				"else if {" +
+//				"b = 1;" +
+//				"a = 5;" +
+//				"}" +
+//				"else if {" +
+//				"b = 1;" +
+//				"a = 5;" +
+//				"a = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};" +
+//				"}" +
+//				"else {" +
+//				"b = 1;" +
+//				"a = 5;" +
+//				"a = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};" +
+//				"}" +
+//				"" +
+//				"}";
+		
+		FileCompiler fic = new FileCompiler(
+				new File(System.getProperty("user.dir") 
+						+ System.getProperty("file.separator")
+						+ constants.TESTPROJECTPATH 
+						+ constants.SOURCEFOLDER + "\\main.c"));
+		String[] function = null;
+		try {
+			function = fic.splitFunction();
+		} catch (PreProcessorException e1) {
+			e1.printStackTrace();
+		}
+		
+		ArrayList<Object> splittedfunction = new ArrayList<Object>();
+		for (String func : function) {
+			String functionPart[] = fc.splitFunction(func);
+			Object[] structuredFunctionBody = 
+					fc.splitStructure(functionPart[1]);
+			ArrayList<Object> functionWithStructuredBody = new ArrayList<Object>();
+			functionWithStructuredBody.add(0, functionPart[0]);
+			functionWithStructuredBody.add(1, structuredFunctionBody);
+			functionWithStructuredBody.add(2, functionPart[2]);
+			splittedfunction.add(functionWithStructuredBody);
+		}
+		
+		memory mem = new memory();
+		structureCompiler SC = new structureCompiler(mem);	
+		for (Object sfunction : splittedfunction) {
+			Object[] structuredFunctionBody = ((ArrayList<Object>)sfunction).get(1);
+
+			for (Object[] body : function)
+			asmcode += SC.cStructuretoAsm(ob);
+		}
+		
+		if (args.length != 0) {
+			module = args[0];
+		} else {
+			module = "";
+		}
+		module = "-c";
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					callUI(module);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	static void callUI(String UI) {
+
+		switch (UI) {
+			case "-e":
+				System.exit(0);
+				break;
+			case "-c":
+				configUI cui = new configUI();
+				cui.setVisible(true);
+				break;
+			// case "-pr" :
+			// projectUI pui = new projectUI();
+			// pui.setVisible(true);
+			// break;
+			default:
+				String defaultConfig[] = { constants.PROCESSOR,
+						constants.INCLUDEFILE, constants.CONFIG1, constants.CONFIG2 };
+	
+				mainUI frame = new mainUI(defaultConfig, "");
+				frame.setVisible(true);
+				break;
+		}
+	}
+}

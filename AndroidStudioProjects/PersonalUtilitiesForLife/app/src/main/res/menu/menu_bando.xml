@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/display_mode"
+        android:title="@string/OptionMenu_BanDo_CheDoHienThi" >
+        <menu>
+            <item android:id="@+id/mnuBanDo_Normal" android:title="@string/OptionMenu_BanDo_Normal" />
+            <item android:id="@+id/mnuBanDo_Satellite" android:title="@string/OptionMenu_BanDo_Satellite" />
+            <item android:id="@+id/mnuBanDo_Terrain" android:title="@string/OptionMenu_BanDo_Terrain" />
+            <item android:id="@+id/mnuBanDo_Hybrid" android:title="@string/OptionMenu_BanDo_Hybrid" />
+        </menu>
+    </item>
+    <item android:id="@+id/positioning_system_mode"
+        android:title="@string/OptionMenu_BanDo_CheDoDinhVi" >
+        <menu>
+            <item android:id="@+id/mnuBanDo_CheDoGPS" android:title="@string/OptionMenu_BanDo_CheDoGPS" />
+            <item android:id="@+id/mnuBanDo_CheDoWifi3G" android:title="@string/OptionMenu_BanDo_CheDoWifi3G" />
+        </menu>
+    </item>
+    <item android:id="@+id/map_function"
+        android:title="@string/OptionMenu_BanDo_ChucNangBanDo" >
+        <menu>
+            <item android:id="@+id/mnuBanDo_XoaHetMarker" android:title="@string/OptionMenu_BanDo_XoaHetMarker" />
+            <item android:id="@+id/mnuBanDo_XoaSavedMarker" android:title="@string/OptionMenu_BanDo_XoaSavedMarker" />
+            <item android:id="@+id/mnuBanDo_LuuMarker" android:title="@string/OptionMenu_BanDo_LuuMarker" />
+            <item android:id="@+id/mnuBanDo_DocMarker" android:title="@string/OptionMenu_BanDo_DocMarker" />
+            <item android:id="@+id/mnuBanDo_showSavedMarker" android:title="@string/OptionMenu_BanDo_showSavedMarker" />
+        </menu>
+    </item>
+    <item android:id="@+id/find_place"
+        android:title="@string/OptionMenu_BanDo_findplace" >
+        <menu>
+            <item android:id="@+id/mnuBanDo_findplace_byMarkerName" android:title="@string/OptionMenu_BanDo_findplace_byMarkerName" />
+            <item android:id="@+id/mnuBanDo_findplace_byPosition" android:title="@string/OptionMenu_BanDo_findplace_byPosition" />
+        </menu>
+    </item>
+</menu>

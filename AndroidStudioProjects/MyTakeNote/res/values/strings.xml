@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="Desc">Description</string>
+    <string name="hintDesc">Description of Event</string>
+    <string name="Time">Time            </string>
+    <string name="hintTime">Time of Event</string>
+    <string name="Title">EVENT OR NOTE</string>
+    <string name="add">Add</string>
+
+</resources>

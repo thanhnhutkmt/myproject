@@ -1,0 +1,38 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+    <form-beans>
+
+        <form-bean name="CustomerForm" type="struts.example.CustomerForm" />
+
+    </form-beans>
+
+
+    <global-forwards>
+    
+        <forward name="mainpage" path="/index.jsp" />
+
+    </global-forwards>
+
+    <action-mappings>
+
+		<action path="/showCustomerForm"
+				parameter="/CustomerForm.jsp"
+				type="org.apache.struts.actions.ForwardAction" />
+				
+        <action path="/submitCustomerForm" 
+        		type="struts.example.CustomerAction" 
+        		name="CustomerForm" 
+        		scope="request" 
+        		validate="true" 
+        		input="/CustomerForm.jsp">
+            <forward name="success" path="/Success.jsp" />
+        </action>
+
+    </action-mappings>
+
+    <controller processorClass="org.apache.struts.action.RequestProcessor" />
+
+    <message-resources parameter="struts.example.MessageResources" null="false"/>
+
+</struts-config>

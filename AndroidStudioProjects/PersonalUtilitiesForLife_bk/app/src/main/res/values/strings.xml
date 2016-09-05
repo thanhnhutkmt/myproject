@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Tiện ích cá nhân</string>
+
+    <string name="btnCuocHen">Cuộc hẹn</string>
+    <string name="btnKaraoke">Karaoke</string>
+    <string name="btnTinNhan">Tin nhắn</string>
+    <string name="btnGame">Trò chơi</string>
+    <string name="btnHinhPhim">Hình Phim</string>
+    <string name="btnDoiTien">Đổi tiền</string>
+    <string name="btnBanDo">Bản đồ</string>
+    <string name="btnGhiChu">Ghi chú</string>
+    <string name="btnDongBoMayTinh">Đồng bộ</string>
+
+    <string name="mnuThem">Thêm</string>
+    <string name="mnuXoaHet">Xóa hết</string>
+    <string name="mnuDocTuFile">Đọc từ file</string>
+    <string name="mnuGhiRaFile">Ghi ra file</string>
+    <string name="mnuChinhSua">Chỉnh sửa</string>
+    <string name="mnuXoa">Xóa</string>
+    <string name="mnuTatMo">Tắt/Mở</string>
+    <string name="mnuPasteTuClipBoard">Lấy từ clipboard</string>
+    <string name="mnuLayTinNhan">Lấy tin nhắn</string>
+    <string name="mnuLayTuDanhBa">Lấy từ danh bạ</string>
+    <string name="mnuNhapTay">Nhập tay</string>
+    <string name="mnuLayTuGoogleMap">Lấy từ Google map</string>
+
+    <string name="Toast_XoaHet">Đã xóa hết cuộc hẹn!</string>
+    <string name="Toast_Xoa">Đã xóa!</string>
+    <string name="Toast_TatMo_Tat">Đã tắt cảnh báo cuộc hẹn!</string>
+    <string name="Toast_TatMo_Mo">Đã bật cảnh báo cuộc hẹn!</string>
+    <string name="Toast_TatMoQuaNgay">Cuộc hẹn đã quá ngày!</string>
+    <string name="Toast_Them">Đã thêm cuộc hẹn vào</string>
+    <string name="Toast_GhiRaFile_ThanhCong">Đã lưu ra file thành công</string>
+    <string name="Toast_GhiRaFile_BiLoi">Ghi ra file bị lỗi!</string>
+    <string name="Toast_txtlistInput_ChiTietCuocHen">Đã lưu</string>
+    <string name="AlertDialog_Title_ChonFileDoc_QuanLyCuocHen">Chọn tập tin để đọc</string>
+    <string name="AlertDialog_Title_TenFileLuu_QuanLyCuocHen">Nhập vào tên tập tin cần lưu</string>
+    <string name="ProgressDialog_GhiFile">Đang ghi tập tin</string>
+    <string name="ProgressDialog_DocFile">Đang đọc tập tin</string>
+
+    <string name="txtDiaDiem">Địa điểm</string>
+    <string name="txtThongDiep">Thông điệp</string>
+    <string name="txtNguoiLienHe">Người liên hệ</string>
+    <string name="HintGioThuNgayThangNam_ChiTietCuocHen">09:00 Th 7 25 thg 6 2016</string>
+    <string name="HintTuaDe_ChiTietCuocHen">Tựa đề</string>
+    <string name="HintNoiDung_ChiTietCuocHen">Nội dung</string>
+    <string name="txtInputDialog_Title_ChiTietCuocHen">Nhập vào bên dưới</string>
+    <string name="txtlistDanhBaInput_Title_ChiTietCuocHen">Danh Bạ</string>
+    <string name="txtlistTinNhanInput_Title_ChiTietCuocHen">Tin nhắn</string>
+    <string name="txtInput_NutHuy_ChiTietCuocHen">Đóng</string>
+    <string name="txtInput_NutLuu_ChiTietCuocHen">Lưu</string>
+    <string name="txtInput_NutMo_ChiTietCuocHen">Mở</string>
+    <string name="title_activity_maps">Bản đồ google</string>
+    <string name="btnMyLocationGM_title_marker">Vị trí hiện tại</string>
+    <string name="btnMyLocationGM_NoCurrentPosition">Không biết vị trí hiện tại!</string>
+
+    <string name="OptionMenu_BanDo_CheDoHienThi">Chế độ bản đồ</string>
+    <string name="OptionMenu_BanDo_Normal">Bình thường</string>
+    <string name="OptionMenu_BanDo_Satellite">Vệ tinh</string>
+    <string name="OptionMenu_BanDo_Terrain">Lục địa</string>
+    <string name="OptionMenu_BanDo_Hybrid">Kết hợp</string>
+    <string name="OptionMenu_BanDo_CheDoDinhVi">Định vị</string>
+    <string name="OptionMenu_BanDo_CheDoGPS">GPS</string>
+    <string name="OptionMenu_BanDo_CheDoWifi3G">Wifi_3G</string>
+</resources>

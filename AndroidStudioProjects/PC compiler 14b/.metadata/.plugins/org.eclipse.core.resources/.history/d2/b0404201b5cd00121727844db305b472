@@ -1,0 +1,428 @@
+/**
+ * 
+ */
+package compiler;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+import util.constants;
+import util.other;
+import exception.AssignException;
+import exception.DeclareException;
+import exception.TypeCastException;
+
+import MicroController.InstructionSet;
+import MicroController.PM;
+import MicroController.RAM;
+import MicroController.memory;
+
+/**
+ * @author ThanhNhut
+ * 
+ */
+public class structureCompiler {
+	private RAM ram;
+	private PM pm;
+
+	public structureCompiler(memory mem) {
+		ram = mem.getRAM();
+		pm = mem.getPM();
+	}
+
+	public String compileLoopStructure(String Ccode) {
+		StringBuffer sbuf = new StringBuffer();
+
+		return sbuf.toString();
+	}
+
+	public String compileTestExpression(String Ccode) {
+		String asmcode = null;
+
+		return asmcode;
+	}
+
+	public String compileExpressionStructure(String Ccode) {
+		String asmcode = null;
+		// +, -, *, /, % 
+
+		// bit &, |, ^ (exor), !, >>, <<
+		return asmcode;
+	}
+	
+	/**
+	 * compile code form : "type varName = value", "varName = value" 					
+	 *          value is number, varName, ptrName, string array, array element.
+	 *          varName is variable, pointer, array, array element.
+	 *          type : char, int, ushort, short, ulong, long. float.
+	 * @param Ccode code c to compile.
+	 * @return asm value-assign code.
+	 * @throws DeclareException
+	 * @throws AssignException 
+	 */
+	public String compileAssignStructure(String Ccode) throws DeclareException, AssignException {
+		String asmcode = "";
+		Hashtable<String, Integer> dataDef = ram.getVarTable();
+		Set<String> keySet = dataDef.keySet();
+		String asmAssignCode = "";
+		StringTokenizer token = new StringTokenizer(Ccode, ";");
+
+		while (token.hasMoreTokens()) {
+			String declare = token.nextToken();
+			declare = declare.trim();
+			String type = declare.substring(0, declare.indexOf(" "));
+			String varName = declare.substring(declare.indexOf(" ") + 1,
+					declare.indexOf("="));
+			varName = varName.trim();
+			String stringValue = declare.substring(
+					declare.indexOf("=") + 1, declare.length());
+			stringValue = stringValue.trim();
+			if (!ram.isExist(varName, type)) {
+				throw new DeclareException(String.format
+						(DeclareException.NOTDECLARE, varName));
+			}
+			
+			ArrayList<String> addresses;
+			ArrayList<String> values;
+			switch(type) {
+				case "char" :
+				case "int" :
+					addresses = other.assignVarName(varName, 1);
+					values = assignValue(stringValue, type);
+					asmAssignCode += fillAssignForm(addresses, values);
+					break;
+				case "ushort" :
+				case "short" :
+					addresses = other.assignVarName(varName, 2);
+					values = assignValue(stringValue, type);
+					asmAssignCode += fillAssignForm(addresses, values);
+					break;
+				case "ulong" :
+				case "long" :
+				case "float" :
+					addresses = other.assignVarName(varName, 4);
+					values = assignValue(stringValue, type);
+					asmAssignCode += fillAssignForm(addresses, values);
+					break;
+			}
+
+		}
+		asmcode = asmAssignCode;
+		return asmcode;
+	}
+		
+	private String fillAssignForm(ArrayList<String> addresses, ArrayList<String> values) {
+		String asmCode = "";
+		if () {
+			
+		} else {
+			
+		}
+		for (int index = 0; index < addresses.size(); index++) {
+			if (values.get(index).length() == 0) {
+				asmCode += String.format(InstructionSet.assignRegToForm2,
+						values.get(index), addresses.get(index));
+			} else {
+				asmCode += String.format(InstructionSet.assignRegToForm1,
+						values.get(index), addresses.get(index));
+			}
+		}
+		return asmCode;
+	}
+	
+	public String compileCompareStructure(String Ccode) {
+		String asmcode = null;
+
+		return asmcode;
+	}
+
+	/**
+	 * compile code form : "type varName = value", 
+	 * 					   "type varName".
+	 *          value is number, varName, ptrName.
+	 *          varName is not pointer.
+	 *          type : char, int, ushort, short, ulong, long. float.
+	 * @param Ccode code c to compile.
+	 * @return asm data-def code.
+	 */
+	public String compileDataDef(String Ccode) {
+		String asmcode = "";
+		Hashtable<String, Integer> dataDef = ram.getVarTable();
+		Set<String> keySet = dataDef.keySet();
+		String asmDefineCode = "";
+		String asmAssignCode = "";
+		StringTokenizer token = new StringTokenizer(Ccode, ";");
+
+		while (token.hasMoreTokens()) {
+			String declare = token.nextToken();
+			declare = declare.trim();
+			String type, varName;
+			if (declare.contains("=")) {
+				type = declare.substring(0, declare.indexOf(" "));
+				varName = declare.substring(declare.indexOf(" ") + 1,
+						declare.indexOf("="));
+				varName = varName.trim();
+			} else {
+				type = declare.substring(0, declare.indexOf(" "));
+				varName = declare.substring(declare.indexOf(" ") + 1,
+						declare.length());
+				varName = varName.trim();
+			}
+
+			ram.regVarType(varName, type);
+			switch (type) {
+				case "char" :
+				case "int" :
+					ram.declareVar(varName);
+					try {
+						asmAssignCode += compileAssignStructure(declare);
+					} catch (DeclareException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "ushort" :
+				case "short" :
+					ram.declareShort(varName);
+					try {
+						asmAssignCode += compileAssignStructure(declare);
+					} catch (DeclareException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "ulong" :
+				case "long" :
+					ram.declareLong(varName);
+					try {
+						asmAssignCode += compileAssignStructure(declare);
+					} catch (DeclareException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "float" :
+					ram.declareFloat(varName);
+					try {
+						asmAssignCode += compileAssignStructure(declare);
+					} catch (DeclareException e) {
+						e.printStackTrace();
+					}
+					break;
+			}			
+		}
+
+		for (String key : keySet) {
+			asmDefineCode += "#Define "
+					+ other.createFixedLengthString(other.LEFT, key, 10) + "0x"
+					+ Integer.toHexString(dataDef.get(key))
+					+ constants.NEXTLINE;
+		}
+		asmcode = asmDefineCode + constants.NEXTLINE + asmAssignCode;
+		return asmcode;
+	}
+
+	public String compilePtrAr(String Ccode) {
+		String asmcode = "";
+		String asmAssignCode = "";
+		StringTokenizer token = new StringTokenizer(Ccode, ";");
+		int tempValue[] = new int[5];
+
+		while (token.hasMoreTokens()) {
+			String declare = token.nextToken();
+			declare = declare.trim();
+			String type, varName; 
+			String stringValue = null;
+			int value = 0;
+			type = declare.substring(0, declare.indexOf("*"));
+			type = type.trim();
+
+			if (declare.contains("=")) {
+				varName = declare.substring(declare.indexOf("*") + 1,
+						declare.indexOf("="));
+				varName = varName.trim();
+				stringValue = declare.substring(declare.indexOf("=") + 1,
+						declare.length());
+				stringValue = stringValue.trim();
+				boolean number = true;
+				try {
+					value = Integer.parseInt(stringValue);
+				} catch (NumberFormatException e) {
+					number = false;
+				}
+				ram.regVarType("*" + varName, type);
+				switch (type) {
+				case "char":
+				case "int":
+					if (number) {
+						ram.declarePtrPointToData(varName, 1);
+//						asmAssignCode += "MOVLW " + "0x"
+//								+ Integer.toHexString(value)
+//								+ constants.NEXTLINE + "MOVWF "
+//								+ ram.getPtrAddress(varName)
+//								+ constants.NEXTLINE;
+					} else {
+						ram.declarePtrPointVar(varName, stringValue);
+					}
+					break;
+				case "ushort":
+				case "short":
+					if (number) {
+						ram.declarePtrPointToData(varName, 2);
+//						tempValue = new int[3];
+//						tempValue[2] = value;
+//						int pointedAddress = ram.getPtrAddress(varName);  
+//						for (int index = 0; index < 2; index++) {
+//							tempValue[index] = tempValue[2]
+//									- ((tempValue[2] / 256) * 256);
+//							tempValue[2] /= 256;
+//							asmAssignCode += "MOVLW " + "0x"
+//									+ Integer.toHexString(tempValue[index])
+//									+ constants.NEXTLINE + "MOVWF "
+//									+ (pointedAddress + index)
+//									+ constants.NEXTLINE;
+//						}
+					} else {
+						ram.declarePtrPointVar(varName, stringValue);
+					}
+					break;
+				case "long":
+				case "float":
+					if (number) {
+						ram.declarePtrPointToData(varName, 4);
+//						tempValue = new int[5];
+//						tempValue[4] = value;
+//						int pointedAddress = ram.getPtrAddress(varName);  
+//						for (int index = 0; index < 4; index++) {
+//							tempValue[index] = tempValue[4]
+//									- ((tempValue[4] / 256) * 256);
+//							tempValue[4] /= 256;
+//							asmAssignCode += "MOVLW " + "0x"
+//									+ Integer.toHexString(tempValue[index])
+//									+ constants.NEXTLINE + "MOVWF "
+//									+ (pointedAddress + index)
+//									+ constants.NEXTLINE;
+//						}
+					} else {
+						ram.declarePtrPointVar(varName, stringValue);
+					}
+					break;
+				}
+			} else {
+				varName = declare.substring(declare.indexOf("*") + 1,
+						declare.length());
+				varName = varName.trim();
+				ram.regVarType("*" + varName, type);
+				switch (type) {
+					case "char" :
+					case "int" :
+					case "ushort" :
+					case "short" :
+					case "long" :
+					case "float" :
+						ram.declarePtr(varName);
+						break;
+				}
+			}
+		}
+
+		asmcode = asmAssignCode;
+		return asmcode;
+	}
+
+	/**
+	 * create String-value array to fill form
+	 * @param stringValue value to assign
+	 * @param type type of assigned 
+	 * @return
+	 * @throws AssignException 
+	 */
+	public ArrayList<String> assignValue(String stringValue, 
+			String type) throws AssignException {
+		int sizeOfType = 0;
+		String assignType = "";
+		ArrayList<String> values = new ArrayList<String>();
+		int value = 0;
+		boolean number = true;
+		try {
+			value = Integer.parseInt(stringValue);
+		} catch (NumberFormatException e) {
+			number = false;
+		}
+		if (number) {
+			// value is number
+			String fitType = other.getFitType(value);
+			if (!fitType.contains(type)) {
+				throw new AssignException(
+						String.format(AssignException.LARGENUMBER, value, type));
+			}
+			sizeOfType = other.getSizeOf(type);
+			for (int index = 0; index < sizeOfType; index++) {
+				values.add(index, "0x" + Integer.toHexString(value 
+						- ((value / 256) * 256)));
+				value /= 256;
+			}
+			return values;
+		} else {
+			// value is not number
+			String addressName = "";
+			if (stringValue.contains("[")) {
+				addressName = stringValue.substring(0, stringValue.indexOf("["));
+			} else {
+				addressName = stringValue;
+			}
+			// check type cast
+			if (stringValue.contains("(")) {
+				String typeCast = stringValue.substring(stringValue.indexOf("(") + 1,
+						stringValue.lastIndexOf(")"));					
+				if (!typeCast.equals(type)) {
+					throw new AssignException(String.format(AssignException.CANNOTASSIGN, typeCast, type));
+				}
+			}
+			
+			// check type
+			assignType = ram.getVarType(addressName);
+			if (!assignType.equals(type)) {
+				throw new AssignException(String.format(AssignException.CANNOTASSIGN, assignType, type));
+			}
+			
+			if (addressName.contains("*")) {
+				// value is ptr
+				int sizeOfReceivedType = other.getSizeOf(type);
+				int sizeOfTranferType = other.getSizeOf(assignType);				
+				value = ram.getPtrAddress(stringValue);				
+				for (int index = 0; index < sizeOfReceivedType; index++) {
+					if (index < sizeOfTranferType) {
+						values.add(index, "0x" + Integer.toHexString(value + index));
+					} else {
+						values.add(index, "");
+					}
+				}
+			} else if (addressName.contains("[")) {
+				// value is array element
+			} else if (addressName.contains("{")) {
+				// value is string array
+			} else {
+				// value is varName			
+				sizeOfType = other.getSizeOf(type);
+				for (int index = 0; index < sizeOfType; index++) {
+					values.add(index, stringValue + RAM.INDEXMARK + index);
+				}
+			}
+		}
+		return values;
+	}
+	// expression
+
+	// loop structure
+
+	// test
+
+	// branch
+
+	// define var, data structure
+
+	// memory access mechanism
+
+	// memory management
+
+}

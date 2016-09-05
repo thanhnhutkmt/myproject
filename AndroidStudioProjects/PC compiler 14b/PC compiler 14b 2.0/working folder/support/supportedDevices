@@ -1,0 +1,10 @@
+[[PIC12Fdevice
+PIC12F683
+]]>>P12config
+[[PIC16Fdevice
+PIC16F887
+]]>>P16config
+[[PIC18Fdevice
+PIC18F2550
+PIC18F4550
+]]>>P18config

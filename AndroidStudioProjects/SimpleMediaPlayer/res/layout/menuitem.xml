@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/purple"
+    android:orientation="vertical" >
+    <TextView 
+        android:id="@+id/copy"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"  
+        android:textColor="@color/black"      
+        android:text="@string/surfscreen.selectmenu.choice.copy"
+        />
+    <TextView 
+        android:id="@+id/cut"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:textColor="@color/black"   
+        android:text="@string/surfscreen.selectmenu.choice.cut"      
+        />
+    <TextView 
+        android:id="@+id/rename"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"   
+        android:textColor="@color/black"   
+        android:text="@string/surfscreen.selectmenu.choice.rename"    
+        />
+     <TextView 
+        android:id="@+id/delete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"  
+        android:textColor="@color/black"  
+        android:text="@string/surfscreen.selectmenu.choice.delete"      
+        />
+      <TextView 
+        android:id="@+id/properties"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"  
+        android:textColor="@color/black"  
+        android:text="@string/surfscreen.selectmenu.choice.properties"      
+        />
+</LinearLayout>

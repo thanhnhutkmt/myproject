@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="tut_titles">
+    <item>Design &amp; Build a 1980s iOS Phone App: Design Comp Slicing</item>
+    <item>Best of Tuts+ in February 2011</item>
+    <item>Create a Brick Breaker Game with the Corona SDK: Game Controls</item>
+    <item>Exporting Graphics for Mobile Apps: PNG or JPEG?</item>
+    <item>Android Tablet Design</item>
+    <item>Build a Titanium Mobile Pizza Ordering App: Order Form Setup</item>
+    <item>Create a Brick Breaker Game with the Corona SDK: Application Setup</item>
+    <item>Android Tablet Virtual Device Configurations</item>
+    <item>Build a Titanium Mobile Pizza Ordering App: Topping Selection</item>
+    <item>Design &amp; Build a 1980s iOS Phone App: Interface Builder Setup</item>
+</string-array>    
+</resources>

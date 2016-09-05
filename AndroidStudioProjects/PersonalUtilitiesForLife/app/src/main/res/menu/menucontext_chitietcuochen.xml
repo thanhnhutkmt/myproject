@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mnuPasteTuClipBoard" android:title="@string/mnuPasteTuClipBoard"></item>
+    <item android:id="@+id/mnuLayTinNhan" android:title="@string/mnuLayTinNhan"></item>
+    <item android:id="@+id/mnuLayTuDanhBa" android:title="@string/mnuLayTuDanhBa"></item>
+    <item android:id="@+id/mnuNhapTay" android:title="@string/mnuNhapTay"></item>
+    <item android:id="@+id/mnuLayTuGoogleMap" android:title="@string/mnuLayTuGoogleMap"></item>
+</menu>

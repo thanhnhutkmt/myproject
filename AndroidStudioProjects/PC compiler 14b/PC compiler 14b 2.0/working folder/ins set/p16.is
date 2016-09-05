@@ -1,0 +1,47 @@
+[[testIS
+DECFSZ  %s, %s
+INCFSZ  %s, %s
+BTFSC   %s, %s
+BTFSS   %s, %s
+]]
+[[goIS
+CALL    %s
+GOTO    %s
+RETFIE 
+RETLW   %d
+RETURN
+]]
+[[calculateIS
+ADDWF   %s, %s
+CLRF    %s
+CLRW
+DECF    %s, %s
+INCF    %s, %s
+RLF     %s, %s
+RRF     %s, %s
+SUBWF   %s, %s
+BCF     %s, %s
+BSF     %s, %s
+ADDLW   %d
+SUBLW   %d
+]]
+[[logicIS
+ANDWF   %s, %s
+IORWF   %s, %s 
+XORWF   %s, %s
+ANDLW   %d
+IORLW   %d
+XORLW   %d
+]]
+[[loadIS
+MOVF    %s, %s
+MOVWF   %s
+MOVLW   %d
+]]
+[[specIS
+COMF    %s, %s
+NOP
+SWAPF   %s, %s
+CLRWDT  
+SLEEP
+]]

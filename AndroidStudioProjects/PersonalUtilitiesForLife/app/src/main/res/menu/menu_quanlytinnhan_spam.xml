@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mnuAddNumberKeyword_quanlytinnhan" android:title="@string/mnuAddNumberKeyword_quanlytinnhan"></item>
+    <item android:id="@+id/mnuDeleteNumberKeyword_quanlytinnhan" android:title="@string/mnuDeleteNumberKeyword_quanlytinnhan"></item>
+    <item android:id="@+id/mnuDeleteMessageCalllog_quanlytinnhan" android:title="@string/mnuDeleteMessageCalllog_quanlytinnhan"></item>
+</menu>
