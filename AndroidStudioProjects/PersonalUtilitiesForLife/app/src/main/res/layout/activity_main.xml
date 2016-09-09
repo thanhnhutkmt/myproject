@@ -16,31 +16,34 @@
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnCuocHen"
-            android:text="@string/btnCuocHen"
+            android:id="@+id/imageButton"
+            android:src="@drawable/appointment"
+            android:scaleType="centerInside"
             android:onClick="moCuocHen"
-            android:layout_weight="1" />
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnKaraoke"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/btnKaraoke"
+            android:id="@+id/imageButton2"
             android:onClick="moKaraoke"
-            android:layout_weight="1" />
+            android:src="@drawable/karaoke"
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnTinNhan"
-            android:id="@+id/btnTinNhan"
-            android:layout_gravity="right"
+            android:id="@+id/imageButton3"
             android:onClick="moTinNhan"
-            android:layout_weight="1" />
+            android:src="@drawable/smartphone"
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -49,31 +52,33 @@
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnGame"
-            android:id="@+id/btnGame"
+            android:id="@+id/imageButton6"
             android:onClick="moTroChoi"
-            android:layout_weight="1" />
+            android:src="@drawable/game"
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnHinhPhim"
-            android:id="@+id/btnHinhPhim"
-            android:layout_gravity="center_horizontal"
+            android:id="@+id/imageButton4"
             android:onClick="moHinhPhim"
-            android:layout_weight="1" />
+            android:src="@drawable/multimedia"
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnDoiTien"
-            android:id="@+id/btnDoiTien"
-            android:layout_gravity="right"
+            android:id="@+id/imageButton5"
             android:onClick="moDoiTien"
-            android:layout_weight="1" />
+            android:src="@drawable/exchangerate"
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -82,31 +87,33 @@
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnBanDo"
-            android:id="@+id/btnBanDo"
+            android:id="@+id/imageButton8"
             android:onClick="moBanDo"
-            android:layout_weight="1" />
+            android:src="@drawable/googlemap"
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnGhiChu"
-            android:id="@+id/btnGhiChu"
-            android:layout_gravity="center_horizontal"
+            android:id="@+id/imageButton7"
             android:onClick="moGhiChu"
-            android:layout_weight="1" />
+            android:src="@drawable/note"
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnDongBoMayTinh"
-            android:id="@+id/btnDongBo"
-            android:layout_gravity="right"
+            android:id="@+id/imageButton9"
             android:onClick="moDongBo"
-            android:layout_weight="1" />
+            android:src="@drawable/synchronization"
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
+
     </LinearLayout>
 
     <TextView

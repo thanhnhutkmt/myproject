@@ -1,0 +1,7 @@
+hdpi 72x72   108x108
+ldpi 36x36    54x54
+mdpi 48x48  72x72
+xhdpi 96x96   138x138
+xxhdpi 144x144   192x192
+xxxhdpi 192x192  220x220
+

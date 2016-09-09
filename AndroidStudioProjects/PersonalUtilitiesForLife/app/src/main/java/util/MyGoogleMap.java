@@ -1,5 +1,6 @@
 package util;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -54,30 +55,48 @@ import org.json.JSONObject;
  */
 public class MyGoogleMap {
 
-    public static void searchPlaceByName(Context context, String searchString, GoogleMap gMap) {
+    public static void searchPlaceByName(final Activity context, final String searchString, final GoogleMap gMap) {
         // get address in string for used location for the map
         /* get latitude and longitude from the adderress */
-        Geocoder geoCoder = new Geocoder(context, Locale.getDefault());
-        try {
-            List<Address> addresses = geoCoder.getFromLocationName(searchString, 5);
-            if (addresses.size() > 0) {
-                Double lat = (double) (addresses.get(0).getLatitude());
-                Double lon = (double) (addresses.get(0).getLongitude());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Address> addresses = null;
+                try {
+                    Geocoder geoCoder = new Geocoder(context, Locale.getDefault());
+                    addresses = geoCoder.getFromLocationName(searchString, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    final String errorMsg = e.getMessage();
+                    context.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+                if (addresses != null && addresses.size() > 0) {
+                    Double lat = (double) (addresses.get(0).getLatitude());
+                    Double lon = (double) (addresses.get(0).getLongitude());
 
-                Log.d("lat-long", "" + lat + ", " + lon);
-                final LatLng searchPosition = new LatLng(lat, lon);
-                        /*used marker for show the location */
-                Marker searchPlace = gMap.addMarker(new MarkerOptions()
-                        .position(searchPosition)
-                        .title(searchString)
-                        .icon(BitmapDescriptorFactory
-                                .fromResource(R.drawable.star1)));
-                // Move the camera instantly to hamburg with a zoom of seekbar
-                MyGoogleMap.zoomCameraTo(gMap, searchPosition, AppConstant.ZOOM_STREETLEVEL);
+                    Log.d("lat-long", "" + lat + ", " + lon);
+                    final LatLng searchPosition = new LatLng(lat, lon);
+                    context.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            /*used marker for show the location */
+                            Marker searchPlace = gMap.addMarker(new MarkerOptions()
+                                    .position(searchPosition)
+                                    .title(searchString)
+                                    .icon(BitmapDescriptorFactory
+                                            .fromResource(R.drawable.star1)));
+                            // Move the camera instantly to hamburg with a zoom of seekbar
+                            MyGoogleMap.zoomCameraTo(gMap, searchPosition, AppConstant.ZOOM_STREETLEVEL);
+                        }
+                    });
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        }).start();
     }
 
     public static String getAddressFromLocation(final double latitude,

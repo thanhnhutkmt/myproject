@@ -490,7 +490,7 @@ public class MyDialog {
                 @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
                 @Override public void afterTextChanged(Editable s) {}
                 @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    boolean sendOK = (txtMsg.getText().toString().trim().length() > 2 && txtPhoneNo.getText().toString().trim().length() > 7);
+                    boolean sendOK = (txtMsg.getText().toString().trim().length() > 1 && txtPhoneNo.getText().toString().trim().length() > 2);
                     b.setEnabled(sendOK);
                     b.setAlpha((sendOK) ? 1.0f : 0.5f);
                 }

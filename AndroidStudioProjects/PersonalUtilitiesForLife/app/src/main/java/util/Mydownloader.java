@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import java.io.BufferedReader;
@@ -389,10 +390,14 @@ public class Mydownloader {
     public static class DownloadFileTask extends AsyncTask<String, Integer, Void> {
         private ProgressBar pb;
         private String savingPath;
+        private Button button;
+        private String buttonLabel;
 
-        public DownloadFileTask(ProgressBar pb, String savingPath) {
+        public DownloadFileTask(ProgressBar pb, String savingPath, Button button) {
             this.pb = pb;
             this.savingPath = savingPath;
+            this.button = button;
+            this.buttonLabel = button.getText().toString();
         }
 
         @Override
@@ -413,8 +418,14 @@ public class Mydownloader {
                     connection.connect();
                     // expect HTTP 200 OK, so we don't mistakenly save error report instead of the file
                     Log.i("MyTag", link + " Response code " + connection.getResponseCode());
-                    if (connection.getResponseCode() != HttpURLConnection.HTTP_OK)
+                    if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                        if (link.contains("http://phongvu.vn/gallery/")) {
+                            String temp[] = link.split("/");
+                            String number = temp[temp.length - 1].substring(0, 5);
+                            publishProgress(-1, Integer.parseInt(number));
+                        }
                         throw new Exception("Server returned HTTP " + connection.getResponseCode() + " " + connection.getResponseMessage());
+                    }
                     // this will be useful to display download percentage might be -1: server did not report the length
                     int fileLength = connection.getContentLength();
                     // download the file
@@ -449,12 +460,14 @@ public class Mydownloader {
         @Override
         protected void onProgressUpdate(Integer... progress) {
             super.onProgressUpdate(progress);
-            pb.setProgress(progress[0]);
+            if (progress[0] == -1) button.setText(Integer.toString(progress[1]));
+            else pb.setProgress(progress[0]);
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            button.setText(buttonLabel);
             pb.setProgress(100);
         }
     }

@@ -116,17 +116,15 @@ public class BanDoActivity extends AppCompatActivity implements OnMapReadyCallba
         txtSearch_TabTimDiaDiem.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP) {
-                    btnSearch_TabTimDiaDiem.callOnClick();
-                }
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP)
+                    searchPlaceAndBringKeyBoardDown();
                 return false;
             }
         });
         btnSearch_TabTimDiaDiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyGoogleMap.searchPlaceByName(BanDoActivity.this, txtSearch_TabTimDiaDiem.getText().toString(), mMap);
-                MyPhone.bringKeyboardDown(BanDoActivity.this, txtSearch_TabTimDiaDiem);
+                searchPlaceAndBringKeyBoardDown();
             }
         });
         sbrZoom_TabTimDiaDiem.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -168,6 +166,11 @@ public class BanDoActivity extends AppCompatActivity implements OnMapReadyCallba
                 return false;
             }
         });
+    }
+
+    private void searchPlaceAndBringKeyBoardDown() {
+        MyGoogleMap.searchPlaceByName(BanDoActivity.this, txtSearch_TabTimDiaDiem.getText().toString(), mMap);
+        MyPhone.bringKeyboardDown(BanDoActivity.this, txtSearch_TabTimDiaDiem);
     }
 
     private void addControls() {

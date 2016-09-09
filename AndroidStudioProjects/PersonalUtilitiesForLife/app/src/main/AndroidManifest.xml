@@ -146,8 +146,8 @@
             android:exported="true" />
         <receiver
             android:name=".NotificationRemoveAlarmReceiver"
-            android:enabled="true"
-            android:exported="true" />
+            android:enabled="false" />
+            <!--android:exported="true" />-->
 
         <activity android:name=".XacThucActivity" />
 

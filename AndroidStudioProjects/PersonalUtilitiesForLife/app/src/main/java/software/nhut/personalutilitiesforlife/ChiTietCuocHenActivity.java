@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.Menu;
@@ -203,29 +204,32 @@ public class ChiTietCuocHenActivity extends AppCompatActivity {
         tpd.show();
     }
 
-    private void setAlarm(Date d, String msg) {
-        int alarmID = (int)(Math.random() * 10000000);
-        cancelAlarm();
-        while(!c.setAlarmID(this, alarmID));
+    private void setAlarm(long appointmentTime, String msg) {
+        for (int i = 0; i < 3; i++) cancelAlarm(c.getAlarmID() + i);
+        int alarmID;
+        do { alarmID = (int)(Math.random() * 10000000);
+        } while(!c.setAlarmID(this, alarmID));
         AlarmManager alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Intent intent = new Intent(this, NotificationAlarmReceiver.class);
-        intent.putExtra("appointmentcontent", msg);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
-        Intent intentRemove = new Intent(this, NotificationRemoveAlarmReceiver.class);
-        intentRemove.putExtra("alarmID", alarmID);
-        PendingIntent alarmRemoveIntent = PendingIntent.getBroadcast(this, alarmID, intentRemove, 0);
-        // setRepeating() lets you specify a precise custom interval--in this case, 5 minutes.
-        if (calendar.getTimeInMillis() > System.currentTimeMillis()) {
-            alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() - 1000 * 60 * 5 * 3, 1000 * 60 * 5, alarmIntent);
-            alarmMgr.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 1000 * 60 * 5 * 4, alarmRemoveIntent);
-        }
+        Log.i("MyTag", "delta time " + MyDateTime.getDateString(appointmentTime, "dd/MM/yyyy HH:mm:ss") + " "
+                + MyDateTime.getDateString(System.currentTimeMillis(), "dd/MM/yyyy HH:mm:ss") + " " + (appointmentTime - System.currentTimeMillis()));
+        if (appointmentTime > System.currentTimeMillis())
+            for (int i = 0; i < 3; i++) {
+                alarmMgr.set(AlarmManager.RTC_WAKEUP, appointmentTime
+                        - 1000 * 60 * 5 * (3 - i), createPIAlarm("appointmentcontent", msg, alarmID + i));
+                Log.i("MyTag", "Set alarm id " + (alarmID + i));
+            }
     }
 
-    private void cancelAlarm() {
+    private PendingIntent createPIAlarm(String label, String content, int alarmID) {
         Intent intent = new Intent(this, NotificationAlarmReceiver.class);
-        ((AlarmManager) getSystemService(ALARM_SERVICE)).cancel(PendingIntent.getBroadcast(this, c.getAlarmID(), intent, PendingIntent.FLAG_NO_CREATE));
-        Intent intentRemove = new Intent(this, NotificationRemoveAlarmReceiver.class);
-        ((AlarmManager) getSystemService(ALARM_SERVICE)).cancel(PendingIntent.getBroadcast(this, c.getAlarmID(), intentRemove, PendingIntent.FLAG_NO_CREATE));
+        if (content != null) intent.putExtra(label, content);
+        else intent.putExtra(label, alarmID);
+        return PendingIntent.getBroadcast(this, alarmID, intent, 0);
+    }
+
+    private void cancelAlarm(int alarmID) {
+        ((AlarmManager) getSystemService(ALARM_SERVICE)).cancel(PendingIntent.getBroadcast(this,
+                alarmID, new Intent(this, NotificationAlarmReceiver.class), PendingIntent.FLAG_NO_CREATE));
     }
 
     private void addControls() {
@@ -295,7 +299,7 @@ public class ChiTietCuocHenActivity extends AppCompatActivity {
                     txtNoiDung_ChiTietCuocHen.getText().toString(),
                     txtGioThuNgayThangNam_ChiTietCuocHen.getText().toString(),
                     listDiaDiem, listThongDiep, listGhiChu, tat);
-            setAlarm(calendar.getTime(), title);
+            setAlarm(c.getTime().getTime(), title);
             i.putExtra(AppConstant.CHITIETCUOCHEN_CHUOIGUI_CUOCHEN, c);
             setResult(AppConstant.CHITIETCUOCHEN_RESULTCODE, i);
             finish();

@@ -213,7 +213,7 @@ public class TiGiaActivity extends AppCompatActivity {
         listComputerStoreName.add(R.string.title_sangtao_tigiaactivity);
         listComputerStoreName.add(R.string.title_nangdong_tigiaactivity);
         for (final int nameID : listComputerStoreName) {
-            Button btn = new Button(this);
+            final Button btn = new Button(this);
             btn.setText(getResources().getString(nameID));
             btn.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             final ProgressBar pb = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
@@ -223,7 +223,7 @@ public class TiGiaActivity extends AppCompatActivity {
                     savePath = txtPath.getText().toString().trim();
                     MyFileIO.makeFolder(savePath);
                     String info[] = SOTHONGTIN_NGANHANG.get(nameID).split(LIMITER);
-                    Mydownloader.DownloadFileTask dft = new Mydownloader.DownloadFileTask(pb, addDateToLink(savePath + AppConstant.FS + info[1], calendar.getTime().getTime())[0]);
+                    Mydownloader.DownloadFileTask dft = new Mydownloader.DownloadFileTask(pb, addDateToLink(savePath + AppConstant.FS + info[1], calendar.getTime().getTime())[0], btn);
                     dft.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, addDateToLink(info[0], calendar.getTime().getTime()));
                 }
             });
