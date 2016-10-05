@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="software.nhut.personalutilitiesforlife.MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/background_light">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@android:color/background_light"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton"
+            android:src="@drawable/appointment"
+            android:scaleType="fitCenter"
+            android:onClick="moCuocHen"
+            android:background="@android:color/background_light" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton2"
+            android:onClick="moKaraoke"
+            android:src="@drawable/karaoke"
+            android:background="@android:color/background_light"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton3"
+            android:onClick="moTinNhan"
+            android:src="@drawable/smartphone"
+            android:background="@android:color/background_light"
+            android:scaleType="fitCenter" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@android:color/background_light"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton6"
+            android:onClick="moTroChoi"
+            android:src="@drawable/game"
+            android:background="@android:color/background_light"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton4"
+            android:onClick="moHinhPhim"
+            android:src="@drawable/multimedia"
+            android:background="@android:color/background_light"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton5"
+            android:onClick="moDoiTien"
+            android:src="@drawable/exchangerate"
+            android:background="@android:color/background_light"
+            android:scaleType="fitCenter" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@android:color/background_light"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton8"
+            android:onClick="moBanDo"
+            android:src="@drawable/googlemap"
+            android:background="@android:color/background_light"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton7"
+            android:onClick="moGhiChu"
+            android:src="@drawable/note"
+            android:background="@android:color/background_light"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton9"
+            android:onClick="moDongBo"
+            android:src="@drawable/synchronization"
+            android:background="@android:color/background_light"
+            android:scaleType="fitCenter" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/txtInfo"
+        android:text="@string/app_info"
+        android:background="@drawable/background"
+        android:gravity="top|center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="12sp" />
+</LinearLayout>

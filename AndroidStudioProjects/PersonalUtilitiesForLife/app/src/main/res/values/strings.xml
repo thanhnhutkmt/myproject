@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Tiện ích cá nhân</string>
+    <string name="app_info">Phiên bản 1.0\nTác giả : Kỹ sư Lưu Thành Nhựt\nTác quyền 2016</string>
 
     <string name="btnCuocHen">Cuộc hẹn</string>
     <string name="btnKaraoke">Karaoke</string>
@@ -73,6 +74,7 @@
     <string name="Toast_theodoiduongdi_bando_wifi3goff">Wifi và 3G đều đang tắt</string>
     <string name="Toast_loaddone_tigia">Tải hoàn tất</string>
     <string name="Toast_xacthucpassword_wrongpass">Sai mật khẩu</string>
+    <string name="Toast_xacthucpassword_notduplicated">Mật khẩu 2 lần không khớp</string>
     <string name="Toast_nophonenetwork_xacthuc_kiemtrachucnangphone">Thiết bị này không có chức năng nghe gọi</string>
     <string name="Toast_deliverymessage_sendSMS">Gửi OK</string>
     <string name="Toast_deliverymessage_sendSMS_OK">Đã gửi</string>
@@ -143,6 +145,8 @@
     <string name="AlertDialog_title_Chitietcuochen_confirmDialg">Cảnh báo không lưu cuộc hẹn</string>
     <string name="AlertDialog_body_Chitietcuochen_confirmDialg">Cuộc hẹn của bạn thiếu ngày giờ và/hoặc tiêu đề. Nếu bạn chọn "Đồng ý" cuộc hẹn sẽ không được lưu!</string>
     <string name="AlertDialog_title_xacthucPassword_confirmDialg">Nhập mật khẩu</string>
+    <string name="AlertDialog_title_ChangePassword_confirmDialg">Thay đổi mật khẩu</string>
+    <string name="AlertDialog_title_newPassword_confirmDialg">Đặt mật khẩu</string>
 
     <string name="AlertDialog_title_selectFileDialog">Chọn tập tin</string>
     <string name="AlertDialog_cannotopenfolder_selectFileDialog">Thư mục này không mở được</string>
@@ -274,5 +278,4 @@
     <string name="title_phongvu_banggia_tigiaactivity">Cty CP TMDV Phong Vũ</string>
     <string name="title_sangtao_tigiaactivity">Cty TNHH TM DV ĐT XD Sáng Tạo</string>
     <string name="title_nangdong_tigiaactivity">Cty TNHH TH VT Năng Động</string>
-
 </resources>

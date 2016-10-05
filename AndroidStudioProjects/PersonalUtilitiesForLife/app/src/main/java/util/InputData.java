@@ -1,5 +1,7 @@
 package util;
 
+import android.content.DialogInterface;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  */
 public interface InputData {
     void inputData(String s);
+    void inputData(DialogInterface dialog);
     void inputData(String... s);
     void inputData(List<String> s);
     void inputData(String s, int color);

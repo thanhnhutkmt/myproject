@@ -350,6 +350,7 @@ public class QuanLyTinNhanActivity extends AppCompatActivity {
             @Override public void inputData(String s) {}
             @Override public void inputData(String... s) {}
             @Override public void inputData(String s, int color) {}
+            @Override public void inputData(DialogInterface dialog) {}
             @Override public void inputData(List<String> s) {
                 List<String> spamList = (List<String>) MyFileIO.loadData(thisFeatureFolder, AppConstant.SPAM_LIST);
                 if (spamList == null) {
@@ -366,7 +367,8 @@ public class QuanLyTinNhanActivity extends AppCompatActivity {
     private void importContactFromFile(Context context) {
         final List<AlertDialog> listDialog = new ArrayList<>();
         listDialog.add(MyDialog.selectFileDialog(context, new InputData() {
-            @Override public void inputData(String s) {} @Override public void inputData(List<String> s) {} @Override public void inputData(String s, int color) {}
+            @Override public void inputData(String s) {} @Override public void inputData(List<String> s) {}
+            @Override public void inputData(String s, int color) {} @Override public void inputData(DialogInterface dialog) {}
             @Override public void inputData(String... s) {
                 String fileContent;
                 if ((new File(s[0])).length() < 10001 && (fileContent = MyFileIO.readStringFile(s[0])).contains("#_#")) {
@@ -416,7 +418,8 @@ public class QuanLyTinNhanActivity extends AppCompatActivity {
                     list.get(0).dismiss();
                 } else Toast.makeText(QuanLyTinNhanActivity.this, R.string.AlertDialog_notdatafile_selectFileDialog, Toast.LENGTH_SHORT).show();
             }
-            @Override public void inputData(String s){} @Override public void inputData(List<String> s){} @Override public void inputData(String s, int color){}
+            @Override public void inputData(String s){} @Override public void inputData(List<String> s){}
+            @Override public void inputData(String s, int color){} @Override public void inputData(DialogInterface dialog) {}
         }));
     }
 
@@ -449,7 +452,7 @@ public class QuanLyTinNhanActivity extends AppCompatActivity {
         MyPhone.loadDataFromApp(thisFeatureFolder, l);
         AlertDialog ad = MyDialog.showSendMsgDialog(QuanLyTinNhanActivity.this, l.get(1), new InputData() {
             @Override public void inputData(String s) {} @Override public void inputData(String s, int color) {}
-            @Override public void inputData(String... s) {}
+            @Override public void inputData(String... s) {} @Override public void inputData(DialogInterface dialog) {}
             @Override public void inputData(List<String> s) {
                 MyPhone.sendSMS(QuanLyTinNhanActivity.this, s.get(0), s.get(1).split(";"));
                 String prefix = TinNhanDanhBaCuocGoi.geMessageTypeName(TinNhanDanhBaCuocGoi.SENT, QuanLyTinNhanActivity.this);
@@ -506,6 +509,7 @@ public class QuanLyTinNhanActivity extends AppCompatActivity {
             @Override public void inputData(String s, int color) {}
             @Override public void inputData(List<String> s) {}
             @Override public void inputData(String... s) {}
+            @Override public void inputData(DialogInterface dialog) {}
         });
     }
 
@@ -643,6 +647,7 @@ public class QuanLyTinNhanActivity extends AppCompatActivity {
                 @Override public void inputData(String s) {}
                 @Override public void inputData(String s, int color) {}
                 @Override public void inputData(String... s) {}
+                @Override public void inputData(DialogInterface dialog) {}
                 @Override
                 public void inputData(List<String> s) {
                     StringBuilder info = new StringBuilder();
@@ -711,6 +716,7 @@ public class QuanLyTinNhanActivity extends AppCompatActivity {
             @Override public void inputData(String s) {}
             @Override public void inputData(List<String> s) {}
             @Override public void inputData(String... s) {}
+            @Override public void inputData(DialogInterface dialog) {}
             @Override public void inputData(String s, int color) {
                 List<List<TinNhanDanhBaCuocGoi>> list = new ArrayList<>();
                 MyPhone.loadDataFromApp(thisFeatureFolder, list);

@@ -111,9 +111,8 @@ public class XacThucActivity extends AppCompatActivity {
         txtCambienvantay_xacthuc.setVisibility(View.GONE);
         imgFingerPrint_xacthuc.setVisibility(View.GONE);
         final EditText txtPass = new EditText(this);
-        txtPass.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        MyDialog.showPasswordDiaLog(this, R.string.AlertDialog_title_xacthucPassword_confirmDialg,
-            new View[]{txtPass}, new View.OnClickListener() {
+        txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        MyDialog.showPasswordDiaLog(this, new View[]{txtPass}, new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     if (txtPass.getText().toString().equals
                             (MyAssetsAndPreferences.getStringFromPreferences(XacThucActivity.this, AppConstant.PASSWORD)))

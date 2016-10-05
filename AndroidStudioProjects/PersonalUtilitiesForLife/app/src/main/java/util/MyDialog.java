@@ -278,23 +278,72 @@ public class MyDialog {
         return b.show();
     }
 
-    public static AlertDialog showPasswordDiaLog(Context context, int titleID, View []arrayView,
+    public static AlertDialog showNewPasswordDiaLog(Context context, View []arrayView, final InputData actionYes) {
+        LinearLayout ll = new LinearLayout(context);
+        ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.setGravity(Gravity.CENTER);
+        for (View v : arrayView) ll.addView(v);
+        AlertDialog.Builder b = new AlertDialog.Builder(context);
+        b.setTitle(R.string.AlertDialog_title_newPassword_confirmDialg);
+        b.setView(ll);
+        b.setCancelable(false);
+        b.setPositiveButton(R.string.Button_label_ok_MyDialog_passwordDialog, null);
+        b.setNegativeButton(R.string.Button_label_close_MyDialog_passwordDialog, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                System.exit(0);
+            }
+        });
+        final AlertDialog ad =  b.show();
+        ad.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionYes.inputData(ad);
+            }
+        });
+
+        return ad;
+    }
+
+    public static AlertDialog showPasswordDiaLog(Context context, View []arrayView,
                  View.OnClickListener actionYes, DialogInterface.OnClickListener actionNo) {
         LinearLayout ll = new LinearLayout(context);
         ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         ll.setOrientation(LinearLayout.VERTICAL);
         ll.setGravity(Gravity.CENTER);
-        for (View v : arrayView) {
-            ll.addView(v);
-        }
+        for (View v : arrayView) ll.addView(v);
         AlertDialog.Builder b = new AlertDialog.Builder(context);
-        b.setTitle(titleID);
+        b.setTitle(R.string.AlertDialog_title_xacthucPassword_confirmDialg);
         b.setView(ll);
         b.setCancelable(false);
         b.setPositiveButton(R.string.Button_label_ok_MyDialog_passwordDialog, null);
         b.setNegativeButton(R.string.Button_label_close_MyDialog_passwordDialog, actionNo);
         AlertDialog ad =  b.show();
         ad.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(actionYes);
+        return ad;
+    }
+
+    public static AlertDialog showChangePasswordDiaLog(Context context, View []arrayView, final InputData actionYes) {
+        LinearLayout ll = new LinearLayout(context);
+        ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.setGravity(Gravity.CENTER);
+        for (View v : arrayView) ll.addView(v);
+        AlertDialog.Builder b = new AlertDialog.Builder(context);
+        b.setTitle(R.string.AlertDialog_title_ChangePassword_confirmDialg);
+        b.setView(ll);
+        b.setCancelable(false);
+        b.setPositiveButton(R.string.Button_label_ok_MyDialog_passwordDialog, null);
+        b.setNegativeButton(R.string.Button_label_close_MyDialog_passwordDialog, new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {}
+        });
+        final AlertDialog ad =  b.show();
+        ad.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                actionYes.inputData(ad);
+            }
+        });
         return ad;
     }
 

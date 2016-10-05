@@ -2,6 +2,7 @@ package software.nhut.personalutilitiesforlife.adapter;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -138,7 +139,8 @@ public class AdapterTextViewMauNen extends ArrayAdapter {
                     ad.dismiss();
                     List<String> listInfo = listContent.get(position).getListInfo();
                     MyDialog.showContactDialog(context, R.string.AlertDialog_title_quanlytinnhan_editcontact, listInfo, new InputData() {
-                        @Override public void inputData(String s) {} @Override public void inputData(String... s) {} @Override public void inputData(String s, int color) {}
+                        @Override public void inputData(String s) {} @Override public void inputData(String... s) {}
+                        @Override public void inputData(String s, int color) {} @Override public void inputData(DialogInterface dialog) {}
                         @Override public void inputData(List<String> s) {
                             TinNhanDanhBaCuocGoi currentContact = listContent.get(position);
                             StringBuilder info = new StringBuilder();

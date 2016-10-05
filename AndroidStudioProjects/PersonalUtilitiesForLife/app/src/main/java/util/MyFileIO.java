@@ -337,6 +337,18 @@ public class MyFileIO {
         else return "Copy failed";
     }
 
+    public static void copyFolder(String originalFolderPathWithName, String destinationFolderPathWithoutName, String destinationFolderName) {
+        File origin = new File(originalFolderPathWithName);
+        File destination = new File(destinationFolderPathWithoutName + AppConstant.FS + destinationFolderName);
+        if (origin.isDirectory()) {
+            destination.mkdir();
+            for (File f : origin.listFiles()) if (f.isDirectory() || f.isFile()) copyFolder(f.getAbsolutePath() + AppConstant.FS + f.getName(),
+                    destinationFolderPathWithoutName + AppConstant.FS + destinationFolderName, f.getName());
+        }
+        else if (origin.isFile()) try {MyFileIO.copyFile(origin.getName(), destinationFolderPathWithoutName + AppConstant.FS + destinationFolderName,
+                        new FileInputStream(origin), MyCheckSum.calculateMD5(origin));} catch (Exception e) { e.printStackTrace();}
+    }
+
     /*
         showConfirmBox
             Nbutton

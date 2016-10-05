@@ -24,6 +24,7 @@ public class AppConstant {
     public static final String TIMEFORMAT = "HH:mm";
     public static final String FULLTIMEFORMAT = "HH:mm EEE\ndd MMM yyyy";
     public static final String FULLTIMEFORMAT_WITHOUTNEWLINE = "HH:mm EEE dd MMM yyyy";
+    public static final String FULLTIMEFORMATWITHSECOND_WITHOUTNEWLINE = "HH:mm:ss EEE dd MMM yyyy";
     public static final String FULLTIMEFORMAT_WITHOUTDAYINWEEK = "HH:mm dd MMM yyyy";
     public static final int SECONDSOF7DAY = 7 * 24 * 3600 * 1000;
     public static final int SECONDSOF3DAY = 3 * 24 * 3600 * 1000;

@@ -31,4 +31,7 @@ dependencies {
     compile files('libs/fingerscanhelper.jar')
     compile files('libs/pass-v1.2.1.jar')
     compile files('libs/sdk-v1.0.0.jar')
+    compile 'com.google.firebase:firebase-database:9.0.2'
 }
+
+apply plugin: 'com.google.gms.google-services'

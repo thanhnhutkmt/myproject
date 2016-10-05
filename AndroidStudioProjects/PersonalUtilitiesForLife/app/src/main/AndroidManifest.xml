@@ -147,7 +147,7 @@
         <receiver
             android:name=".NotificationRemoveAlarmReceiver"
             android:enabled="false" />
-            <!--android:exported="true" />-->
+        <!-- android:exported="true" /> -->
 
         <activity android:name=".XacThucActivity" />
 
@@ -158,6 +158,8 @@
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".DongBoActivity"></activity>
     </application>
 
 </manifest>

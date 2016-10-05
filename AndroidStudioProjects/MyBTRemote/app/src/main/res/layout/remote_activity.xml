@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".remoteActivity"
+    android:background="@android:color/background_dark"
+    android:clickable="true">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:id="@+id/power_buttons">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log out"
+            android:id="@+id/Logout"
+            android:background="@android:color/holo_red_dark"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lock"
+            android:id="@+id/Lock"
+            android:background="@android:color/holo_red_dark"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hibernate"
+            android:id="@+id/Hibernate"
+            android:background="@android:color/holo_red_dark"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Turn off"
+            android:id="@+id/Turnoff"
+            android:background="@android:color/holo_red_dark"
+            android:layout_margin="@dimen/button_margin_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/power_volumn"
+        android:layout_below="@+id/power_buttons"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="V+"
+            android:id="@+id/Vp"
+            android:background="@android:color/white"
+            android:layout_above="@+id/Mute"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="V-"
+            android:id="@+id/Vm"
+            android:layout_marginLeft="33dp"
+            android:layout_marginStart="33dp"
+            android:background="@android:color/white"
+            android:layout_alignTop="@+id/Vp"
+            android:layout_toRightOf="@+id/Vp"
+            android:layout_toEndOf="@+id/Vp"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mute"
+            android:id="@+id/Mute"
+            android:background="@android:color/white"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/Vm"
+            android:layout_toEndOf="@+id/Vm"
+            android:layout_margin="@dimen/button_margin_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/control"
+        android:layout_below="@+id/power_volumn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch"
+            android:id="@+id/Switchapp"
+            android:background="@android:color/white"
+            android:layout_above="@+id/Enter"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Close app"
+            android:id="@+id/Closeapp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginStart="33dp"
+            android:background="@android:color/white"
+            android:layout_alignTop="@+id/Switchapp"
+            android:layout_toRightOf="@+id/Switchapp"
+            android:layout_toEndOf="@+id/Switchapp"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm"
+            android:id="@+id/Enter"
+            android:background="@android:color/white"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/Closeapp"
+            android:layout_toEndOf="@+id/Closeapp"
+            android:layout_margin="@dimen/button_margin_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/mounse_pad1"
+        android:layout_below="@+id/control"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:baselineAligned="false"
+        android:background="@android:color/darker_gray">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LM"
+            android:id="@+id/LeftmouseBT"
+            android:background="@android:color/white"
+            android:layout_above="@+id/Rightmouse"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MM"
+            android:id="@+id/MiddlemouseBT"
+            android:layout_marginLeft="33dp"
+            android:layout_marginStart="33dp"
+            android:background="@android:color/white"
+            android:layout_alignTop="@+id/Leftmouse"
+            android:layout_toRightOf="@+id/Leftmouse"
+            android:layout_toEndOf="@+id/Leftmouse"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RM"
+            android:id="@+id/RightmouseBT"
+            android:background="@android:color/white"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/MiddlemouseBT"
+            android:layout_toEndOf="@+id/MiddlemouseBT"
+            android:layout_margin="@dimen/button_margin_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/mouse_pad2"
+        android:layout_below="@+id/mounse_pad1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/darker_gray">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&lt;"
+            android:id="@+id/Leftmouse"
+            android:background="@android:color/white"
+            android:layout_above="@+id/Downmouse"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=">"
+            android:id="@+id/Rightmouse"
+            android:background="@android:color/white"
+            android:layout_above="@+id/Downmouse"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="^"
+            android:id="@+id/Upmouse"
+            android:layout_marginLeft="33dp"
+            android:layout_marginStart="33dp"
+            android:background="@android:color/white"
+            android:layout_alignTop="@+id/Leftmouse"
+            android:layout_toRightOf="@+id/Leftmouse"
+            android:layout_toEndOf="@+id/Leftmouse"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="v"
+            android:id="@+id/Downmouse"
+            android:background="@android:color/white"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/Upmouse"
+            android:layout_toEndOf="@+id/Upmouse"
+            android:layout_margin="@dimen/button_margin_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/mouse_pad3"
+        android:layout_below="@+id/mouse_pad2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/darker_gray">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scroll ^"
+            android:id="@+id/Scrollup"
+            android:background="@android:color/white"
+            android:layout_above="@+id/Scrolldown"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/button_margin_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scroll v"
+            android:id="@+id/Scrolldown"
+            android:background="@android:color/white"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/button2"
+            android:layout_toEndOf="@+id/button2"
+            android:layout_margin="@dimen/button_margin_size" />
+    </LinearLayout>
+
+    <requestFocus
+        android:layout_above="@+id/mounse_pad1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="111dp"
+        android:layout_marginStart="111dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="TV address"
+            android:id="@+id/TVlabel"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_alignTop="@+id/tvaddress"
+            android:layout_toLeftOf="@+id/tvaddress"
+            android:layout_toStartOf="@+id/tvaddress" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvaddress"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="00:15:83:0C:BF:EB"
+            android:textColor="@android:color/holo_blue_light" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package software.nhut.personalutilitiesforlife;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -162,7 +163,8 @@ public class TiGiaActivity extends AppCompatActivity {
         btnBrowse.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 MyDialog.selectFolderDialog(TiGiaActivity.this, new InputData() {
-                    @Override public void inputData(String s) {} @Override public void inputData(List<String> s) {} @Override public void inputData(String s, int color) {}
+                    @Override public void inputData(String s) {} @Override public void inputData(List<String> s) {}
+                    @Override public void inputData(String s, int color) {} @Override public void inputData(DialogInterface dialog) {}
                     @Override public void inputData(String... s) {
                         txtPath.setText(s[0]);
                     }
