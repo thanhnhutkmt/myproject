@@ -159,6 +159,13 @@
             </intent-filter>
         </receiver>
 
+        <!-- Firebase Notifications -->
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity android:name=".DongBoActivity"></activity>
     </application>
 

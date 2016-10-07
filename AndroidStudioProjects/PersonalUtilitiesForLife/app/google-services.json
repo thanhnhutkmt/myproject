@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "57312442412",
-    "firebase_url": "https://demo2016-c05f3.firebaseio.com",
-    "project_id": "demo2016-c05f3",
-    "storage_bucket": "demo2016-c05f3.appspot.com"
+    "project_number": "878568334997",
+    "firebase_url": "https://model-ruler-136223.firebaseio.com",
+    "project_id": "model-ruler-136223",
+    "storage_bucket": "model-ruler-136223.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:57312442412:android:0e9f24982ac47c35",
+        "mobilesdk_app_id": "1:878568334997:android:0e9f24982ac47c35",
         "android_client_info": {
           "package_name": "software.nhut.personalutilitiesforlife"
         }
       },
       "oauth_client": [
         {
-          "client_id": "57312442412-5fg1l6i3v3ba10qbqjlkk4271tbsd9e6.apps.googleusercontent.com",
+          "client_id": "878568334997-ib3inaao92o2oh6ap9v1evv7al94fqiq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBNGJSkJX2Prv0NgTuFfWn16Ew2SqQqXlg"
+          "current_key": "AIzaSyBWQyNPFWNHLYos-PFQe2l2Bit5W3A57jE"
         }
       ],
       "services": {

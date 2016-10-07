@@ -6,6 +6,15 @@ import com.google.android.gms.maps.model.LatLng;
  * Created by Nhut on 6/15/2016.
  */
 public class AppConstant {
+    public static final String Topic_ID = "myTopic";
+    public static final String Web_API_Key = "AIzaSyAe045v1Is7pzTOOXXcAWAcNnFgmFphGAM";
+    public static final String Project_ID = "model-ruler-136223";
+    public static final String SERVER_KEY = "AIzaSyAQmhHMsK7kLh7IpndWk2Nnz9i2piZZrX4";
+    public static final String SENDER_ID = "878568334997";
+    public static final String UID_FIREBASE = "pEJxLBeBdGWn7wutwJ7bnMV0FV53";
+    public static final String USERNAME_FIREBASE = "seafec2014@gmail.com";
+    public static final String PASS_FIREBASE = "123456";
+    public static final String BUCKETNAME = "gs://demo2016-c05f3.appspot.com";
     public static final int CHIEUDAI_TIEUDE_NGAN_CUOCHEN = 80;
     public static final int CHIEUDAI_NOIDUNG_NGAN_CUOCHEN = 120;
     public static final int QUANLYCUOCHEN_NEW_REQUESTCODE = 10;
