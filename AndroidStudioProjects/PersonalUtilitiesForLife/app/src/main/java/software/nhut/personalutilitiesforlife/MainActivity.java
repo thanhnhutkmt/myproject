@@ -92,17 +92,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    String token = InstanceID.getInstance(MainActivity.this).getToken("model-ruler-136223","");
-                    Log.i("MyTag", "info : instance ID " + InstanceID.getInstance(MainActivity.this).getId()
-                            + " , token " + token);
+                    String token = InstanceID.getInstance(MainActivity.this).getToken(getString(R.string.gcm_defaultSenderId),"");
+                    Log.i("MyTag", "info : instance ID " + InstanceID.getInstance(MainActivity.this).getId() + " , token " + token);
                     FirebaseMessaging.getInstance().subscribeToTopic(AppConstant.Topic_ID);
+                    startService(new Intent(MainActivity.this, MyFirebaseMessagingService.class));
                 } catch(IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
-        startService(new Intent(MainActivity.this, MyFirebaseMessagingService.class));
 
+// Can't not send upstream message because HTTP protocol does not support
 //        FirebaseMessaging fm = FirebaseMessaging.getInstance();
 //        fm.send(new RemoteMessage.Builder(AppConstant.SENDER_ID + "@gcm.googleapis.com")
 //                .setMessageId(Integer.toString((int) (Math.random() * 1000)))

@@ -1,0 +1,294 @@
+******************************************************************************
+                  TI ARM Linker PC v5.2.5                      
+******************************************************************************
+>> Linked Wed Mar 02 12:15:56 2016
+
+OUTPUT FILE NAME:   <lab2_clock.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00000811
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  00000c7e  0003f382  R  X
+  INFO_FLASH            00200000   00004000  00000000  00004000  R  X
+  SRAM                  20000000   00010000  00000238  0000fdc8  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00000c84   00000c84    r-x
+  00000000    00000000    00000144   00000144    r-- .intvecs
+  00000144    00000144    00000a96   00000a96    r-x .text
+  00000bdc    00000bdc    00000070   00000070    r-- .const
+  00000c50    00000c50    00000034   00000034    r-- .cinit
+20000000    20000000    00000038   00000000    rw-
+  20000000    20000000    00000038   00000000    rw- .data
+2000fe00    2000fe00    00000200   00000000    rw-
+  2000fe00    2000fe00    00000200   00000000    rw- .stack
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    00000144     
+                  00000000    00000144     lab2_clock_system_startup_ccs.obj (.intvecs)
+
+.text      0    00000144    00000a96     
+                  00000144    000002fc     lab2_clock_system.obj (.text)
+                  00000440    000000d4     msp432p4xx_driverlib.lib : pcm.o (.text:PCM_setPowerModeWithTimeout)
+                  00000514    000000a8                              : pcm.o (.text:PCM_setCoreVoltageLevelWithTimeout)
+                  000005bc    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.obj (.text)
+                  00000658    0000007a                                   : memset_t2.obj (.text)
+                  000006d2    00000002     --HOLE-- [fill = 0]
+                  000006d4    0000006c                                   : autoinit.obj (.text)
+                  00000740    0000006a                                   : copy_decompress_rle.obj (.text)
+                  000007aa    00000002     --HOLE-- [fill = 0]
+                  000007ac    00000064     msp432p4xx_driverlib.lib : interrupt.o (.text:Interrupt_enableInterrupt)
+                  00000810    00000050     rtsv7M4_T_le_v4SPD16_eabi.lib : boot.obj (.text)
+                  00000860    0000004c     msp432p4xx_driverlib.lib : gpio.o (.text:GPIO_setAsPeripheralModuleFunctionOutputPin)
+                  000008ac    0000004c     rtsv7M4_T_le_v4SPD16_eabi.lib : cpy_tbl.obj (.text)
+                  000008f8    00000044                                   : exit.obj (.text)
+                  0000093c    00000030     msp432p4xx_driverlib.lib : gpio.o (.text:GPIO_getEnabledInterruptStatus)
+                  0000096c    00000030                              : gpio.o (.text:GPIO_setAsInputPinWithPullUpResistor)
+                  0000099c    0000002c                              : pcm.o (.text:PCM_getCoreVoltageLevel)
+                  000009c8    0000002a                              : pcm.o (.text:PCM_getPowerMode)
+                  000009f2    00000002     --HOLE-- [fill = 0]
+                  000009f4    00000028                              : flash.o (.text:FlashCtl_setWaitState)
+                  00000a1c    00000024                              : gpio.o (.text:GPIO_setAsOutputPin)
+                  00000a40    00000020                              : gpio.o (.text:GPIO_interruptEdgeSelect)
+                  00000a60    00000018                              : gpio.o (.text:GPIO_clearInterruptFlag)
+                  00000a78    00000018                              : gpio.o (.text:GPIO_disableInterrupt)
+                  00000a90    00000018                              : wdt_a.o (.text:WDT_A_holdTimer)
+                  00000aa8    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : args_main.obj (.text)
+                  00000ac0    00000014     msp432p4xx_driverlib.lib : gpio.o (.text:GPIO_enableInterrupt)
+                  00000ad4    00000014                              : gpio.o (.text:GPIO_toggleOutputOnPin)
+                  00000ae8    00000014                              : interrupt.o (.text:Interrupt_disableSleepOnIsrExit)
+                  00000afc    00000014                              : systick.o (.text:SysTick_disableInterrupt)
+                  00000b10    00000014                              : systick.o (.text:SysTick_disableModule)
+                  00000b24    00000014                              : systick.o (.text:SysTick_enableInterrupt)
+                  00000b38    00000014                              : systick.o (.text:SysTick_enableModule)
+                  00000b4c    00000014     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.text)
+                  00000b60    00000010     msp432p4xx_driverlib.lib : gpio.o (.text:GPIO_getInterruptStatus)
+                  00000b70    00000010                              : interrupt.o (.text:Interrupt_enableMaster)
+                  00000b80    00000010                              : pcm.o (.text:PCM_getPowerState)
+                  00000b90    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.obj (.text:decompress:none)
+                  00000b9e    0000000c     msp432p4xx_driverlib.lib : cpu.o (.text:CPU_cpsie)
+                  00000baa    00000002     --HOLE-- [fill = 0]
+                  00000bac    0000000c                              : systick.o (.text:SysTick_setPeriod)
+                  00000bb8    0000000c     lab2_clock_system_startup_ccs.obj (.text)
+                  00000bc4    00000006     msp432p4xx_driverlib.lib : pcm.o (.text:PCM_setCoreVoltageLevel)
+                  00000bca    00000006                              : pcm.o (.text:PCM_setPowerMode)
+                  00000bd0    00000006     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_rle.obj (.text:decompress:rle24)
+                  00000bd6    00000004                                   : pre_init.obj (.text)
+
+.const     0    00000bdc    00000070     
+                  00000bdc    00000040     msp432p4xx_driverlib.lib : interrupt.o (.const)
+                  00000c1c    00000030                              : gpio.o (.const:GPIO_PORT_TO_BASE)
+
+.cinit     0    00000c50    00000034     
+                  00000c50    00000024     (.cinit..data.load) [load image, compression = rle]
+                  00000c74    00000008     (__TI_handler_table)
+                  00000c7c    00000008     (__TI_cinit_table)
+
+.data      0    20000000    00000038     UNINITIALIZED
+                  20000000    00000024     lab2_clock_system.obj (.data)
+                  20000024    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.data)
+                  2000002c    00000008                                   : exit.obj (.data)
+                  20000034    00000004                                   : stkdepth_vars.obj (.data)
+
+.TI.persistent 
+*          0    20000000    00000000     UNINITIALIZED
+
+.stack     0    2000fe00    00000200     UNINITIALIZED
+                  2000fe00    00000200     --HOLE--
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00000c7c records: 1, size/record: 8, table size: 8
+	.data: load addr=00000c50, load size=00000024 bytes, run addr=20000000, run size=00000038 bytes, compression=rle
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00000c74 records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_rle24
+	index: 1, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                                       
+-------   ----                                       
+000008f9  C$$EXIT                                    
+00000b9f  CPU_cpsie                                  
+000003ad  ChangeAllLED                               
+000009f5  FlashCtl_setWaitState                      
+00000a61  GPIO_clearInterruptFlag                    
+00000a79  GPIO_disableInterrupt                      
+00000ac1  GPIO_enableInterrupt                       
+0000093d  GPIO_getEnabledInterruptStatus             
+00000b61  GPIO_getInterruptStatus                    
+00000a41  GPIO_interruptEdgeSelect                   
+0000096d  GPIO_setAsInputPinWithPullUpResistor       
+00000a1d  GPIO_setAsOutputPin                        
+00000861  GPIO_setAsPeripheralModuleFunctionOutputPin
+00000ad5  GPIO_toggleOutputOnPin                     
+00000ae9  Interrupt_disableSleepOnIsrExit            
+000007ad  Interrupt_enableInterrupt                  
+00000b71  Interrupt_enableMaster                     
+0000099d  PCM_getCoreVoltageLevel                    
+000009c9  PCM_getPowerMode                           
+00000b81  PCM_getPowerState                          
+00000bc5  PCM_setCoreVoltageLevel                    
+00000515  PCM_setCoreVoltageLevelWithTimeout         
+00000bcb  PCM_setPowerMode                           
+00000441  PCM_setPowerModeWithTimeout                
+00000249  Port1IsrHandler                            
+UNDEFED   SHT$$INIT_ARRAY$$Base                      
+UNDEFED   SHT$$INIT_ARRAY$$Limit                     
+0000038d  SysTickIsrHandler                          
+00000afd  SysTick_disableInterrupt                   
+00000b11  SysTick_disableModule                      
+00000b25  SysTick_enableInterrupt                    
+00000b39  SysTick_enableModule                       
+00000bad  SysTick_setPeriod                          
+00000a91  WDT_A_holdTimer                            
+20010000  __STACK_END                                
+00000200  __STACK_SIZE                               
+00000c7c  __TI_CINIT_Base                            
+00000c84  __TI_CINIT_Limit                           
+00000c74  __TI_Handler_Table_Base                    
+00000c7c  __TI_Handler_Table_Limit                   
+000006d5  __TI_auto_init                             
+2000002c  __TI_cleanup_ptr                           
+00000b91  __TI_decompress_none                       
+00000bd1  __TI_decompress_rle24                      
+20000030  __TI_dtors_ptr                             
+00000000  __TI_static_base__                         
+00000659  __aeabi_memclr                             
+00000659  __aeabi_memclr4                            
+00000659  __aeabi_memclr8                            
+000005bd  __aeabi_memcpy                             
+000005bd  __aeabi_memcpy4                            
+000005bd  __aeabi_memcpy8                            
+0000065b  __aeabi_memset                             
+0000065b  __aeabi_memset4                            
+0000065b  __aeabi_memset8                            
+ffffffff  __binit__                                  
+ffffffff  __c_args__                                 
+2000fe00  __stack                                    
+00000aa9  _args_main                                 
+00000811  _c_int00                                   
+20000024  _lock                                      
+00000b5b  _nop                                       
+00000b53  _register_lock                             
+00000b4d  _register_unlock                           
+00000bd7  _system_pre_init                           
+20000028  _unlock                                    
+000008fd  abort                                      
+ffffffff  binit                                      
+20000004  blink                                      
+20000000  buttonPushed                               
+000008ad  copy_in                                    
+00000905  exit                                       
+2000000c  frequencyCycle                             
+00000000  interruptVectors                           
+20000008  jj                                         
+00000145  main                                       
+20000034  main_func_sp                               
+000005bd  memcpy                                     
+00000661  memset                                     
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                                       
+-------   ----                                       
+00000000  __TI_static_base__                         
+00000000  interruptVectors                           
+00000145  main                                       
+00000200  __STACK_SIZE                               
+00000249  Port1IsrHandler                            
+0000038d  SysTickIsrHandler                          
+000003ad  ChangeAllLED                               
+00000441  PCM_setPowerModeWithTimeout                
+00000515  PCM_setCoreVoltageLevelWithTimeout         
+000005bd  __aeabi_memcpy                             
+000005bd  __aeabi_memcpy4                            
+000005bd  __aeabi_memcpy8                            
+000005bd  memcpy                                     
+00000659  __aeabi_memclr                             
+00000659  __aeabi_memclr4                            
+00000659  __aeabi_memclr8                            
+0000065b  __aeabi_memset                             
+0000065b  __aeabi_memset4                            
+0000065b  __aeabi_memset8                            
+00000661  memset                                     
+000006d5  __TI_auto_init                             
+000007ad  Interrupt_enableInterrupt                  
+00000811  _c_int00                                   
+00000861  GPIO_setAsPeripheralModuleFunctionOutputPin
+000008ad  copy_in                                    
+000008f9  C$$EXIT                                    
+000008fd  abort                                      
+00000905  exit                                       
+0000093d  GPIO_getEnabledInterruptStatus             
+0000096d  GPIO_setAsInputPinWithPullUpResistor       
+0000099d  PCM_getCoreVoltageLevel                    
+000009c9  PCM_getPowerMode                           
+000009f5  FlashCtl_setWaitState                      
+00000a1d  GPIO_setAsOutputPin                        
+00000a41  GPIO_interruptEdgeSelect                   
+00000a61  GPIO_clearInterruptFlag                    
+00000a79  GPIO_disableInterrupt                      
+00000a91  WDT_A_holdTimer                            
+00000aa9  _args_main                                 
+00000ac1  GPIO_enableInterrupt                       
+00000ad5  GPIO_toggleOutputOnPin                     
+00000ae9  Interrupt_disableSleepOnIsrExit            
+00000afd  SysTick_disableInterrupt                   
+00000b11  SysTick_disableModule                      
+00000b25  SysTick_enableInterrupt                    
+00000b39  SysTick_enableModule                       
+00000b4d  _register_unlock                           
+00000b53  _register_lock                             
+00000b5b  _nop                                       
+00000b61  GPIO_getInterruptStatus                    
+00000b71  Interrupt_enableMaster                     
+00000b81  PCM_getPowerState                          
+00000b91  __TI_decompress_none                       
+00000b9f  CPU_cpsie                                  
+00000bad  SysTick_setPeriod                          
+00000bc5  PCM_setCoreVoltageLevel                    
+00000bcb  PCM_setPowerMode                           
+00000bd1  __TI_decompress_rle24                      
+00000bd7  _system_pre_init                           
+00000c74  __TI_Handler_Table_Base                    
+00000c7c  __TI_CINIT_Base                            
+00000c7c  __TI_Handler_Table_Limit                   
+00000c84  __TI_CINIT_Limit                           
+20000000  buttonPushed                               
+20000004  blink                                      
+20000008  jj                                         
+2000000c  frequencyCycle                             
+20000024  _lock                                      
+20000028  _unlock                                    
+2000002c  __TI_cleanup_ptr                           
+20000030  __TI_dtors_ptr                             
+20000034  main_func_sp                               
+2000fe00  __stack                                    
+20010000  __STACK_END                                
+ffffffff  __binit__                                  
+ffffffff  __c_args__                                 
+ffffffff  binit                                      
+UNDEFED   SHT$$INIT_ARRAY$$Base                      
+UNDEFED   SHT$$INIT_ARRAY$$Limit                     
+
+[79 symbols]

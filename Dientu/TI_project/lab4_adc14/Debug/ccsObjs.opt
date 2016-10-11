@@ -1,0 +1,1 @@
+"./lab4_adc14.obj" "./lab4_adc14_startup_ccs.obj" "../msp432p401r.cmd" -l"libc.a" 

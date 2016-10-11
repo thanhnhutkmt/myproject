@@ -1,0 +1,1 @@
+"./lab3_memory.obj" "./lab3_memory_startup_ccs.obj" "../msp432p401r_MODIFIED_SRAM.cmd" "../msp432p4xx_driverlib.lib" -l"libc.a" 

@@ -584,9 +584,9 @@ public class MyDialog {
         listView.setLayoutParams(params);
     }
 
-    public static int createFCMNtf(Context context, String msg) {
+    public static int createFCMNtf(Context context, String msg, String title) {
         int notificationID = (int) (Math.random() * 100);
-        createNotification(context, notificationID, R.drawable.newmessage_server, context.getResources().getString(R.string.title_notification_newmessage),
+        createNotification(context, notificationID, R.drawable.newmessage_server, title,
                 msg, MyPhone.getSavedRingTone(context), XacThucActivity.class);
         return notificationID;
     }

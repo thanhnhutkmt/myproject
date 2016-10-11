@@ -23,22 +23,23 @@ import util.MyPhone;
 import util.MyStringFormater;
 
 /**
- * Created by Ravi Tamada on 08/08/16.
- * Edited by Nhut on 7 Oct 2016.
- * www.androidhive.info
+ * Created by Nhut on 7 Oct 2016.
  */
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if (remoteMessage == null) return;
-        String from = remoteMessage.getFrom();
-        String msgBody = remoteMessage.getData().get("message");
-        Log.i("MyTag", from + " : " + msgBody);
+        processDataMessage(remoteMessage);
 
+        RemoteMessage.Notification ntf = remoteMessage.getNotification();
+        if (ntf == null) return;
+
+        String msgBody = "\"" + ntf.getTitle() + "\" : " + ntf.getBody();
         Context context = getApplicationContext();
         int type = TinNhanDanhBaCuocGoi.RECEIVED;
-        String phoneNumber = from;
+        String phoneNumber = "FCM server";
+        String title = phoneNumber + " -> \"" + ntf.getTitle() + "\"";
         long msgTime = System.currentTimeMillis();
         String prefix = TinNhanDanhBaCuocGoi.geMessageTypeName(type, context);
         String content = prefix + " " + phoneNumber + " - " +
@@ -49,6 +50,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         MyPhone.loadDataFromApp(thisFeatureFolder, l);
         l.get(2).add(0, new TinNhanDanhBaCuocGoi(type, content, phoneNumber, msgTime));
         MyPhone.saveDataApp(thisFeatureFolder, l);
-        MyDialog.createFCMNtf(context, from + " : " + msgBody);
+        MyDialog.createFCMNtf(context, msgBody, title);
+    }
+
+    void processDataMessage(RemoteMessage remoteMessage) {
+        //simple data processing for demo
+        String from = remoteMessage.getFrom();
+        String msgBody = remoteMessage.getData().get("message");
+        msgBody = from.equals(AppConstant.SENDER_ID) ? "My app server " + from + " -> FCM server -> " + msgBody :
+                "app server -> FCM server -> " + from + " : " + msgBody;
+        Log.i("MyTag", msgBody);
     }
 }
