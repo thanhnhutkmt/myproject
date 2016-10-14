@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.util.Log;
@@ -18,8 +19,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -152,6 +151,7 @@ public class MyFileIO {
         try {
             writer = new BufferedWriter(new FileWriter(fileNameWithPath, appendMode));
             writer.write(content);
+            writer.flush();
         } catch ( IOException e) {
             e.printStackTrace();
             result = false;
@@ -171,7 +171,7 @@ public class MyFileIO {
         try {
             reader = new BufferedReader(new FileReader(fileNameWithPath));
             String temp;
-            while ((temp = reader.readLine()) != null) sb.append(temp);
+            while ((temp = reader.readLine()) != null) sb.append(temp).append(System.getProperty("line.separator"));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -184,18 +184,63 @@ public class MyFileIO {
         return sb.toString();
     }
 
+    public static byte[] readByteFile(File file) {
+        byte data[] = new byte[(int)file.length()];
+        try {
+            new FileInputStream(file).read(data, 0, data.length);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public static void writeByteFile(File file, byte[] data, boolean append) {
+        OutputStream out = null;
+        try {
+            out = new FileOutputStream(file, append);
+            out.write(data);
+            out.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                out.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static boolean clearFolderContent(String path) {
         boolean result = true;
         File folder = new File(path);
         if (folder.exists()) {
             if (folder.isDirectory()) {
                 File[] content = folder.listFiles();
+                if (content == null) return true;
                 for (File f : content) {
                     if (f.isDirectory()) clearFolderContent(f.getAbsolutePath());
                     else if (f.isFile()) result = f.delete();
                 }
             } else if (folder.isFile()) folder.delete();
         }
+        return result;
+    }
+
+    public static boolean clearFolderContent(String path, boolean deleteFolder) {
+        boolean result = true;
+        File folder = new File(path);
+        if (folder.exists()) {
+            if (folder.isDirectory()) {
+                File[] content = folder.listFiles();
+                if (content != null)
+                    for (File f : content) {
+                        if (f.isDirectory()) clearFolderContent(f.getAbsolutePath());
+                        else if (f.isFile()) result = f.delete();
+                    }
+            } else if (folder.isFile()) folder.delete();
+        }
+        if (deleteFolder) result = folder.delete();
         return result;
     }
 

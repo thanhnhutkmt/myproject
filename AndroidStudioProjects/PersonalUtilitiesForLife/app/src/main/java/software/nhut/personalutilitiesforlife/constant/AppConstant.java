@@ -54,6 +54,8 @@ public class AppConstant {
     public static final String RINGTONENAME = "MessageRingTone.uri";
     public static final String THUMUC_BAOGIA = "BaoGiaViTinh";
     public static final String SPAM_LIST = "Spam.list";
+    public static final String SYNC = "sync";
+    public static final String SYNCFILE = "data.bk";
 
     //constant for util
     public static final String DBNAME = "db";

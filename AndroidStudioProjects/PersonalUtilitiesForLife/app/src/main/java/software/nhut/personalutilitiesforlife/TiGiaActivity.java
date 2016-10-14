@@ -237,7 +237,7 @@ public class TiGiaActivity extends AppCompatActivity {
     private String[] addDateToLink(String downloadLink, long time) {
         if (downloadLink.contains("dd-MM-yy%20")) { // nova computer
             String temp = downloadLink.replace("dd-MM-yy", MyDateTime.getDateString(time, "dd-MM-yy"));
-            return new String[] {temp, temp.replace("NEW.pdf", "NEW%20.pdf"), temp.replace("NEW.pdf", "NEW..pdf")};
+            return new String[] {temp, temp.replace("NEW.pdf", "NEW%20.pdf"), temp.replace("NEW.pdf", "NEW..pdf"), temp.replace("%20NEW.pdf", ".pdf").replace("NOVA", "BG%20NOVA")};
         } else if (downloadLink.contains("dd_MM.")) { // tnc computer
             return new String[] {downloadLink.replace("dd_MM", MyDateTime.getDateString(time, "dd_MM"))};
         } else if (downloadLink.contains("dd-MM-yyyy.")) { // file name

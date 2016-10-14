@@ -28,6 +28,10 @@ public class MyCheckSum {
         return calculatedDigest.equalsIgnoreCase(md5);
     }
 
+    public static boolean compareFile(File a, File b) {
+        return calculateMD5(a).equals(calculateMD5(b));
+    }
+
     public static String calculateMD5(File updateFile) {
         MessageDigest digest;
         try {
